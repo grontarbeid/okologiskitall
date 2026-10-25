@@ -366,10 +366,27 @@
     </div>
   </section>
 </div>
-<footer class="oko-bunn">Tall: Statistisk sentralbyrå, Debio, Landbruksdirektoratet, Eurostat og FiBL. Fylkeskart: Kartverket (CC BY 4.0). Laget med Claude (Anthropic). Datasett og kode: <a class="oko-lenke" href="https://github.com/grontarbeid/okologiskitall">github.com/grontarbeid/okologiskitall</a>.</footer>
+<footer class="oko-bunn">
+<p class="oko-ansvarlig">Ansvarlig: Grønt arbeid Nordvik, org.nr. <a class="oko-lenke" href="https://virksomhet.brreg.no/nb/oppslag/enheter/936885403">936&nbsp;885&nbsp;403</a> · Kontakt: <span class="oko-epost" data-a="diebratnorg" data-b="moc.liamg">e-postadressen vises når siden er lastet</span></p>
+<p>Tall: Statistisk sentralbyrå, Debio, Landbruksdirektoratet, Eurostat og FiBL. Fylkeskart: Kartverket (CC BY 4.0). Laget med Claude (Anthropic). Datasett og kode: <a class="oko-lenke" href="https://github.com/grontarbeid/okologiskitall">github.com/grontarbeid/okologiskitall</a>.</p>
+</footer>
 </main>
 <script src="d3.v7.9.0.min.js"></script>
 <script src="dash-adapter.js" data-datasett="datasett/"></script>
 <script src="oko.js"></script>
+<script>
+/* Kontaktadressen settes sammen i nettleseren, så den ikke står i klartekst i HTML-koden
+   der programmer som samler inn e-postadresser leter. */
+document.querySelectorAll('.oko-epost[data-a][data-b]').forEach(function (el) {
+  function snu(s) { return s.split('').reverse().join(''); }
+  var adresse = snu(el.getAttribute('data-a')) + String.fromCharCode(64) + snu(el.getAttribute('data-b'));
+  var lenke = document.createElement('a');
+  lenke.className = 'oko-lenke';
+  lenke.href = 'mai' + 'lto:' + adresse;
+  lenke.textContent = adresse;
+  el.textContent = '';
+  el.appendChild(lenke);
+});
+</script>
 </body>
 </html>

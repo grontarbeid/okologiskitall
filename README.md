@@ -44,5 +44,8 @@ Mer om oppdateringen, mappene og kontrollen av tallene står i [`dashbord/README
 
 ## Om dashbordet
 
+Ansvarlig: Grønt arbeid Nordvik, org.nr. [936 885 403](https://virksomhet.brreg.no/nb/oppslag/enheter/936885403).
+Kontaktadressen står nederst på nettsiden.
+
 Dashbordet er laget med KI (Claude fra Anthropic). Tallene er hentet med skript og kontrollert mot
 kildene, men sjekk kilden før du siterer et enkelttall.

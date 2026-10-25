@@ -135,3 +135,5 @@ span.dash-skeleton { display: inline-block; min-width: 3ch; line-height: 1.1; }
   font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans);
 }
 .oko-bunn a { color: inherit; }
+.oko-bunn p { margin: 0 0 6px; }
+.oko-bunn .oko-ansvarlig { color: var(--color-fg); }
