@@ -1,0 +1,137 @@
+/* tema.css – farger, skrift og avstander for nettsideversjonen av dashbordet.
+   Claude-dashbordet gir disse variablene selv; her defineres de for en vanlig nettside,
+   med lyst og mørkt tema. Endre verdiene her for å tilpasse siden til egen profil. */
+
+:root {
+  color-scheme: light;
+  --font-anthropic-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-anthropic-serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+
+  --color-bg: #f6f6f3;
+  --color-panel: #ffffff;
+  --color-fg: #141413;
+  --color-fg-muted: #5e5d59;
+  --color-border-line: rgba(20, 20, 19, 0.12);
+  --color-ok: #1d7a33;
+  --color-warn: #8a5a00;
+  --color-bad: #b42318;
+
+  --cds-chart-grid: #e8e7e1;
+  --cds-chart-axis: #c3c2b7;
+  --cds-chart-reference: #7b7a74;
+  --cds-chart-muted: #c9c8c0;
+  --cds-chart-status-critical: #d03b3b;
+  --cds-surface-popover: #ffffff;
+  --cds-border: rgba(20, 20, 19, 0.14);
+  --cds-shadow-popover: 0 6px 20px rgba(0, 0, 0, 0.12);
+  --cds-text-secondary: #5e5d59;
+
+  --cds-radius: 10px;
+  --cds-pad-xs: 4px;
+  --cds-pad-sm: 8px;
+  --cds-pad-md: 12px;
+  --cds-pad-lg: 18px;
+  --cds-pad-xl: 28px;
+  --cds-gap-xs: 4px;
+  --cds-gap-sm: 8px;
+  --cds-gap-md: 14px;
+  --cds-gap-lg: 24px;
+  --cds-gap-xl: 36px;
+  --cds-font-size-caption: 12.5px;
+  --cds-font-size-body: 15px;
+  --cds-font-size-heading: 16.5px;
+  --cds-font-size-title: 32px;
+  --cds-font-weight-medium: 600;
+  --cds-dur-slow: 400ms;
+  --cds-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* seriefarger (samme rekkefølge som i Claude-dashbordet) */
+  --oko-farge-1: #2a78d6;
+  --oko-farge-2: #eb6834;
+  --oko-farge-3: #1baf7a;
+  --oko-farge-4: #eda100;
+  --oko-farge-5: #e87ba4;
+  --oko-farge-6: #008300;
+  --oko-farge-7: #6250d6;
+  --oko-farge-8: #e34948;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-bg: #0f0f0e;
+    --color-panel: #1a1a19;
+    --color-fg: #f0efec;
+    --color-fg-muted: #b0afa7;
+    --color-border-line: rgba(255, 255, 255, 0.10);
+    --color-ok: #3fbf5a;
+    --color-warn: #e0a83a;
+    --color-bad: #f07167;
+    --cds-chart-grid: #2c2c2a;
+    --cds-chart-axis: #45453f;
+    --cds-chart-reference: #9a9990;
+    --cds-chart-muted: #4d4d48;
+    --cds-surface-popover: #242422;
+    --cds-border: rgba(255, 255, 255, 0.14);
+    --cds-shadow-popover: 0 6px 20px rgba(0, 0, 0, 0.5);
+    --cds-text-secondary: #b0afa7;
+    --oko-farge-1: #3987e5;
+    --oko-farge-2: #d95926;
+    --oko-farge-3: #199e70;
+    --oko-farge-4: #c98500;
+    --oko-farge-5: #d55181;
+    --oko-farge-6: #008300;
+    --oko-farge-7: #9085e9;
+    --oko-farge-8: #e66767;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #0f0f0e;
+  --color-panel: #1a1a19;
+  --color-fg: #f0efec;
+  --color-fg-muted: #b0afa7;
+  --color-border-line: rgba(255, 255, 255, 0.10);
+  --color-ok: #3fbf5a;
+  --color-warn: #e0a83a;
+  --color-bad: #f07167;
+  --cds-chart-grid: #2c2c2a;
+  --cds-chart-axis: #45453f;
+  --cds-chart-reference: #9a9990;
+  --cds-chart-muted: #4d4d48;
+  --cds-surface-popover: #242422;
+  --cds-border: rgba(255, 255, 255, 0.14);
+  --cds-shadow-popover: 0 6px 20px rgba(0, 0, 0, 0.5);
+  --cds-text-secondary: #b0afa7;
+  --oko-farge-1: #3987e5;
+  --oko-farge-2: #d95926;
+  --oko-farge-3: #199e70;
+  --oko-farge-4: #c98500;
+  --oko-farge-5: #d55181;
+  --oko-farge-6: #008300;
+  --oko-farge-7: #9085e9;
+  --oko-farge-8: #e66767;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-anthropic-sans);
+}
+#dash-root { padding: 24px 16px 48px; }
+@media (min-width: 720px) { #dash-root { padding: 32px clamp(24px, 4vw, 48px) 64px; } }
+
+.dash-skeleton { color: transparent !important; background: var(--cds-chart-grid); border-radius: 6px; }
+span.dash-skeleton { display: inline-block; min-width: 3ch; line-height: 1.1; }
+@media (prefers-reduced-motion: no-preference) {
+  .dash-skeleton { animation: oko-puls 1.4s ease-in-out infinite; }
+  @keyframes oko-puls { 50% { opacity: 0.55; } }
+}
+
+.oko-bunn {
+  max-width: 1240px; margin: 32px auto 0; color: var(--color-fg-muted);
+  font-size: var(--cds-font-size-caption); font-family: var(--font-anthropic-sans);
+}
+.oko-bunn a { color: inherit; }

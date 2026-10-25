@@ -1,0 +1,270 @@
+aar,kode,husdyrslag,antall
+1999,01a,Storfe i alt,7424
+1999,02,Melkekyr,2998
+1999,03,Ammekyr,680
+1999,07a,Andre storfe,3746
+1999,05a,Svin i alt,282
+1999,04e,Sau og lam,18393
+1999,15a,Geiter i alt,1052
+1999,15,Melkegeiter,698
+1999,10,Verpehøner,27228
+2000,01a,Storfe i alt,8464
+2000,02,Melkekyr,3531
+2000,03,Ammekyr,724
+2000,07a,Andre storfe,4209
+2000,05a,Svin i alt,178
+2000,09,Slaktegris,146
+2000,04e,Sau og lam,20776
+2000,15a,Geiter i alt,1160
+2000,15,Melkegeiter,805
+2000,10,Verpehøner,24028
+2001,01a,Storfe i alt,10430
+2001,02,Melkekyr,3729
+2001,03,Ammekyr,1072
+2001,07a,Andre storfe,5629
+2001,05a,Svin i alt,259
+2001,09,Slaktegris,208
+2001,04e,Sau og lam,22911
+2001,15a,Geiter i alt,1192
+2001,15,Melkegeiter,845
+2001,10,Verpehøner,27377
+2002,01a,Storfe i alt,12723
+2002,02,Melkekyr,4070
+2002,03,Ammekyr,1408
+2002,07a,Andre storfe,7245
+2002,05a,Svin i alt,466
+2002,09,Slaktegris,275
+2002,04e,Sau og lam,26920
+2002,15a,Geiter i alt,2482
+2002,15,Melkegeiter,1234
+2002,10,Verpehøner,34321
+2003,01a,Storfe i alt,15463
+2003,02,Melkekyr,5226
+2003,03,Ammekyr,1890
+2003,07a,Andre storfe,8347
+2003,05a,Svin i alt,505
+2003,09,Slaktegris,280
+2003,04e,Sau og lam,30930
+2003,15a,Geiter i alt,2204
+2003,15,Melkegeiter,1294
+2003,10,Verpehøner,38628
+2004,01a,Storfe i alt,18649
+2004,02,Melkekyr,5643
+2004,03,Ammekyr,2472
+2004,07a,Andre storfe,10534
+2004,05a,Svin i alt,749
+2004,09,Slaktegris,462
+2004,04e,Sau og lam,33589
+2004,15a,Geiter i alt,2230
+2004,15,Melkegeiter,1252
+2004,10,Verpehøner,57511
+2005,01a,Storfe i alt,18533
+2005,02,Melkekyr,5461
+2005,03,Ammekyr,2538
+2005,07a,Andre storfe,10534
+2005,05a,Svin i alt,494
+2005,09,Slaktegris,272
+2005,04e,Sau og lam,31962
+2005,15a,Geiter i alt,1443
+2005,15,Melkegeiter,645
+2005,10,Verpehøner,32656
+2006,01a,Storfe i alt,18881
+2006,02,Melkekyr,5441
+2006,03,Ammekyr,2616
+2006,07a,Andre storfe,10824
+2006,05a,Svin i alt,1333
+2006,09,Slaktegris,942
+2006,04e,Sau og lam,33027
+2006,15a,Geiter i alt,1249
+2006,15,Melkegeiter,522
+2006,10,Verpehøner,66273
+2007,01a,Storfe i alt,20311
+2007,02,Melkekyr,6030
+2007,03,Ammekyr,2799
+2007,07a,Andre storfe,11482
+2007,05a,Svin i alt,1429
+2007,09,Slaktegris,1197
+2007,04e,Sau og lam,35905
+2007,15a,Geiter i alt,1353
+2007,15,Melkegeiter,591
+2007,10,Verpehøner,84310
+2008,01a,Storfe i alt,21192
+2008,02,Melkekyr,6847
+2008,03,Ammekyr,2803
+2008,07a,Andre storfe,11542
+2008,05a,Svin i alt,1946
+2008,09,Slaktegris,1610
+2008,04e,Sau og lam,40145
+2008,15a,Geiter i alt,1296
+2008,15,Melkegeiter,497
+2008,10,Verpehøner,119323
+2009,01a,Storfe i alt,23863
+2009,02,Melkekyr,7622
+2009,03,Ammekyr,2915
+2009,07a,Andre storfe,13326
+2009,05a,Svin i alt,2486
+2009,09,Slaktegris,1501
+2009,04e,Sau og lam,45423
+2009,15a,Geiter i alt,1337
+2009,15,Melkegeiter,576
+2009,10,Verpehøner,170409
+2010,01a,Storfe i alt,27211
+2010,02,Melkekyr,8764
+2010,03,Ammekyr,3232
+2010,07a,Andre storfe,15215
+2010,05a,Svin i alt,3287
+2010,09,Slaktegris,2460
+2010,04e,Sau og lam,48941
+2010,15a,Geiter i alt,1426
+2010,15,Melkegeiter,659
+2010,10,Verpehøner,153319
+2011,01a,Storfe i alt,28441
+2011,02,Melkekyr,8817
+2011,03,Ammekyr,3560
+2011,07a,Andre storfe,16064
+2011,05a,Svin i alt,2242
+2011,09,Slaktegris,1207
+2011,04e,Sau og lam,48534
+2011,15a,Geiter i alt,1253
+2011,15,Melkegeiter,441
+2011,10,Verpehøner,136395
+2012,01a,Storfe i alt,29511
+2012,02,Melkekyr,9097
+2012,03,Ammekyr,3624
+2012,07a,Andre storfe,16790
+2012,05a,Svin i alt,2313
+2012,09,Slaktegris,1279
+2012,04e,Sau og lam,47332
+2012,15a,Geiter i alt,1295
+2012,15,Melkegeiter,429
+2012,10,Verpehøner,151095
+2013,01a,Storfe i alt,28875
+2013,02,Melkekyr,9094
+2013,03,Ammekyr,3370
+2013,07a,Andre storfe,16411
+2013,05a,Svin i alt,1931
+2013,09,Slaktegris,955
+2013,04e,Sau og lam,46347
+2013,15a,Geiter i alt,1275
+2013,15,Melkegeiter,429
+2013,10,Verpehøner,161619
+2014,01a,Storfe i alt,27385
+2014,02,Melkekyr,8226
+2014,03,Ammekyr,3449
+2014,07a,Andre storfe,15710
+2014,05a,Svin i alt,2631
+2014,09,Slaktegris,1462
+2014,04e,Sau og lam,46390
+2014,15a,Geiter i alt,1399
+2014,15,Melkegeiter,532
+2014,10,Verpehøner,181246
+2015,01a,Storfe i alt,28516
+2015,02,Melkekyr,8287
+2015,03,Ammekyr,3802
+2015,07a,Andre storfe,16427
+2015,05a,Svin i alt,1543
+2015,09,Slaktegris,873
+2015,04e,Sau og lam,48559
+2015,15a,Geiter i alt,1449
+2015,15,Melkegeiter,569
+2015,10,Verpehøner,203846
+2016,01a,Storfe i alt,29329
+2016,02,Melkekyr,8350
+2016,03,Ammekyr,4059
+2016,07a,Andre storfe,16920
+2016,05a,Svin i alt,2055
+2016,09,Slaktegris,1234
+2016,04e,Sau og lam,50902
+2016,15a,Geiter i alt,1506
+2016,15,Melkegeiter,539
+2016,10,Verpehøner,242067
+2017,01a,Storfe i alt,29931
+2017,02,Melkekyr,8340
+2017,03,Ammekyr,4141
+2017,07a,Andre storfe,17450
+2017,05a,Svin i alt,3474
+2017,09,Slaktegris,1670
+2017,04e,Sau og lam,49237
+2017,15a,Geiter i alt,1544
+2017,15,Melkegeiter,625
+2017,10,Verpehøner,264146
+2018,01a,Storfe i alt,30307
+2018,02,Melkekyr,8353
+2018,03,Ammekyr,4316
+2018,07a,Andre storfe,17638
+2018,05a,Svin i alt,2924
+2018,09,Slaktegris,1612
+2018,04e,Sau og lam,46823
+2018,15a,Geiter i alt,1691
+2018,15,Melkegeiter,497
+2018,10,Verpehøner,294342
+2019,01a,Storfe i alt,28361
+2019,02,Melkekyr,7932
+2019,03,Ammekyr,3824
+2019,07a,Andre storfe,16605
+2019,05a,Svin i alt,2820
+2019,09,Slaktegris,1625
+2019,04e,Sau og lam,43554
+2019,15a,Geiter i alt,1586
+2019,15,Melkegeiter,495
+2019,10,Verpehøner,307495
+2020,01a,Storfe i alt,28639
+2020,02,Melkekyr,7781
+2020,03,Ammekyr,4144
+2020,07a,Andre storfe,16714
+2020,05a,Svin i alt,2778
+2020,09,Slaktegris,1514
+2020,04e,Sau og lam,44115
+2020,15a,Geiter i alt,1786
+2020,15,Melkegeiter,619
+2020,10,Verpehøner,316569
+2021,01a,Storfe i alt,28332
+2021,02,Melkekyr,7613
+2021,03,Ammekyr,4330
+2021,07a,Andre storfe,16389
+2021,05a,Svin i alt,2985
+2021,09,Slaktegris,1655
+2021,04e,Sau og lam,46585
+2021,15a,Geiter i alt,2015
+2021,15,Melkegeiter,629
+2021,10,Verpehøner,324946
+2022,01a,Storfe i alt,28075
+2022,02,Melkekyr,7364
+2022,03,Ammekyr,4441
+2022,07a,Andre storfe,16270
+2022,05a,Svin i alt,3411
+2022,09,Slaktegris,2075
+2022,04e,Sau og lam,45959
+2022,15a,Geiter i alt,2033
+2022,15,Melkegeiter,632
+2022,10,Verpehøner,308948
+2023,01a,Storfe i alt,28328
+2023,02,Melkekyr,7121
+2023,03,Ammekyr,4621
+2023,07a,Andre storfe,16586
+2023,05a,Svin i alt,3471
+2023,09,Slaktegris,2580
+2023,04e,Sau og lam,44008
+2023,15a,Geiter i alt,2351
+2023,15,Melkegeiter,758
+2023,10,Verpehøner,286629
+2024,01a,Storfe i alt,27717
+2024,02,Melkekyr,6849
+2024,03,Ammekyr,4672
+2024,07a,Andre storfe,16196
+2024,05a,Svin i alt,4275
+2024,09,Slaktegris,3412
+2024,04e,Sau og lam,43760
+2024,15a,Geiter i alt,2403
+2024,15,Melkegeiter,699
+2024,10,Verpehøner,294026
+2025,01a,Storfe i alt,27215
+2025,02,Melkekyr,6847
+2025,03,Ammekyr,4547
+2025,07a,Andre storfe,15821
+2025,05a,Svin i alt,2947
+2025,09,Slaktegris,2428
+2025,04e,Sau og lam,43775
+2025,15a,Geiter i alt,2374
+2025,15,Melkegeiter,672
+2025,10,Verpehøner,321514

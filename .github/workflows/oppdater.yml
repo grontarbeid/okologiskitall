@@ -1,0 +1,117 @@
+# Oppdaterer og publiserer nettsiden «Økologisk landbruk i Norge» (okologiskitall.no).
+# Ligger i repoet grontarbeid/okologiskitall som .github/workflows/oppdater.yml.
+#
+# Når kjører den?
+# - Hver mandag morgen: henter nye tall fra SSB og Eurostat, bygger datasettene og nettsiden,
+#   lagrer endringene i repoet og publiserer siden. Er ingen tall endret, publiseres ingenting.
+# - Når noe legges inn i main (for eksempel årets tall fra Landbruksdirektoratet, Debio og FiBL):
+#   bygger datasettene og nettsiden fra filene i data/ og publiserer.
+# - For hånd: Actions → «Oppdater og publiser» → Run workflow (henter, bygger og publiserer).
+#
+# Feiler den ukentlige kjøringen, publiseres ingenting – siden viser fortsatt de forrige tallene –
+# og det opprettes en sak under Issues, så eieren av repoet får e-post.
+#
+# GitHub slår av planlagte kjøringer i offentlige repo etter 60 dager uten aktivitet. Jobben
+# «hold-i-gang» slår derfor kjøringen på igjen hver uke, også når tallene står stille.
+name: Oppdater og publiser
+
+on:
+  schedule:
+    - cron: "17 5 * * 1"   # mandager 05.17 UTC = 06.17 vintertid / 07.17 sommertid
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: okologiskitall
+  cancel-in-progress: false
+
+jobs:
+  oppdater:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      publiser: ${{ steps.lagre.outputs.publiser }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Hent nye tall fra SSB og Eurostat og bygg dashbordet
+        if: github.event_name != 'push'
+        run: python3 dashbord/skript/oppdater_kilder.py
+
+      - name: Bygg dashbordet fra filene i repoet
+        if: github.event_name == 'push'
+        run: |
+          python3 dashbord/skript/bygg_datasett.py
+          python3 dashbord/skript/lag_nettside.py
+
+      - name: Lagre endringer i repoet
+        id: lagre
+        run: |
+          git add -A data dashbord
+          # datasett.json får nytt byggetidspunkt hver gang – det alene er ingen endring
+          if git diff --cached --quiet -- . ':(exclude)dashbord/nettside/datasett/datasett.json'; then
+            echo "Ingen nye tall."
+            git reset --quiet --hard
+            if [ "${{ github.event_name }}" = "schedule" ]; then
+              echo "publiser=false" >> "$GITHUB_OUTPUT"
+            else
+              echo "publiser=true" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit --quiet -m "Nye tall $(date -u +%F)"
+            git push
+            echo "publiser=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Pakk nettsiden
+        if: steps.lagre.outputs.publiser == 'true'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dashbord/nettside
+
+  publiser:
+    needs: oppdater
+    if: needs.oppdater.outputs.publiser == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.publisering.outputs.page_url }}
+    steps:
+      - id: publisering
+        uses: actions/deploy-pages@v5
+
+  hold-i-gang:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Slå den ukentlige kjøringen på igjen (nullstiller GitHubs 60-dagersgrense)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method PUT "repos/${{ github.repository }}/actions/workflows/oppdater.yml/enable"
+
+  meld-fra:
+    needs: [oppdater, publiser, hold-i-gang]
+    if: failure() && github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Opprett en sak om feilen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --repo "${{ github.repository }}" \
+            --title "Den ukentlige oppdateringen feilet $(date -u +%F)" \
+            --body "Noe gikk galt da tallene skulle hentes, bygges eller publiseres, så ingen nye tall ble lagt ut. Nettsiden viser fortsatt de forrige tallene. Loggen: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

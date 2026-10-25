@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Økologisk landbruk i Norge</title>
+<meta name="description" content="Statistikk om økologisk landbruk i Norge: areal, gårder, produksjon, fylker, marked og Europa. Tall fra SSB, Debio, Landbruksdirektoratet, Eurostat og FiBL.">
+<link rel="stylesheet" href="tema.css">
+<link rel="stylesheet" href="oko.css">
+</head>
+<body>
+<main id="dash-root" class="oko-nettside">
+<div class="oko" id="oko">
+  <header class="oko-head" id="topp">
+    <h1 class="oko-title" id="tittel">Økologisk landbruk i Norge</h1>
+    <p class="oko-lede" id="ingress">
+      I <span class="oko-num" data-source="nokkeltall" data-field="aar" data-row="0" data-fmt="text">—</span>
+      var <span class="oko-num" data-source="nokkeltall" data-field="andel" data-row="0" data-fmt="d1">—</span>&nbsp;%
+      av jordbruksarealet økologisk, medregnet areal under omlegging. Målet er 10&nbsp;% innen 2032, slik det står i
+      <a class="oko-lenke" href="https://www.regjeringen.no/no/dokumenter/nasjonal-strategi-for-okologisk-jordbruk-2025-2032/id3097100/" target="_blank" rel="noopener">regjeringens strategi for økologisk jordbruk 2025–2032</a>.
+      Da må om lag <span class="oko-num" data-source="maal_2032" data-field="trengs_per_aar" data-row="0" data-fmt="int">—</span>
+      dekar legges om hvert år. De siste fem årene har det økologiske arealet i snitt
+      <span data-source="maal_2032" data-field="retning_siste_5_aar" data-row="0" data-fmt="text">—</span>
+      med <span class="oko-num" data-source="maal_2032" data-field="snitt_siste_5_aar_abs" data-row="0" data-fmt="int">—</span> dekar i året.
+    </p>
+    <p class="oko-ai" id="ki-merknad">Laget med KI (Claude). Tallene er hentet fra kildene med skript og kontrollert – se forbehold og kilder under «Om tallene».</p>
+  </header>
+
+  <nav class="oko-tabs" role="tablist" aria-label="Deler av dashbordet" id="faner">
+    <button class="oko-tab" role="tab" id="fane-oversikt" data-page="oversikt" aria-controls="oversikt" aria-selected="true">Oversikt</button>
+    <button class="oko-tab" role="tab" id="fane-areal" data-page="areal" aria-controls="areal" aria-selected="false" tabindex="-1">Areal og gårder</button>
+    <button class="oko-tab" role="tab" id="fane-produksjon" data-page="produksjon" aria-controls="produksjon" aria-selected="false" tabindex="-1">Produksjon</button>
+    <button class="oko-tab" role="tab" id="fane-fylker" data-page="fylker" aria-controls="fylker" aria-selected="false" tabindex="-1">Fylker</button>
+    <button class="oko-tab" role="tab" id="fane-varer" data-page="varer" aria-controls="varer" aria-selected="false" tabindex="-1">Vare for vare</button>
+    <button class="oko-tab" role="tab" id="fane-marked" data-page="marked" aria-controls="marked" aria-selected="false" tabindex="-1">Marked</button>
+    <button class="oko-tab" role="tab" id="fane-europa" data-page="europa" aria-controls="europa" aria-selected="false" tabindex="-1">Europa</button>
+    <button class="oko-tab" role="tab" id="fane-maal" data-page="maal" aria-controls="maal" aria-selected="false" tabindex="-1">Mål og tilskudd</button>
+    <button class="oko-tab" role="tab" id="fane-om" data-page="om" aria-controls="om" aria-selected="false" tabindex="-1">Om tallene</button>
+  </nav>
+
+  <!-- ================================================================ OVERSIKT -->
+  <section class="oko-page" id="oversikt" role="tabpanel" aria-labelledby="fane-oversikt">
+    <div class="oko-kpis" id="nokkeltall">
+      <div class="oko-kpi" id="kpi-andel">
+        <div class="oko-kpi-label">Økologisk andel av jordbruksarealet</div>
+        <div class="oko-kpi-value"><span data-source="nokkeltall" data-field="andel" data-row="0" data-fmt="d1">—</span><span class="oko-kpi-unit">&nbsp;%</span></div>
+        <div class="oko-kpi-delta"><span data-source="nokkeltall" data-field="andel_endring_pp" data-row="0" data-fmt="d2+" data-good="up">—</span> prosentpoeng fra <span data-source="nokkeltall" data-field="forrige_aar" data-row="0" data-fmt="text">—</span></div>
+        <div class="oko-kpi-sub">Uten areal under omlegging: <span data-source="nokkeltall" data-field="andel_godkjent" data-row="0" data-fmt="d1">—</span>&nbsp;%</div>
+      </div>
+      <div class="oko-kpi" id="kpi-areal">
+        <div class="oko-kpi-label">Økologisk areal</div>
+        <div class="oko-kpi-value"><span data-source="nokkeltall" data-field="areal" data-row="0" data-fmt="int">—</span><span class="oko-kpi-unit"> dekar</span></div>
+        <div class="oko-kpi-delta"><span data-source="nokkeltall" data-field="areal_endring_prosent" data-row="0" data-fmt="d1+" data-good="up">—</span>&nbsp;% fra <span data-source="nokkeltall" data-field="forrige_aar" data-row="0" data-fmt="text">—</span></div>
+        <div class="oko-kpi-sub">Herav <span data-source="nokkeltall" data-field="karens" data-row="0" data-fmt="int">—</span> dekar under omlegging</div>
+      </div>
+      <div class="oko-kpi" id="kpi-gaarder">
+        <div class="oko-kpi-label">Gårder med økologisk drift</div>
+        <div class="oko-kpi-value"><span data-source="nokkeltall" data-field="gaarder" data-row="0" data-fmt="int">—</span></div>
+        <div class="oko-kpi-delta"><span data-source="nokkeltall" data-field="gaarder_endring" data-row="0" data-fmt="int+" data-good="up">—</span> fra <span data-source="nokkeltall" data-field="forrige_aar" data-row="0" data-fmt="text">—</span></div>
+        <div class="oko-kpi-sub">Jordbruksbedrifter med økologisk areal</div>
+      </div>
+      <div class="oko-kpi" id="kpi-dagligvare">
+        <div class="oko-kpi-label">Økologisk andel i dagligvarehandelen</div>
+        <div class="oko-kpi-value"><span data-source="ldir_dagligvare" data-field="andel_prosent" data-latest="aar" data-fmt="d1">—</span><span class="oko-kpi-unit">&nbsp;%</span></div>
+        <div class="oko-kpi-delta">av salget i <span data-source="ldir_dagligvare" data-field="aar" data-latest="aar" data-latest-of="andel_prosent" data-fmt="text">—</span>, i varegrupper der det finnes økologiske varer</div>
+        <div class="oko-kpi-sub"><span data-source="ldir_dagligvare" data-field="omsetning_mill_kr" data-latest="aar" data-fmt="int">—</span> mill. kr i økologisk salg</div>
+      </div>
+      <div class="oko-kpi" id="kpi-melk">
+        <div class="oko-kpi-label">Økologisk melk solgt som økologisk</div>
+        <div class="oko-kpi-value"><span data-source="ldir_anvendelse" data-field="prosent" data-filter="vare=Melk" data-latest="aar" data-fmt="int">—</span><span class="oko-kpi-unit">&nbsp;%</span></div>
+        <div class="oko-kpi-delta">i <span data-source="ldir_anvendelse" data-field="aar" data-filter="vare=Melk" data-latest="aar" data-latest-of="prosent" data-fmt="text">—</span>; resten selges som vanlig melk</div>
+        <div class="oko-kpi-sub"><span data-source="ldir_melk" data-field="levert_mill_liter" data-latest="aar" data-fmt="d1">—</span> mill. liter levert til meieri</div>
+      </div>
+      <div class="oko-kpi" id="kpi-europa">
+        <div class="oko-kpi-label">Norges plass i Europa (andel areal)</div>
+        <div class="oko-kpi-value"><span data-source="europa_plass" data-field="plass" data-row="0" data-fmt="int">—</span><span class="oko-kpi-unit">. plass</span></div>
+        <div class="oko-kpi-delta">av <span data-source="europa_plass" data-field="antall_land" data-row="0" data-fmt="int">—</span> land i <span data-source="europa_plass" data-field="aar" data-row="0" data-fmt="text">—</span></div>
+        <div class="oko-kpi-sub">Norge: <span data-source="europa_plass" data-field="andel_prosent" data-row="0" data-fmt="d1">—</span>&nbsp;% etter Eurostats tall</div>
+      </div>
+    </div>
+    <div class="oko-fot oko-fot-kpi"><details class="oko-kildeliste" id="kilder-nokkeltall"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko ssb_jord ldir eurostat"><p class="oko-beregning">Andel, areal og gårder: tabell 12661 og 04496 hos SSB; andelen er økologisk areal delt på jordbruksareal i drift, og endringen er sammenlignet med året før. Dagligvare og melk: siste rapport fra Landbruksdirektoratet. Europa: Eurostats org_cropar, Norges plass blant landene med tall for siste år.</p></div></details></div>
+
+    <div class="oko-grid">
+      <article class="oko-card oko-wide" id="kort-andel">
+        <h3 class="oko-card-title">Økologisk andel av jordbruksarealet – og målet for 2032</h3>
+        <p class="oko-card-note">Andel av alt jordbruksareal i drift, med og uten areal under omlegging (karens). Den stiplede linjen viser utviklingen som trengs for å nå 10&nbsp;% i 2032.</p>
+        <div class="oko-chart dash-skeleton" id="graf-andel" data-source="ssb_areal andel_beregnet" style="min-height: 300px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-andel"></div></details><details class="oko-kildeliste" id="kilder-andel"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko ssb_jord strategi"><p class="oko-beregning">Andelen med areal under omlegging er SSBs egen (tabell 12661). Andelen bare for godkjent areal er regnet ut her: godkjent økologisk areal (12661) delt på jordbruksareal i drift (04496). Den stiplede linjen går rett fra siste år til målet om 10 % i 2032.</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-andeler">
+        <h3 class="oko-card-title">Hvor stor del er økologisk?</h3>
+        <p class="oko-card-note">Økologisk andel av areal, produksjon og salg – siste år med tall for hvert område.</p>
+        <div class="oko-chart dash-skeleton" id="graf-andeler" data-source="andeler_siste" style="min-height: 232px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-andeler"></div></details><details class="oko-kildeliste" id="kilder-andeler"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko ssb_jord ldir"><p class="oko-beregning">Jordbruksareal: økologisk areal med karens (12661) delt på jordbruksareal i drift (04496). Melk, egg, kjøtt og dagligvare: andelene slik Landbruksdirektoratet oppgir dem i siste rapport. Side i rapporten står under «Vis tallene» på fanene Vare for vare og Marked.</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-innut">
+        <h3 class="oko-card-title">Inn og ut av økologisk drift</h3>
+        <p class="oko-card-note">Landbruksvirksomheter som meldte seg inn i og ut av Debios kontroll hvert år.</p>
+        <div class="oko-chart dash-skeleton" id="graf-innut" data-source="debio_innut" style="min-height: 260px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-innut"></div></details><details class="oko-kildeliste" id="kilder-innut"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="debio"><p class="oko-beregning">Nye og utmeldte landbruksvirksomheter fra Debios regneark over antall virksomheter i landbruket.</p></div></details></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================================================================ AREAL OG GÅRDER -->
+  <section class="oko-page" id="areal" role="tabpanel" aria-labelledby="fane-areal" hidden>
+    <div class="oko-grid">
+      <article class="oko-card oko-wide" id="kort-arealtype">
+        <h3 class="oko-card-title">Økologisk areal: godkjent og under omlegging</h3>
+        <p class="oko-card-note">Dekar. Areal under omlegging (karens) blir godkjent økologisk etter omleggingstiden, vanligvis to år, så karensarealet viser hvor mye som er på vei inn.</p>
+        <div class="oko-chart dash-skeleton" id="graf-arealtype" data-source="ssb_areal" style="min-height: 280px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-arealtype"></div></details><details class="oko-kildeliste" id="kilder-arealtype"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko"><p class="oko-beregning">Godkjent økologisk areal og areal under omlegging (karens) i tabell 12661, hele landet.</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-gaarder">
+        <h3 class="oko-card-title">Gårder med økologisk drift</h3>
+        <p class="oko-card-note">Antall jordbruksbedrifter med økologisk areal.</p>
+        <div class="oko-chart dash-skeleton" id="graf-gaarder" data-source="ssb_areal" style="min-height: 240px"></div>
+        <div class="oko-fot"><details class="oko-kildeliste" id="kilder-gaarder"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko"><p class="oko-beregning">Jordbruksbedrifter med økologisk drift i tabell 12661, hele landet.</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-pergard">
+        <h3 class="oko-card-title">Økologisk areal per gård</h3>
+        <p class="oko-card-note">Dekar økologisk areal (med karens) i snitt per gård med økologisk drift.</p>
+        <div class="oko-chart dash-skeleton" id="graf-pergard" data-source="snitt_per_gard" style="min-height: 240px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-pergard"></div></details><details class="oko-kildeliste" id="kilder-pergard"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko"><p class="oko-beregning">Regnet ut her: økologisk areal med karens delt på antall gårder med økologisk drift, begge fra tabell 12661.</p></div></details></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================================================================ PRODUKSJON -->
+  <section class="oko-page" id="produksjon" role="tabpanel" aria-labelledby="fane-produksjon" hidden>
+    <div class="oko-grid">
+      <article class="oko-card" id="kort-bruk">
+        <h3 class="oko-card-title">Hva det økologiske arealet brukes til</h3>
+        <p class="oko-card-note">Godkjent økologisk areal etter bruk, siste år (dekar, uten karens).</p>
+        <div class="oko-chart dash-skeleton" id="graf-bruk" data-source="ssb_bruk" style="min-height: 280px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-bruk"></div></details><details class="oko-kildeliste" id="kilder-bruk"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko"><p class="oko-beregning">Godkjent økologisk areal etter vekst i tabell 12662 (uten areal under omlegging).</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-bruk-utvikling">
+        <h3 class="oko-card-title">Utvikling per vekstgruppe</h3>
+        <p class="oko-card-note">Godkjent økologisk areal (dekar). Hver figur har sin egen skala.</p>
+        <div class="oko-chart dash-skeleton" id="graf-bruk-utvikling" data-source="ssb_bruk" style="min-height: 280px"></div>
+        <div class="oko-fot"><details class="oko-kildeliste" id="kilder-bruk-utvikling"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko"><p class="oko-beregning">Tabell 12662. Gruppene er summer av SSBs kategorier: eng og beite = fulldyrka eng + overflatedyrka eng + innmarksbeite; grønnsaker, potet, frukt og bær = potet + grønnsaker og urter + frukt + bær; grønngjødsling og andre vekster = grønngjødsling + andre vekster.</p></div></details></div>
+      </article>
+      <article class="oko-card oko-wide" id="kort-husdyr">
+        <h3 class="oko-card-title">Økologiske husdyr</h3>
+        <p class="oko-card-note">Antall dyr. Hver figur har sin egen skala.</p>
+        <div class="oko-chart dash-skeleton" id="graf-husdyr" data-source="ssb_husdyr" style="min-height: 140px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-husdyr"></div></details><details class="oko-kildeliste" id="kilder-husdyr"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko"><p class="oko-beregning">Økologiske husdyr i tabell 12663.</p></div></details></div>
+      </article>
+      <article class="oko-card oko-wide" id="kort-vekster">
+        <h3 class="oko-card-title">Åkervekster, grønnsaker, frukt og bær</h3>
+        <p class="oko-card-note">Areal per vekst hos Debio-godkjente gårder, siste år (dekar, med karens). Eng, beite og grønnfôr er holdt utenfor.</p>
+        <div class="oko-chart dash-skeleton" id="graf-vekster" data-source="debio_vekster" style="min-height: 420px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-vekster"></div></details><details class="oko-kildeliste" id="kilder-vekster"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="debio"><p class="oko-beregning">Debios regneark over planteproduksjon for hele landet. Økologisk areal og areal under omlegging er lagt sammen og avrundet til hele dekar. Eng, beite og grønnfôr er holdt utenfor figuren, men står i tabellen.</p></div></details></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================================================================ FYLKER -->
+  <section class="oko-page" id="fylker" role="tabpanel" aria-labelledby="fane-fylker" hidden>
+    <div class="oko-seg" role="group" aria-label="Vis fylkene etter" id="fylke-valg">
+      <button type="button" data-maal="andel" aria-pressed="true">Andel av jordbruksarealet</button>
+      <button type="button" data-maal="areal" aria-pressed="false">Økologisk areal</button>
+      <button type="button" data-maal="gaarder" aria-pressed="false">Gårder</button>
+    </div>
+    <div class="oko-grid">
+      <article class="oko-card" id="kort-kart">
+        <h3 class="oko-card-title" id="kart-tittel">Fylkene på kart</h3>
+        <p class="oko-card-note">Mørkere farge betyr høyere verdi. Oslo og Akershus er slått sammen, slik SSB publiserer dem.</p>
+        <div class="oko-chart dash-skeleton" id="graf-kart" data-source="fylkeskart ssb_fylker" style="min-height: 460px"></div>
+        <div class="oko-fot"><details class="oko-kildeliste" id="kilder-kart"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko kart"><p class="oko-beregning">Tabell 12661 per fylke, siste år. SSB publiserer Oslo og Akershus samlet, så de to fylkene er slått sammen på kartet.</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-fylker">
+        <h3 class="oko-card-title" id="fylker-tittel">Fylkene rangert</h3>
+        <p class="oko-card-note" id="fylker-note">Siste år. Den stiplede linjen er landsgjennomsnittet.</p>
+        <div class="oko-chart dash-skeleton" id="graf-fylker" data-source="ssb_fylker ssb_areal" style="min-height: 400px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-fylker"></div></details><details class="oko-kildeliste" id="kilder-fylker"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko"><p class="oko-beregning">Tabell 12661 per fylke, siste år. Landsgjennomsnittet er SSBs andel for hele landet i samme tabell.</p></div></details></div>
+      </article>
+      <article class="oko-card oko-wide" id="kort-fylker-endring">
+        <h3 class="oko-card-title">Endring siste år per fylke</h3>
+        <p class="oko-card-note" id="fylker-endring-note"><span id="fylker-endring-maal">Valgt mål</span>: endring fra <span data-source="fylker_endring" data-field="forrige_aar" data-row="0" data-fmt="text">—</span> til <span data-source="fylker_endring" data-field="aar" data-row="0" data-fmt="text">—</span>, i <span id="fylker-endring-enhet">valgt enhet</span>.</p>
+        <div class="oko-chart dash-skeleton" id="graf-fylker-endring" data-source="fylker_endring" style="min-height: 400px"></div>
+        <div class="oko-fot"><details class="oko-kildeliste" id="kilder-fylker-endring"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko"><p class="oko-beregning">Regnet ut her: siste år minus året før i tabell 12661, per fylke. Endringen i andel er regnet av SSBs avrundede andeler (én desimal).</p></div></details></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================================================================ VARE FOR VARE -->
+  <section class="oko-page" id="varer" role="tabpanel" aria-labelledby="fane-varer" hidden>
+    <div class="oko-grid">
+      <article class="oko-card" id="kort-melk">
+        <h3 class="oko-card-title">Økologisk melk</h3>
+        <p class="oko-card-note">Millioner liter økologisk kumelk levert til meieri, og hvor mye som ble solgt videre som økologisk. Resten selges som vanlig melk.</p>
+        <div class="oko-chart dash-skeleton" id="graf-melk" data-source="ldir_melk" style="min-height: 260px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-melk"></div></details><details class="oko-kildeliste" id="kilder-melk"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir slf2012"><p class="oko-beregning">Økologisk melk levert til Tine Råvare (fra 2023 Norsk Melkeråvare), og hvor mye som ble solgt videre som økologisk. Det fargede feltet er differansen, regnet ut her. Rapport, tabell og side for hvert tall står under «Vis tallene».</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-anvendelse">
+        <h3 class="oko-card-title">Andel solgt som økologisk</h3>
+        <p class="oko-card-note">Prosent av den økologiske produksjonen som ble solgt med økologisk merke. Lave tall betyr at mye økologisk vare selges som vanlig vare.</p>
+        <div class="oko-chart dash-skeleton" id="graf-anvendelse" data-source="ldir_anvendelse" style="min-height: 260px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-anvendelse"></div></details><details class="oko-kildeliste" id="kilder-anvendelse"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir slf2012"><p class="oko-beregning">Andelen av produksjonen som ble solgt som økologisk («anvendelsesgrad»), slik rapportene oppgir den. Rapport, tabell og side for hvert tall står under «Vis tallene».</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-egg">
+        <h3 class="oko-card-title">Økologiske egg</h3>
+        <p class="oko-card-note">Tonn levert til eggpakkeri. Tomme år mangler tall.</p>
+        <div class="oko-chart dash-skeleton" id="graf-egg" data-source="ldir_egg" style="min-height: 240px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-egg"></div></details><details class="oko-kildeliste" id="kilder-egg"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir slf2012"><p class="oko-beregning">Økologiske egg levert til eggpakkeri. Rapport, tabell og side for hvert tall står under «Vis tallene».</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-kjott">
+        <h3 class="oko-card-title">Økologisk kjøtt</h3>
+        <p class="oko-card-note">Tonn innveid økologisk slakt per dyreslag. Brudd i linjene betyr år uten tall.</p>
+        <div class="oko-chart dash-skeleton" id="graf-kjott" data-source="ldir_kjott" style="min-height: 260px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-kjott"></div></details><details class="oko-kildeliste" id="kilder-kjott"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir slf2012"><p class="oko-beregning">Innveid økologisk slakt per dyreslag. Rapport, tabell og side for hvert tall står under «Vis tallene».</p></div></details></div>
+      </article>
+      <article class="oko-card oko-wide" id="kort-korn">
+        <h3 class="oko-card-title">Økologisk korn levert</h3>
+        <p class="oko-card-note">Tonn korn, erter, oljefrø og åkerbønner per sesong (juli–juni). De fleste tallene er anslag gjort i februar, før sesongen var over, og blir ofte justert mye i neste års rapport – les dem som omtrentlige nivåer.</p>
+        <div class="oko-chart dash-skeleton" id="graf-korn" data-source="ldir_korn" style="min-height: 240px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-korn"></div></details><details class="oko-kildeliste" id="kilder-korn"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir slf2012"><p class="oko-beregning">Levert økologisk korn per sesong, slik hver rapport anslo det. Rapport, tabell og side står under «Vis tallene».</p></div></details></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================================================================ MARKED -->
+  <section class="oko-page" id="marked" role="tabpanel" aria-labelledby="fane-marked" hidden>
+    <div class="oko-grid">
+      <article class="oko-card oko-wide" id="kort-dagligvare">
+        <h3 class="oko-card-title">Økologisk salg i dagligvarehandelen</h3>
+        <p class="oko-card-note">Millioner kroner (løpende priser). Fargene viser datagrunnlaget, som er byttet to ganger – nivåene er ikke direkte sammenlignbare på tvers.</p>
+        <div class="oko-chart dash-skeleton" id="graf-dagligvare" data-source="ldir_dagligvare" style="min-height: 260px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-dagligvare"></div></details><details class="oko-kildeliste" id="kilder-dagligvare"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir slf2012"><p class="oko-beregning">Omsetning av økologiske varer i dagligvarehandelen. For 2019 brukes Landbruksdirektoratets anslag på samme grunnlag som 2020–2021 (rapporten for 2022). Rapport, tabell og side for hvert tall står under «Vis tallene».</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-kanaler-siste">
+        <h3 class="oko-card-title">Hvor økologisk mat selges</h3>
+        <p class="oko-card-note">Omsetning av økologiske varer per salgskanal, siste år (mill. kr).</p>
+        <div class="oko-chart dash-skeleton" id="graf-kanaler-siste" data-source="ldir_dagligvare ldir_kanaler" style="min-height: 180px"></div>
+        <div class="oko-fot"><details class="oko-kildeliste" id="kilder-kanaler-siste"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir"><p class="oko-beregning">Tabellen over salgskanaler utenom dagligvare og dagligvaretallet i siste rapport. For Vinmonopolet brukes rapporten for 2024, fordi rapporten for 2025 gjentar fjorårets tall.</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-varegrupper">
+        <h3 class="oko-card-title">Økologisk andel per varegruppe</h3>
+        <p class="oko-card-note">Andel av omsetningen i dagligvarehandelen, siste år, regnet av varegrupper der det finnes økologiske varer.</p>
+        <div class="oko-chart dash-skeleton" id="graf-varegrupper" data-source="ldir_varegrupper" style="min-height: 370px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-varegrupper"></div></details><details class="oko-kildeliste" id="kilder-varegrupper"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir"><p class="oko-beregning">Tabellen over økologisk omsetning og andel per varegruppe i siste rapport. Side i rapporten står under «Vis tallene».</p></div></details></div>
+      </article>
+      <article class="oko-card oko-wide" id="kort-kanaler">
+        <h3 class="oko-card-title">Salgskanaler utenom dagligvare over tid</h3>
+        <p class="oko-card-note">Millioner kroner. Hver figur har sin egen skala.</p>
+        <div class="oko-chart dash-skeleton" id="graf-kanaler" data-source="ldir_kanaler" style="min-height: 140px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-kanaler"></div></details><details class="oko-kildeliste" id="kilder-kanaler"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir slf2012"><p class="oko-beregning">Tabellene over salgskanaler utenom dagligvare i hver rapport. Rapport, tabell og side for hvert tall står under «Vis tallene».</p></div></details></div>
+      </article>
+      <article class="oko-card oko-wide oko-prose" id="kort-ikke-fanget">
+        <h3>Det statistikken ikke fanger</h3>
+        <p>Tallene over dekker dagligvarehandelen og noen utvalgte kanaler. Mye økologisk mat selges utenom disse, og er ikke med:</p>
+        <ul>
+          <li>Direktesalg fra gården: gårdsbutikker, REKO-ringer, abonnement og andelslandbruk.</li>
+          <li>Restauranter, kantiner og offentlige kjøkken utover det som går gjennom grossistene.</li>
+          <li>Netthandel utenfor de store dagligvarekjedene, og eksport.</li>
+          <li>Økologiske råvarer som selges som vanlig vare – se «Andel solgt som økologisk» under Vare for vare.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================================================================ EUROPA -->
+  <section class="oko-page" id="europa" role="tabpanel" aria-labelledby="fane-europa" hidden>
+    <div class="oko-grid">
+      <article class="oko-card" id="kort-europa">
+        <h3 class="oko-card-title">Økologisk andel av jordbruksarealet i Europa</h3>
+        <p class="oko-card-note">Prosent, siste år Eurostat har tall for de fleste land. Land uten tall dette året er ikke med.</p>
+        <div class="oko-chart dash-skeleton" id="graf-europa" data-source="eurostat_europa" style="min-height: 720px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-europa"></div></details><details class="oko-kildeliste" id="kilder-europa"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="eurostat"><p class="oko-beregning">Datasettet org_cropar med vekst «Utilised agricultural area excluding kitchen gardens», produksjonsmetode «Total» og enhet «Percentage of utilised agricultural area». Land uten tall for året er ikke med.</p></div></details></div>
+      </article>
+      <div class="oko-stack" style="display: grid; gap: var(--cds-gap-md); align-content: start; min-width: 0;">
+        <article class="oko-card" id="kort-norden">
+          <h3 class="oko-card-title">Norden over tid</h3>
+          <p class="oko-card-note">Økologisk andel av jordbruksarealet (prosent). Eurostat byttet tabell mellom 2011 og 2012.</p>
+          <div class="oko-chart dash-skeleton" id="graf-norden" data-source="norden_andel" style="min-height: 280px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-norden"></div></details><details class="oko-kildeliste" id="kilder-norden"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="eurostat eurostat_h2"><p class="oko-beregning">Som figuren over, for Norge, Sverige, Danmark og Finland. Tallene til og med 2011 er fra det eldre datasettet org_cropar_h2.</p></div></details></div>
+        </article>
+        <article class="oko-card" id="kort-forbruk">
+          <h3 class="oko-card-title">Kjøp av økologisk mat per innbygger</h3>
+          <p class="oko-card-note">Euro per person, siste år med tall. Land utenfor eurosonen er regnet om med årets valutakurs.</p>
+          <div class="oko-chart dash-skeleton" id="graf-forbruk" data-source="fibl_forbruk" style="min-height: 400px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-forbruk"></div></details><details class="oko-kildeliste" id="kilder-forbruk"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="fibl"><p class="oko-beregning">FiBLs tabell over omsetning i detaljhandelen, indikatoren «Organic per capita consumption». Der FiBL mangler nye tall for et land, gjentar de den siste kjente verdien.</p></div></details></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ MÅL OG TILSKUDD -->
+  <section class="oko-page" id="maal" role="tabpanel" aria-labelledby="fane-maal" hidden>
+    <p class="oko-section-intro">Målet i <a class="oko-lenke" href="https://www.regjeringen.no/no/dokumenter/nasjonal-strategi-for-okologisk-jordbruk-2025-2032/id3097100/" target="_blank" rel="noopener">Nasjonal strategi for økologisk jordbruk 2025–2032</a> er at 10&nbsp;% av jordbruksarealet skal være økologisk innen 2032. Beregningen under regner med areal under omlegging, slik SSB regner andelen, og forutsetter at jordbruksarealet holder seg på dagens nivå.</p>
+    <div class="oko-kpis" id="maal-tall">
+      <div class="oko-kpi" id="kpi-maal-areal">
+        <div class="oko-kpi-label">Økologisk areal som trengs i 2032</div>
+        <div class="oko-kpi-value"><span data-source="maal_2032" data-field="maal_dekar" data-row="0" data-fmt="int">—</span><span class="oko-kpi-unit"> dekar</span></div>
+        <div class="oko-kpi-sub">10&nbsp;% av jordbruksarealet i <span data-source="maal_2032" data-field="aar" data-row="0" data-fmt="text">—</span></div>
+      </div>
+      <div class="oko-kpi" id="kpi-maal-mangler">
+        <div class="oko-kpi-label">Mangler</div>
+        <div class="oko-kpi-value"><span data-source="maal_2032" data-field="mangler_dekar" data-row="0" data-fmt="int">—</span><span class="oko-kpi-unit"> dekar</span></div>
+        <div class="oko-kpi-sub">I dag: <span data-source="maal_2032" data-field="okologisk_dekar" data-row="0" data-fmt="int">—</span> dekar</div>
+      </div>
+      <div class="oko-kpi" id="kpi-maal-trengs">
+        <div class="oko-kpi-label">Må legges om per år</div>
+        <div class="oko-kpi-value"><span data-source="maal_2032" data-field="trengs_per_aar" data-row="0" data-fmt="int">—</span><span class="oko-kpi-unit"> dekar</span></div>
+        <div class="oko-kpi-sub">Netto økning hvert år i <span data-source="maal_2032" data-field="aar_igjen" data-row="0" data-fmt="int">—</span> år</div>
+      </div>
+      <div class="oko-kpi" id="kpi-maal-snitt">
+        <div class="oko-kpi-label">Faktisk endring per år, siste fem år</div>
+        <div class="oko-kpi-value"><span data-source="maal_2032" data-field="snitt_siste_5_aar" data-row="0" data-fmt="int+">—</span><span class="oko-kpi-unit"> dekar</span></div>
+        <div class="oko-kpi-sub">Siste ti år: <span data-source="maal_2032" data-field="snitt_siste_10_aar" data-row="0" data-fmt="int+">—</span> dekar per år</div>
+      </div>
+    </div>
+    <div class="oko-fot oko-fot-kpi"><details class="oko-kildeliste" id="kilder-maal-tall"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko ssb_jord strategi"><p class="oko-beregning">Regnet ut her: 10 % av jordbruksarealet i drift siste år (04496), minus dagens økologiske areal med karens (12661), delt på antall år som er igjen til 2032. Faktisk endring er snittet av de årlige endringene de siste fem og ti årene (12661).</p></div></details></div>
+    <div class="oko-grid">
+      <article class="oko-card oko-wide" id="kort-endring">
+        <h3 class="oko-card-title">Årlig endring i økologisk areal</h3>
+        <p class="oko-card-note">Dekar endring fra året før (med karens). Den stiplede linjen viser økningen som trengs hvert år for å nå målet.</p>
+        <div class="oko-chart dash-skeleton" id="graf-endring" data-source="endring_areal maal_2032" style="min-height: 280px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-endring"></div></details><details class="oko-kildeliste" id="kilder-endring"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko ssb_jord strategi"><p class="oko-beregning">Regnet ut her: økologisk areal med karens (12661) minus året før. Linjen for det som trengs: 10 % av jordbruksarealet i drift siste år (04496), minus dagens økologiske areal, delt på antall år som er igjen til 2032.</p></div></details></div>
+      </article>
+      <article class="oko-card oko-wide" id="kort-tilskudd">
+        <h3 class="oko-card-title">Direkte tilskudd til økologisk drift</h3>
+        <p class="oko-card-note">Millioner kroner utbetalt (løpende priser). Fargene viser at tilskuddene er definert litt ulikt i de to periodene; årene mellom mangler tall.</p>
+        <div class="oko-chart dash-skeleton" id="graf-tilskudd" data-source="ldir_tilskudd" style="min-height: 260px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-tilskudd"></div></details><details class="oko-kildeliste" id="kilder-tilskudd"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir slf2012"><p class="oko-beregning">Til og med 2012: tabellen over direkte tilskudd i rapporten for 2012 (areal-, husdyr- og omleggingstilskudd). Fra 2017: utbetalt produksjonstilskudd (areal- og husdyrtilskudd) slik hver rapport oppgir det. Rapport, tabell og side står under «Vis tallene».</p></div></details></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================================================================ OM TALLENE -->
+  <section class="oko-page" id="om" role="tabpanel" aria-labelledby="fane-om" hidden>
+    <div class="oko-grid">
+      <article class="oko-card oko-prose" id="kort-begreper">
+        <h3>Slik leser du tallene</h3>
+        <ul>
+          <li><b>Økologisk areal</b> er godkjent økologisk areal pluss areal under omlegging (karens). Omleggingstiden er vanligvis to år, og tre år for flerårige vekster som frukt og bær.</li>
+          <li><b>Gårder</b> er SSBs jordbruksbedrifter med økologisk areal. Debio teller landbruksvirksomheter under kontroll, og får litt høyere tall.</li>
+          <li><b>Andel solgt som økologisk</b> (anvendelsesgrad) er hvor mye av den økologiske produksjonen som faktisk selges med økologisk merke.</li>
+          <li><b>Dagligvaretallene</b> bygger på tre ulike datagrunnlag over tid og er ikke direkte sammenlignbare på tvers av byttene. Andelen regnes nå bare av varegrupper der det finnes økologiske varer; regnet av all mat er den lavere.</li>
+          <li><b>Europa</b> bruker Eurostats tall, som kan avvike litt fra SSBs fordi de beregnes på en annen måte.</li>
+        </ul>
+      </article>
+      <article class="oko-card oko-prose" id="kort-forbehold">
+        <h3>Viktige forbehold</h3>
+        <ul>
+          <li>Tallene fra Landbruksdirektoratet er lest ut av de årlige PDF-rapportene. Rapportene for 2013–2016 er ikke funnet, så noen serier har hull.</li>
+          <li>Melketallene gjelder økologisk melk levert til Tine Råvare, som fra 2023 heter Norsk Melkeråvare. Q-meieriene tar bare imot vanlig melk og inngår bare i andelen av all melk.</li>
+          <li>I Landbruksdirektoratets rapport for 2025 er Vinmonopolet-tallene en gjentakelse av fjorårets, forskjøvet ett år. Dashbordet bruker derfor tallene fra rapporten for 2024 og har ikke noe 2025-tall for Vinmonopolet.</li>
+          <li>Noen tall er revidert mellom rapportene. Dashbordet bruker tabelltall og den nyeste rapporten som har tallet, og retter kjente feil (se README i mappen).</li>
+          <li>Fylkene vises med dagens inndeling. SSB publiserer Oslo og Akershus samlet.</li>
+          <li>Kornet måles per sesong, og tallene er stort sett anslag fra februar.</li>
+          <li>Kronebeløp er i løpende priser, ikke justert for prisstigning.</li>
+        </ul>
+      </article>
+      <article class="oko-card oko-wide" id="kort-kilder">
+        <h3 class="oko-card-title">Kilder og oppdatering</h3>
+        <p class="oko-card-note">Datasettene dashbordet bygger på. SSB- og Eurostat-tallene kan hentes automatisk; tallene fra Landbruksdirektoratets rapport, Debio og FiBL legges inn én gang i året.</p>
+        <div class="oko-chart dash-skeleton" id="graf-kilder" style="min-height: 200px"></div>
+      </article>
+      <article class="oko-card oko-wide oko-prose" id="kort-om">
+        <h3>Om dashbordet</h3>
+        <p>Dashbordet er laget med Claude, en KI-assistent fra Anthropic. Tallene er hentet fra kildene med skript og kontrollert mot dem, men feil kan forekomme – sjekk kilden før du siterer et tall. Alle figurer har en tabell med tallene under «Vis tallene».</p>
+      </article>
+    </div>
+  </section>
+</div>
+<footer class="oko-bunn">Tall: Statistisk sentralbyrå, Debio, Landbruksdirektoratet, Eurostat og FiBL. Fylkeskart: Kartverket (CC BY 4.0). Laget med Claude (Anthropic). Datasett og kode: <a class="oko-lenke" href="https://github.com/grontarbeid/okologiskitall">github.com/grontarbeid/okologiskitall</a>.</footer>
+</main>
+<script src="d3.v7.9.0.min.js"></script>
+<script src="dash-adapter.js" data-datasett="datasett/"></script>
+<script src="oko.js"></script>
+</body>
+</html>

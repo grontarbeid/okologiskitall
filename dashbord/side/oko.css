@@ -1,0 +1,298 @@
+/* Økologisk landbruk i Norge – stil for dashbordet.
+   Alle regler er avgrenset til .oko, så siden ikke restyler omgivelsene. Farger og avstander
+   kommer fra tema-variablene (--color-*, --cds-*), som dashbordet eller tema.css (nettsiden) gir. */
+
+.oko {
+  max-width: 1240px;
+  margin-inline: auto;
+  font-family: var(--font-anthropic-sans);
+  color: var(--color-fg);
+  font-size: var(--cds-font-size-body);
+  line-height: 1.45;
+}
+.oko *, .oko *::before, .oko *::after { box-sizing: border-box; }
+
+/* ---------- topp ---------- */
+.oko-head { padding-block: var(--cds-pad-sm) var(--cds-pad-md); }
+.oko-title {
+  font-family: var(--font-anthropic-serif);
+  font-weight: 400;
+  font-size: var(--cds-font-size-title);
+  line-height: 1.15;
+  margin: 0 0 var(--cds-gap-sm);
+}
+.oko-lede {
+  margin: 0;
+  max-width: 72ch;
+  color: var(--color-fg);
+  font-size: var(--cds-font-size-body);
+}
+.oko-lede .oko-num { font-variant-numeric: tabular-nums; }
+.oko-lenke { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.oko-lenke:hover { text-decoration-thickness: 2px; }
+.oko-ai { margin: var(--cds-gap-sm) 0 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+
+/* ---------- faner ---------- */
+.oko-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cds-gap-xs);
+  padding-block: var(--cds-pad-sm);
+  margin-bottom: var(--cds-gap-md);
+  border-bottom: 1px solid var(--color-border-line);
+}
+.oko-tab {
+  appearance: none;
+  font: inherit;
+  font-size: var(--cds-font-size-body);
+  color: var(--color-fg-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: var(--cds-pad-xs) var(--cds-pad-md);
+  cursor: pointer;
+  line-height: 1.4;
+}
+.oko-tab:hover { color: var(--color-fg); background: var(--color-panel); }
+.oko-tab[aria-selected="true"] {
+  color: var(--color-fg);
+  background: var(--color-panel);
+  border-color: var(--color-border-line);
+  font-weight: var(--cds-font-weight-medium);
+}
+.oko-tab:focus-visible, .oko-seg button:focus-visible, .oko-tabell summary:focus-visible {
+  outline: 2px solid var(--color-fg);
+  outline-offset: 2px;
+}
+
+/* ---------- sider og seksjoner ---------- */
+.oko-page[hidden] { display: none; }
+.oko-page > * + * { margin-top: var(--cds-gap-lg); }
+.oko-section-title {
+  font-size: var(--cds-font-size-heading);
+  font-weight: var(--cds-font-weight-medium);
+  margin: var(--cds-gap-lg) 0 var(--cds-gap-xs);
+}
+.oko-section-intro { margin: 0 0 var(--cds-gap-md); color: var(--color-fg-muted); max-width: 80ch; }
+
+.oko-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+  gap: var(--cds-gap-md);
+  align-items: stretch;
+}
+.oko-card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border-line);
+  border-radius: var(--cds-radius);
+  padding: var(--cds-pad-lg);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.oko-card.oko-wide { grid-column: 1 / -1; }
+.oko-card-title {
+  font-size: var(--cds-font-size-heading);
+  font-weight: var(--cds-font-weight-medium);
+  margin: 0;
+  line-height: 1.3;
+}
+.oko-card-note {
+  margin: var(--cds-gap-xs) 0 var(--cds-gap-md);
+  color: var(--color-fg-muted);
+  font-size: var(--cds-font-size-caption);
+  max-width: 75ch;
+}
+.oko-card p:last-child { margin-bottom: 0; }
+.oko-kilde {
+  display: none; /* Dashbordet viser kildene i sitt eget panel; nettsiden slår dette på */
+  margin: var(--cds-gap-sm) 0 0;
+  color: var(--color-fg-muted);
+  font-size: var(--cds-font-size-caption);
+}
+.oko-nettside .oko-kilde { display: block; }
+
+/* ---------- nøkkeltall ---------- */
+.oko-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: var(--cds-gap-md);
+}
+.oko-kpi {
+  background: var(--color-panel);
+  border: 1px solid var(--color-border-line);
+  border-radius: var(--cds-radius);
+  padding: var(--cds-pad-md) var(--cds-pad-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-gap-xs);
+  min-width: 0;
+}
+.oko-kpi-label { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.oko-kpi-value {
+  font-family: var(--font-anthropic-serif);
+  font-weight: 400;
+  font-size: var(--cds-font-size-title);
+  line-height: 1.1;
+}
+.oko-kpi-unit { font-size: var(--cds-font-size-heading); color: var(--color-fg-muted); }
+.oko-kpi-delta, .oko-kpi-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.oko-kpi-delta .oko-up { color: var(--color-ok); }
+.oko-kpi-delta .oko-down { color: var(--color-bad); }
+.oko-kpi-delta .oko-flat { color: var(--color-fg-muted); }
+
+/* ---------- figurer ---------- */
+.oko-chart { position: relative; width: 100%; min-width: 0; }
+.oko-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.oko-chart text { font-family: var(--font-anthropic-sans); }
+.oko-axis text, .oko-ticklabel {
+  fill: var(--color-fg-muted);
+  font-size: var(--cds-font-size-caption);
+  font-variant-numeric: tabular-nums;
+}
+.oko-axis path, .oko-axis line { stroke: var(--cds-chart-axis); }
+.oko-axis .domain { display: none; }
+.oko-gridline { stroke: var(--cds-chart-grid); stroke-width: 1; shape-rendering: crispEdges; }
+.oko-baseline { stroke: var(--cds-chart-axis); stroke-width: 1; shape-rendering: crispEdges; }
+.oko-ref { stroke: var(--cds-chart-reference); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
+.oko-reflabel { fill: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.oko-halo { paint-order: stroke; stroke: var(--color-panel); stroke-width: 3px; stroke-linejoin: round; }
+.oko-label { fill: var(--color-fg); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.oko-label-strong { fill: var(--color-fg); font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); }
+.oko-label-muted { fill: var(--color-fg-muted); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.oko-line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.oko-line-dashed { stroke-dasharray: 4 4; stroke-linecap: butt; }
+.oko-dot { stroke: var(--color-panel); stroke-width: 2; }
+.oko-rule { stroke: var(--color-fg-muted); stroke-width: 1; shape-rendering: crispEdges; }
+.oko-hit { fill: transparent; cursor: default; }
+.oko-dim { opacity: .45; transition: opacity .15s; }
+.oko-shape { stroke: var(--color-panel); stroke-width: 1; vector-effect: non-scaling-stroke; transition: opacity .15s; }
+.oko-shape.is-hover { stroke: var(--color-fg); stroke-width: 2; }
+.oko-chart-msg {
+  display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-sm);
+  min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption);
+}
+.oko-chart-msg::before {
+  content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad);
+}
+
+/* forklaring (legend) */
+.oko-legend {
+  display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md);
+  margin: 0 0 var(--cds-gap-sm); padding: 0; list-style: none;
+  font-size: var(--cds-font-size-caption); color: var(--color-fg-muted);
+}
+.oko-legend li { display: inline-flex; align-items: center; gap: var(--cds-gap-xs); }
+.oko-key { display: inline-block; flex: none; }
+.oko-key-box { width: 10px; height: 10px; border-radius: 2px; }
+.oko-key-line { width: 16px; height: 0; border-top: 2px solid; border-radius: 1px; }
+.oko-key-dash { width: 16px; height: 0; border-top: 2px dashed; }
+.oko-key-ring { width: 10px; height: 10px; border-radius: 50%; border: 2px solid; }
+
+/* verktøytips */
+.oko-tip {
+  position: absolute; z-index: 5; pointer-events: none;
+  background: var(--cds-surface-popover);
+  border: 1px solid var(--cds-border);
+  border-radius: var(--cds-radius);
+  box-shadow: var(--cds-shadow-popover);
+  padding: var(--cds-pad-xs) var(--cds-pad-sm);
+  font-size: var(--cds-font-size-caption);
+  line-height: 1.4;
+  min-width: 8rem; max-width: 17rem;
+  color: var(--color-fg);
+}
+.oko-tip[hidden] { display: none; }
+.oko-tip-title { color: var(--cds-text-secondary); margin-bottom: 2px; }
+.oko-tip-row { display: flex; align-items: baseline; gap: var(--cds-gap-xs); white-space: nowrap; }
+.oko-tip-row .oko-key { align-self: center; }
+.oko .oko-tip-row b { font-weight: var(--cds-font-weight-medium); font-variant-numeric: tabular-nums; }
+.oko-tip-row span { color: var(--cds-text-secondary); overflow: hidden; text-overflow: ellipsis; }
+.oko-tip-note { color: var(--cds-text-secondary); white-space: normal; margin-top: 2px; }
+
+/* små multipler */
+.oko-sm {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr));
+  gap: var(--cds-gap-md);
+}
+.oko-sm-panel { position: relative; min-width: 0; }
+.oko-sm-title { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+.oko-sm-value { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 2px; font-variant-numeric: tabular-nums; }
+
+/* kart */
+.oko-map-wrap { display: flex; flex-direction: column; align-items: center; }
+.oko-map-wrap svg { max-width: 100%; }
+.oko-ramp { width: min(100%, 16rem); margin-top: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.oko-ramp-bar { height: 10px; border-radius: 3px; }
+.oko-ramp-labels { display: flex; justify-content: space-between; margin-top: 2px; font-variant-numeric: tabular-nums; }
+
+/* knapperad (velg mål for fylkene) */
+.oko-seg { display: inline-flex; flex-wrap: wrap; gap: var(--cds-gap-xs); margin-bottom: var(--cds-gap-md); }
+.oko-seg button {
+  appearance: none; font: inherit; font-size: var(--cds-font-size-caption);
+  color: var(--color-fg-muted); background: var(--color-panel);
+  border: 1px solid var(--color-border-line); border-radius: 999px;
+  padding: var(--cds-pad-xs) var(--cds-pad-md); cursor: pointer;
+}
+.oko-seg button[aria-pressed="true"] { color: var(--color-fg); border-color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); }
+
+/* bunnlinje i kortene: «Vis tallene» og «Vis kildene» side om side; den som åpnes, tar hele bredden */
+.oko-fot {
+  display: flex; flex-wrap: wrap; align-items: flex-start;
+  gap: var(--cds-gap-xs) var(--cds-gap-lg);
+  margin-top: auto; padding-top: var(--cds-gap-sm);
+}
+.oko-fot > details[open] { flex-basis: 100%; }
+.oko-fot-kpi { margin-top: var(--cds-gap-sm); padding-top: 0; }
+
+/* tabellvisning */
+.oko-tabell { font-size: var(--cds-font-size-caption); min-width: 0; }
+.oko-tabell summary, .oko-kildeliste summary { cursor: pointer; color: var(--color-fg-muted); width: fit-content; }
+.oko-tabell summary:hover, .oko-kildeliste summary:hover { color: var(--color-fg); }
+
+/* kildene */
+.oko-kildeliste { font-size: var(--cds-font-size-caption); min-width: 0; }
+.oko-kildeliste summary:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.oko-kildeboks {
+  margin-top: var(--cds-gap-sm); padding: var(--cds-pad-sm) var(--cds-pad-md);
+  border: 1px solid var(--color-border-line); border-radius: var(--cds-radius);
+  max-width: 78ch;
+}
+.oko-beregning { margin: 0 0 var(--cds-gap-sm); color: var(--color-fg); line-height: 1.5; }
+.oko-kildeposter { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--cds-gap-sm); }
+.oko-kildepost { padding-top: var(--cds-gap-sm); border-top: 1px solid var(--color-border-line); line-height: 1.45; }
+.oko-kildenavn { color: var(--color-fg-muted); }
+.oko-kildepost a { color: var(--color-fg); text-underline-offset: 2px; }
+.oko .oko-kildetittel { font-weight: var(--cds-font-weight-medium); }
+.oko-kildeurl { color: var(--color-fg-muted); overflow-wrap: anywhere; }
+.oko-kildeom { margin-top: 2px; }
+.oko-kildemer { margin-top: 2px; color: var(--color-fg-muted); }
+.oko-tabell-boks { max-height: 22rem; overflow: auto; margin-top: var(--cds-gap-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+.oko-table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.oko-table th, .oko-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); text-align: right; white-space: nowrap; border-bottom: 1px solid var(--color-border-line); }
+.oko-table th:first-child, .oko-table td:first-child { text-align: left; }
+.oko-table td.oko-txt, .oko-table th.oko-txt { text-align: left; white-space: normal; min-width: 14rem; }
+.oko-table th { position: sticky; top: 0; background: var(--color-panel); font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); }
+.oko-table a { color: inherit; }
+
+/* tekstkort */
+.oko-prose { max-width: 78ch; }
+.oko-prose h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.oko-prose p, .oko-prose ul { margin: 0 0 var(--cds-gap-sm); }
+.oko-prose ul { padding-left: 1.2em; }
+.oko-prose li + li { margin-top: 2px; }
+.oko-muted { color: var(--color-fg-muted); }
+
+/* tilstander fra dashbordet */
+.oko [data-dash-source-state="empty"] { color: transparent; }
+.oko [data-dash-source-state="refreshing"] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .oko-anim { animation: oko-in var(--cds-dur-slow) var(--cds-ease-out) both; }
+  @keyframes oko-in { from { opacity: 0; } to { opacity: 1; } }
+}
+@media print {
+  .oko-tabs, .oko-tabell summary, .oko-seg { display: none; }
+  .oko-page[hidden] { display: block; }
+}

@@ -1,0 +1,9 @@
+# Holdes utenfor det offentlige repoet (se dashbord/README.md, «Hvor ligger hva?»):
+# rådata og rapporter, og FiBL-uttrekk som ikke kan spres videre uten FiBLs tillatelse.
+kilder/
+data/fibl_statistikk_*.csv
+data/fibl_arsbok*.csv
+data/fibl_faktaark*.csv
+
+__pycache__/
+.DS_Store

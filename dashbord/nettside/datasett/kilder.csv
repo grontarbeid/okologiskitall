@@ -1,0 +1,21 @@
+datasett,tittel,kilde,periode,oppdateres,lenke
+ssb_areal,Økologisk areal og gårder,Statistisk sentralbyrå (SSB),1995–2025,Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.,https://www.ssb.no/statbank/list/stjord
+ssb_jordbruksareal,Jordbruksareal i drift,Statistisk sentralbyrå (SSB),1999–2025,Årlig: SSB publiserer endelige tall for jordbruksarealet om høsten.,https://www.ssb.no/statbank/list/stjord
+ssb_fylker,Økologisk drift per fylke,Statistisk sentralbyrå (SSB),2024–2025,Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.,https://www.ssb.no/statbank/list/stjord
+ssb_bruk,Økologisk areal etter bruk,Statistisk sentralbyrå (SSB),1995–2025,Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.,https://www.ssb.no/statbank/list/stjord
+ssb_husdyr,Økologiske husdyr,Statistisk sentralbyrå (SSB),1999–2025,Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.,https://www.ssb.no/statbank/list/stjord
+debio_innut,Gårder inn og ut (Debio),Debio,2003–2025,Årlig: Debio legger ut ny statistikk i mars; filene gjøres om for hånd.,https://debio.no/statistikk/
+debio_vekster,"Vekster hos Debio, siste år",Debio,2025–2025,Årlig: Debio legger ut ny statistikk i mars; filene gjøres om for hånd.,https://debio.no/statistikk/
+ldir_melk,Økologisk melk,Landbruksdirektoratet,2005–2025,Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.,https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026
+ldir_anvendelse,Andel solgt som økologisk,Landbruksdirektoratet,2000–2025,Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.,https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026
+ldir_egg,Økologiske egg,Landbruksdirektoratet,2000–2025,Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.,https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026
+ldir_kjott,Økologisk kjøtt (slakt),Landbruksdirektoratet,2000–2025,Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.,https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026
+ldir_korn,Økologisk korn levert,Landbruksdirektoratet,2010–2011 til 2025–2026,Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.,https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026
+ldir_dagligvare,Økologisk i dagligvare,Landbruksdirektoratet,2010–2025,Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.,https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026
+ldir_varegrupper,Dagligvare per varegruppe,Landbruksdirektoratet,2024–2025,Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.,https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026
+ldir_kanaler,Andre salgskanaler,Landbruksdirektoratet,2009–2025,Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.,https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026
+ldir_tilskudd,Tilskudd til økologisk drift,Landbruksdirektoratet,2005–2025,Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.,https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026
+eurostat_europa,Andel økologisk i Europa,Eurostat,2024,Årlig: Eurostat publiserer nye tall med 1–2 års forsinkelse.,https://ec.europa.eu/eurostat/databrowser/view/org_cropar/default/table?lang=en
+norden_andel,Andel økologisk i Norden,Eurostat,2000–2024,Årlig: Eurostat publiserer nye tall med 1–2 års forsinkelse.,https://ec.europa.eu/eurostat/databrowser/view/org_cropar/default/table?lang=en
+fibl_forbruk,Økologisk forbruk per person,FiBL,2024,Årlig: FiBL og IFOAM gir ut årboken «The World of Organic Agriculture» i februar.,https://statistics.fibl.org/europe/retail-sales-europe.html
+fylkeskart,Fylkeskart (2024-grenser),Kartverket (CC BY 4.0),2024–,Ved neste fylkesreform.,https://data.norge.no/en/datasets/cffde12f-3530-4406-9aa0-d6d4519ef077/administrative-enheter-fylker
