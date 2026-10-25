@@ -134,7 +134,9 @@
     setParams: function (p) { Object.assign(params, p || {}); varsle(); },
     resetParams: function () { params = {}; varsle(); },
     setLink: function (navn) {
-      try { history.replaceState(null, '', '#' + encodeURIComponent(navn)); } catch (e) { /* ingen historikk tilgjengelig */ }
+      // Oversikt får en ren adresse, de andre fanene #fane. En ?fane= fra kampanjeadressen fjernes.
+      var url = location.pathname + (navn && navn !== 'oversikt' ? '#' + encodeURIComponent(navn) : '');
+      try { history.replaceState(null, '', url); } catch (e) { /* ingen historikk tilgjengelig */ }
     },
   };
 })();

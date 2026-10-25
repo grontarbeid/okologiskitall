@@ -14,6 +14,30 @@
 
 /* ---------- topp ---------- */
 .oko-head { padding-block: var(--cds-pad-sm) var(--cds-pad-md); }
+
+/* logo – også knapp tilbake til Oversikt */
+.oko-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 var(--cds-gap-md);
+  color: var(--color-fg);
+  text-decoration: none;
+  border-radius: 10px;
+}
+.oko-logo:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 4px; }
+.oko-logo-merke { width: 40px; height: 40px; flex: none; }
+.oko-logo-bunn { fill: var(--oko-logo-farge, #217a3c); }
+.oko-logo-figur { fill: #fff; }
+.oko-logo-stilk { fill: none; stroke: #fff; stroke-width: 2.3; stroke-linecap: round; }
+.oko-logo-spire { transform-box: view-box; transform-origin: 31.5px 19.5px; }
+@media (prefers-reduced-motion: no-preference) {
+  .oko-logo-spire { transition: transform 450ms var(--cds-ease-out, ease-out); }
+  .oko-logo:hover .oko-logo-spire, .oko-logo:focus-visible .oko-logo-spire { transform: rotate(-9deg); }
+}
+.oko-logo-ord { font-size: 19px; line-height: 1; letter-spacing: -0.01em; white-space: nowrap; }
+.oko-logo-ord-1 { font-weight: 700; }
+.oko-logo-ord-2 { font-weight: 500; color: var(--color-ok, #1d7a33); }
 .oko-title {
   font-family: var(--font-anthropic-serif);
   font-weight: 400;
@@ -23,7 +47,6 @@
 }
 .oko-lede {
   margin: 0;
-  max-width: 72ch;
   color: var(--color-fg);
   font-size: var(--cds-font-size-body);
 }
@@ -73,7 +96,7 @@
   font-weight: var(--cds-font-weight-medium);
   margin: var(--cds-gap-lg) 0 var(--cds-gap-xs);
 }
-.oko-section-intro { margin: 0 0 var(--cds-gap-md); color: var(--color-fg-muted); max-width: 80ch; }
+.oko-section-intro { margin: 0 0 var(--cds-gap-md); color: var(--color-fg-muted); }
 
 .oko-grid {
   display: grid;
@@ -101,7 +124,6 @@
   margin: var(--cds-gap-xs) 0 var(--cds-gap-md);
   color: var(--color-fg-muted);
   font-size: var(--cds-font-size-caption);
-  max-width: 75ch;
 }
 .oko-card p:last-child { margin-bottom: 0; }
 .oko-kilde {
@@ -257,7 +279,6 @@
 .oko-kildeboks {
   margin-top: var(--cds-gap-sm); padding: var(--cds-pad-sm) var(--cds-pad-md);
   border: 1px solid var(--color-border-line); border-radius: var(--cds-radius);
-  max-width: 78ch;
 }
 .oko-beregning { margin: 0 0 var(--cds-gap-sm); color: var(--color-fg); line-height: 1.5; }
 .oko-kildeposter { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--cds-gap-sm); }
@@ -277,7 +298,6 @@
 .oko-table a { color: inherit; }
 
 /* tekstkort */
-.oko-prose { max-width: 78ch; }
 .oko-prose h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
 .oko-prose p, .oko-prose ul { margin: 0 0 var(--cds-gap-sm); }
 .oko-prose ul { padding-left: 1.2em; }

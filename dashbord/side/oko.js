@@ -1859,6 +1859,15 @@ faner.forEach((f, i) => {
   });
 });
 
+// Logoen øverst til venstre er også en knapp tilbake til Oversikt.
+document.getElementById('logo')?.addEventListener('click', (ev) => {
+  ev.preventDefault();
+  visSide('oversikt');
+  dash.setLink('oversikt');
+  const rolig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: 0, behavior: rolig ? 'auto' : 'smooth' });
+});
+
 for (const b of document.querySelectorAll('#fylke-valg button')) {
   b.addEventListener('click', () => {
     fylkeMaal = b.dataset.maal;

@@ -27,6 +27,7 @@ DOKUMENT = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Økologisk landbruk i Norge</title>
 <meta name="description" content="Statistikk om økologisk landbruk i Norge: areal, gårder, produksjon, fylker, marked og Europa. Tall fra SSB, Debio, Landbruksdirektoratet, Eurostat og FiBL.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="stylesheet" href="tema.css">
 <link rel="stylesheet" href="oko.css">
 </head>
