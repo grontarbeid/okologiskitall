@@ -37,6 +37,7 @@ DOKUMENT = """<!doctype html>
 <footer class="oko-bunn">
 <p class="oko-ansvarlig">Ansvarlig: Grønt arbeid Nordvik, org.nr. <a class="oko-lenke" href="https://virksomhet.brreg.no/nb/oppslag/enheter/936885403">936&nbsp;885&nbsp;403</a> · Kontakt: <span class="oko-epost" data-a="diebratnorg" data-b="moc.liamg">e-postadressen vises når siden er lastet</span></p>
 <p>Tall: Statistisk sentralbyrå, Debio, Landbruksdirektoratet, Eurostat og FiBL. Fylkeskart: Kartverket (CC BY 4.0). Laget med Claude (Anthropic). Datasett og kode: <a class="oko-lenke" href="https://github.com/grontarbeid/okologiskitall">github.com/grontarbeid/okologiskitall</a>.</p>
+<p>Besøk telles anonymt med <a class="oko-lenke" href="https://www.goatcounter.com/">GoatCounter</a>, uten informasjonskapsler.</p>
 </footer>
 </main>
 <script src="d3.v7.9.0.min.js"></script>
@@ -56,6 +57,9 @@ document.querySelectorAll('.oko-epost[data-a][data-b]').forEach(function (el) {
   el.appendChild(lenke);
 });
 </script>
+<!-- Besøkstelling uten informasjonskapsler: https://okologiskitall.goatcounter.com
+     Sidevisninger telles automatisk; fanene telles som hendelser «fane-…» (se setLink i dash-adapter.js). -->
+<script data-goatcounter="https://okologiskitall.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
 """

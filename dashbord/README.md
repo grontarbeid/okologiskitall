@@ -86,6 +86,14 @@ Arbeidsflyten `.github/workflows/oppdater.yml` i repoet:
 Nettsiden publiseres med GitHub Pages (Settings → Pages → Source: GitHub Actions). Domenet
 okologiskitall.no settes under Settings → Pages → Custom domain, og DNS-oppføringene legges inn hos Webhuset.
 
+## Besøksstatistikk
+
+Besøk på nettsiden telles med GoatCounter, uten informasjonskapsler: https://okologiskitall.goatcounter.com
+(innlogging kreves). Telleren lastes bare på nettsiden, ikke i Claude-dashbordet (se slutten av
+`skript/lag_nettside.py`). Sidevisninger telles automatisk. Når noen bytter fane, telles det som en
+hendelse med navnet `fane-<fane>` (se `setLink` i `nettside/dash-adapter.js`). Besøk som kommer via
+økologisk2032.no, vises med denne adressen som henvisning (referrer) og siden `/?fane=maal`.
+
 ## Rettelser etter kontroll
 
 Alle tall i dashbordet er kontrollert mot kildene: SSB- og Eurostat-tallene mot SSBs og Eurostats

@@ -137,6 +137,14 @@
       // Oversikt får en ren adresse, de andre fanene #fane. En ?fane= fra kampanjeadressen fjernes.
       var url = location.pathname + (navn && navn !== 'oversikt' ? '#' + encodeURIComponent(navn) : '');
       try { history.replaceState(null, '', url); } catch (e) { /* ingen historikk tilgjengelig */ }
+      // Tell fanen som en hendelse i GoatCounter (telleren lastes bare på nettsiden).
+      try {
+        var gc = window.goatcounter;
+        if (navn && gc && typeof gc.count === 'function') {
+          var knapp = document.querySelector('.oko-tab[data-page="' + navn + '"]');
+          gc.count({ path: 'fane-' + navn, title: 'Fane: ' + (knapp ? knapp.textContent.trim() : navn), event: true });
+        }
+      } catch (e) { /* tellingen er valgfri */ }
     },
   };
 })();
