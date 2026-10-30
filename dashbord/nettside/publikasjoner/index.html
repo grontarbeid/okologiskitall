@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publikasjoner om økologisk landbruk – Økologisk landbruk i Norge</title>
+<meta name="description" content="Lenker til norske publikasjoner om økologisk landbruk: politikk og styring, regelverk og tilskudd, rapporter fra forvaltningen, forskning, praktisk fagstoff og organisasjoner. Søk og filtrer etter tema.">
+<link rel="canonical" href="https://okologiskitall.no/publikasjoner/">
+<link rel="icon" href="../logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../tema.css">
+<link rel="stylesheet" href="../oko.css">
+<link rel="stylesheet" href="bibliotek.css">
+</head>
+<body>
+<!-- Denne siden lages av dashbord/skript/lag_bibliotek.py fra malen dashbord/side/publikasjoner.html
+     og publikasjonslisten data/publikasjoner.csv. Endre malen eller listen, ikke denne filen. -->
+<main id="dash-root" class="oko-nettside">
+<div class="oko bib" id="bibliotek">
+  <header class="oko-head">
+    <div class="oko-topp">
+      <div class="oko-merkerad">
+        <nav class="oko-hovedmeny" aria-label="Nettstedet">
+          <a href="../">Statistikk</a>
+          <a href="./" aria-current="page">Publikasjoner</a>
+        </nav>
+        <a class="oko-logo" href="../" aria-label="Økologisk i tall – til statistikken">
+          <svg class="oko-logo-merke" viewBox="0 0 48 48" width="40" height="40" aria-hidden="true" focusable="false">
+        <circle class="oko-logo-bunn" cx="24" cy="24" r="24"/>
+        <g class="oko-logo-figur">
+          <rect x="9" y="29" width="7" height="9" rx="1.9"/>
+          <rect x="18.5" y="23.5" width="7" height="14.5" rx="1.9"/>
+          <rect x="28" y="19" width="7" height="19" rx="1.9"/>
+          <g class="oko-logo-spire">
+            <path class="oko-logo-stilk" d="M31.5 19.5 V13.6"/>
+            <path d="M31.6 14.6 C31.9 10.2 34.9 7.4 39 7 C38.9 11.3 36 14.4 31.6 14.6 Z"/>
+            <path d="M31.4 16.6 C31.1 13.6 28.9 11.6 26.1 11.4 C26.2 14.3 28.3 16.5 31.4 16.6 Z"/>
+          </g>
+        </g>
+      </svg>
+          <span class="oko-logo-ord"><span class="oko-logo-ord-1">økologisk</span> <span class="oko-logo-ord-2">i tall</span></span>
+        </a>
+      </div>
+      <h1 class="oko-title">Publikasjoner om økologisk landbruk</h1>
+    </div>
+    <p class="oko-lede">Lenker til norske publikasjoner om økologisk landbruk, fra strategier og regelverk til forskning og praktiske råd. Velg type i menyen, eller søk og filtrer etter tema.</p>
+    <p class="oko-ai">Laget med KI (Claude). Hver lenke er kontrollert, og beskrivelsene er skrevet for denne siden – se <a class="oko-lenke" href="#om-biblioteket">Om biblioteket</a>.</p>
+  </header>
+
+  <form class="bib-sok" role="search">
+    <label class="bib-skjult" for="bib-sok">Søk i biblioteket</label>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="bib-sok" name="q" placeholder="Søk i titler, beskrivelser og utgivere" autocomplete="off" enterkeyhint="search">
+  </form>
+
+  <div class="bib-oppsett">
+    <details class="bib-meny" id="bib-meny" open>
+      <summary><span>Type: <b id="bib-meny-valgt">Alle publikasjoner</b></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <nav class="bib-meny-innhold" aria-label="Type publikasjon">
+        <p class="bib-meny-tittel">Type publikasjon</p>
+        <ul>
+          <li class="bib-hoved"><a href="./" data-type="" aria-current="true"><span class="bib-navn">Alle publikasjoner</span> <span class="bib-antall">60</span></a></li>
+          <li class="bib-hoved"><a href="?type=politikk" data-type="politikk"><span class="bib-navn">Politikk og styring</span> <span class="bib-antall">13</span></a>
+            <ul class="bib-under" data-type="politikk" hidden>
+              <li><a href="?type=politikk&amp;under=strategier" data-type="politikk" data-under="strategier"><span class="bib-navn">Strategier og handlingsplaner</span> <span class="bib-antall">4</span></a></li>
+              <li><a href="?type=politikk&amp;under=meldinger" data-type="politikk" data-under="meldinger"><span class="bib-navn">Stortingsmeldinger og proposisjoner</span> <span class="bib-antall">3</span></a></li>
+              <li><a href="?type=politikk&amp;under=jordbruksoppgjoret" data-type="politikk" data-under="jordbruksoppgjoret"><span class="bib-navn">Jordbruksoppgjøret</span> <span class="bib-antall">2</span></a></li>
+              <li><a href="?type=politikk&amp;under=stortinget" data-type="politikk" data-under="stortinget"><span class="bib-navn">Stortingets behandling</span> <span class="bib-antall">3</span></a></li>
+              <li><a href="?type=politikk&amp;under=horinger" data-type="politikk" data-under="horinger"><span class="bib-navn">Høringer</span> <span class="bib-antall">1</span></a></li>
+            </ul>
+          </li>
+          <li class="bib-hoved"><a href="?type=regelverk" data-type="regelverk"><span class="bib-navn">Regelverk og tilskudd</span> <span class="bib-antall">8</span></a>
+            <ul class="bib-under" data-type="regelverk" hidden>
+              <li><a href="?type=regelverk&amp;under=forskrift" data-type="regelverk" data-under="forskrift"><span class="bib-navn">Økologiforskriften og EU-regelverket</span> <span class="bib-antall">2</span></a></li>
+              <li><a href="?type=regelverk&amp;under=veiledning" data-type="regelverk" data-under="veiledning"><span class="bib-navn">Veiledning om regelverket</span> <span class="bib-antall">2</span></a></li>
+              <li><a href="?type=regelverk&amp;under=kontroll" data-type="regelverk" data-under="kontroll"><span class="bib-navn">Godkjenning og kontroll</span> <span class="bib-antall">2</span></a></li>
+              <li><a href="?type=regelverk&amp;under=tilskudd" data-type="regelverk" data-under="tilskudd"><span class="bib-navn">Tilskudd til økologisk drift</span> <span class="bib-antall">2</span></a></li>
+            </ul>
+          </li>
+          <li class="bib-hoved"><a href="?type=forvaltning" data-type="forvaltning"><span class="bib-navn">Rapporter fra forvaltningen</span> <span class="bib-antall">10</span></a>
+            <ul class="bib-under" data-type="forvaltning" hidden>
+              <li><a href="?type=forvaltning&amp;under=ldir" data-type="forvaltning" data-under="ldir"><span class="bib-navn">Landbruksdirektoratet</span> <span class="bib-antall">3</span></a></li>
+              <li><a href="?type=forvaltning&amp;under=mattilsynet" data-type="forvaltning" data-under="mattilsynet"><span class="bib-navn">Mattilsynet</span> <span class="bib-antall">1</span></a></li>
+              <li><a href="?type=forvaltning&amp;under=ssb" data-type="forvaltning" data-under="ssb"><span class="bib-navn">SSB</span> <span class="bib-antall">2</span></a></li>
+              <li><a href="?type=forvaltning&amp;under=regionalt" data-type="forvaltning" data-under="regionalt"><span class="bib-navn">Statsforvalterne og fylkeskommunene</span> <span class="bib-antall">3</span></a></li>
+              <li><a href="?type=forvaltning&amp;under=andre" data-type="forvaltning" data-under="andre"><span class="bib-navn">Andre etater</span> <span class="bib-antall">1</span></a></li>
+            </ul>
+          </li>
+          <li class="bib-hoved"><a href="?type=forskning" data-type="forskning"><span class="bib-navn">Forskning</span> <span class="bib-antall">14</span></a>
+            <ul class="bib-under" data-type="forskning" hidden>
+              <li><a href="?type=forskning&amp;under=artikler" data-type="forskning" data-under="artikler"><span class="bib-navn">Vitenskapelige artikler</span> <span class="bib-antall">6</span></a></li>
+              <li><a href="?type=forskning&amp;under=rapporter" data-type="forskning" data-under="rapporter"><span class="bib-navn">Forskningsrapporter</span> <span class="bib-antall">5</span></a></li>
+              <li><a href="?type=forskning&amp;under=oppgaver" data-type="forskning" data-under="oppgaver"><span class="bib-navn">Masteroppgaver og doktoravhandlinger</span> <span class="bib-antall">3</span></a></li>
+            </ul>
+          </li>
+          <li class="bib-hoved"><a href="?type=fagstoff" data-type="fagstoff"><span class="bib-navn">Praktisk fagstoff</span> <span class="bib-antall">9</span></a>
+            <ul class="bib-under" data-type="fagstoff" hidden>
+              <li><a href="?type=fagstoff&amp;under=fagark" data-type="fagstoff" data-under="fagark"><span class="bib-navn">Fagark og veiledere om drift</span> <span class="bib-antall">6</span></a></li>
+              <li><a href="?type=fagstoff&amp;under=artikler" data-type="fagstoff" data-under="artikler"><span class="bib-navn">Artikler og reportasjer</span> <span class="bib-antall">3</span></a></li>
+            </ul>
+          </li>
+          <li class="bib-hoved"><a href="?type=organisasjoner" data-type="organisasjoner"><span class="bib-navn">Organisasjoner og næring</span> <span class="bib-antall">6</span></a>
+            <ul class="bib-under" data-type="organisasjoner" hidden>
+              <li><a href="?type=organisasjoner&amp;under=interesse" data-type="organisasjoner" data-under="interesse"><span class="bib-navn">Interesseorganisasjoner</span> <span class="bib-antall">3</span></a></li>
+              <li><a href="?type=organisasjoner&amp;under=naering" data-type="organisasjoner" data-under="naering"><span class="bib-navn">Næringen</span> <span class="bib-antall">3</span></a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="bib-meny-ekstra">
+          <li><a href="#om-biblioteket"><span class="bib-navn">Om biblioteket</span></a></li>
+          <li><a href="#tips"><span class="bib-navn">Tips oss om en publikasjon</span></a></li>
+        </ul>
+      </nav>
+    </details>
+
+    <div class="bib-innhold">
+      <div class="bib-filtre" id="bib-filtre">
+        <div class="oko-seg bib-temaer" id="bib-temaer" role="group" aria-label="Tema">
+          <button type="button" data-tema="" aria-pressed="true">Alle temaer <span class="bib-antall">60</span></button>
+          <button type="button" data-tema="omlegging" aria-pressed="false">Omlegging <span class="bib-antall">15</span></button>
+          <button type="button" data-tema="jord" aria-pressed="false">Jord og gjødsling <span class="bib-antall">4</span></button>
+          <button type="button" data-tema="plantevern" aria-pressed="false">Plantevern og ugras <span class="bib-antall">6</span></button>
+          <button type="button" data-tema="planter" aria-pressed="false">Planteproduksjon <span class="bib-antall">14</span></button>
+          <button type="button" data-tema="husdyr" aria-pressed="false">Husdyr og dyrevelferd <span class="bib-antall">11</span></button>
+          <button type="button" data-tema="marked" aria-pressed="false">Marked og forbruk <span class="bib-antall">29</span></button>
+          <button type="button" data-tema="okonomi" aria-pressed="false">Økonomi og lønnsomhet <span class="bib-antall">18</span></button>
+          <button type="button" data-tema="klima" aria-pressed="false">Klima og miljø <span class="bib-antall">6</span></button>
+        </div>
+        <div class="bib-valg">
+          <label>År
+            <select id="bib-aar">
+              <option value="">Alle år</option>
+              <option value="2020">2020 og nyere</option>
+              <option value="2015">2015 og nyere</option>
+              <option value="2010">2010 og nyere</option>
+              <option value="eldre">Eldre enn 2010</option>
+            </select>
+          </label>
+          <label>Språk
+            <select id="bib-spraak">
+              <option value="">Alle språk</option>
+              <option value="no">Norsk</option>
+              <option value="en">Engelsk</option>
+            </select>
+          </label>
+          <label><input type="checkbox" id="bib-gratis"> Bare gratis å lese</label>
+          <label>Sorter
+            <select id="bib-sort">
+              <option value="nyest">Nyeste først</option>
+              <option value="eldst">Eldste først</option>
+              <option value="tittel">Tittel A–Å</option>
+            </select>
+          </label>
+          <button type="button" class="bib-nullstill" data-nullstill hidden>Nullstill alle valg</button>
+        </div>
+      </div>
+
+      <section class="bib-nytt" id="bib-nytt" aria-labelledby="bib-nytt-tittel">
+        <h2 id="bib-nytt-tittel">Nytt i biblioteket</h2>
+        <p class="bib-nytt-note">Sist lagt inn 30. oktober 2026.</p>
+        <ul>
+          <li><a href="#jordbruksavtale-2026-2027">Jordbruksavtale 2026–2027</a> <span class="bib-nytt-meta">Landbruks- og matdepartementet, 2026</span></li>
+          <li><a href="#middel-til-okologiske-prosjekt">Middel til økologiske prosjekt</a> <span class="bib-nytt-meta">Landbruksdirektoratet, 2026</span></li>
+          <li><a href="#produksjon-av-okologiske-jordbruksvarer-rapport-for-2025">Produksjon av økologiske jordbruksvarer – Rapport for 2025</a> <span class="bib-nytt-meta">Landbruksdirektoratet, 2026</span></li>
+          <li><a href="#prop-98-s-2025-2026-endringer-i-statsbudsjettet-2026-under-l">Prop. 98 S (2025–2026) Endringer i statsbudsjettet 2026 under Landbruks- og matdepartementet (Jordbruksoppgjøret 2026)</a> <span class="bib-nytt-meta">Landbruks- og matdepartementet, 2026</span></li>
+          <li><a href="#regler-for-merker-og-merkevarebruk">Regler for merker og merkevarebruk</a> <span class="bib-nytt-meta">Debio, 2026</span></li>
+        </ul>
+      </section>
+
+      <h2 class="bib-skjult">Publikasjonene</h2>
+      <p class="bib-status" id="bib-status" aria-live="polite">Viser alle 60 publikasjonene</p>
+      <ol class="bib-liste" id="bib-liste">
+        <li class="bib-post" id="jordbruksavtale-2026-2027" data-type="politikk" data-under="jordbruksoppgjoret" data-tema="okonomi" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Jordbruksoppgjøret</p>
+          <h3 class="bib-tittel"><a href="https://www.regjeringen.no/contentassets/03cbb8535e6d4136ad6410fb1df36e54/jordbruksavtale-2026-2027.pdf" target="_blank" rel="noopener">Jordbruksavtale 2026–2027<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Avtaleteksten mellom staten og bondeorganisasjonene, med tilskudd og satser for økologisk produksjon og midler til utviklingstiltak innen økologisk landbruk.</p>
+          <p class="bib-meta">Landbruks- og matdepartementet · 2026 · regjeringen.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="middel-til-okologiske-prosjekt" data-type="regelverk" data-under="tilskudd" data-tema="marked" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Regelverk og tilskudd › Tilskudd til økologisk drift</p>
+          <h3 class="bib-tittel"><a href="https://www.landbruksdirektoratet.no/nn/ordningar/prosjektmidler/midlar-til-okologiske-prosjekt" target="_blank" rel="noopener">Middel til økologiske prosjekt<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Forklarer den nasjonale ordningen for utviklingsprosjekter i den økologiske verdikjeden: hvem som kan søke, hva som støttes, søknadsfrist og rapportering.</p>
+          <p class="bib-meta">Landbruksdirektoratet · 2026 · landbruksdirektoratet.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="produksjon-av-okologiske-jordbruksvarer-rapport-for-2025" data-type="forvaltning" data-under="ldir" data-tema="marked okonomi" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Rapporter fra forvaltningen › Landbruksdirektoratet</p>
+          <h3 class="bib-tittel"><a href="https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026" target="_blank" rel="noopener">Produksjon av økologiske jordbruksvarer – Rapport for 2025<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Årlig oversikt over produksjon, priser og omsetning av økologisk korn, melk, kjøtt, egg, frukt og grønt i 2025, med salg i dagligvare og tilskudd.</p>
+          <p class="bib-meta">Landbruksdirektoratet · 2026 · landbruksdirektoratet.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="prop-98-s-2025-2026-endringer-i-statsbudsjettet-2026-under-l" data-type="politikk" data-under="jordbruksoppgjoret" data-tema="okonomi" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Jordbruksoppgjøret</p>
+          <h3 class="bib-tittel"><a href="https://www.regjeringen.no/no/dokumenter/prop.-98-s-20252026/id3162996/" target="_blank" rel="noopener">Prop. 98 S (2025–2026) Endringer i statsbudsjettet 2026 under Landbruks- og matdepartementet (Jordbruksoppgjøret 2026)<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Regjeringens proposisjon om jordbruksoppgjøret 2026, med egne avsnitt om økologisk jordbruk, oppfølging av 10-prosentmålet og investeringsstøtte til økologisk produksjon.</p>
+          <p class="bib-meta">Landbruks- og matdepartementet · 2026 · regjeringen.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="regler-for-merker-og-merkevarebruk" data-type="regelverk" data-under="veiledning" data-tema="marked" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Regelverk og tilskudd › Veiledning om regelverket</p>
+          <h3 class="bib-tittel"><a href="https://debio.no/content/uploads/2026/02/Regler-for-merker-og-merkebruk-2026.pdf" target="_blank" rel="noopener">Regler for merker og merkevarebruk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Debios regler for bruk av Ø-merket og Debios andre merker: hvem som kan bruke dem, hvordan, og hva som skjer ved misbruk.</p>
+          <p class="bib-meta">Debio · 2026 · debio.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="rester-av-plantevernmidler-i-okologiske-produkter-2025" data-type="forvaltning" data-under="mattilsynet" data-tema="plantevern" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Rapporter fra forvaltningen › Mattilsynet</p>
+          <h3 class="bib-tittel"><a href="https://mattilsynet-xp7prod.enonic.cloud/_/attachment/inline/9ce98343-f7f2-46fa-ac75-820b55db1283:a3366258192f8f99bbf3f2dc200e109a9dd322ec/Rester%20av%20plantevernmidler%20i%20%C3%B8kologiske%20produkter%202025.pdf" target="_blank" rel="noopener">Rester av plantevernmidler i økologiske produkter 2025<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Resultatene fra Mattilsynets analyser av plantevernmiddelrester i 174 økologiske prøver i 2025, inkludert funn av stoffer som ikke er tillatt i økologisk produksjon.</p>
+          <p class="bib-meta">Mattilsynet (med NIBIO) · 2026 · mattilsynet-xp7prod.enonic.cloud</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="plantevern">Plantevern og ugras</button></div>
+        </li>
+        <li class="bib-post" id="sma-endringar-i-okologisk-jordbruksareal" data-type="forvaltning" data-under="ssb" data-tema="" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Rapporter fra forvaltningen › SSB</p>
+          <h3 class="bib-tittel"><a href="https://www.ssb.no/jord-skog-jakt-og-fiskeri/jordbruk/artikler/sma-endringar-i-okologisk-jordbruksareal" target="_blank" rel="noopener">Små endringar i økologisk jordbruksareal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">SSBs tall for økologisk jordbruksareal og antall gårder med økologisk produksjon i 2025 (foreløpige tall), sett mot utviklingen de siste årene.</p>
+          <p class="bib-meta">Statistisk sentralbyrå (SSB) · 2026 · ssb.no</p>
+        </li>
+        <li class="bib-post" id="statistikk-2025" data-type="regelverk" data-under="kontroll" data-tema="" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Regelverk og tilskudd › Godkjenning og kontroll</p>
+          <h3 class="bib-tittel"><a href="https://debio.no/content/uploads/2026/03/Debio-statistikk-2025.pdf" target="_blank" rel="noopener">Statistikk 2025<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Debios statistikk for 2025 over godkjente økologiske virksomheter: gårder og økologisk areal per fylke, karensareal for hele landet, vekster, husdyr samt foredling, import og omsetning.</p>
+          <p class="bib-meta">Debio · 2026 · debio.no</p>
+        </li>
+        <li class="bib-post" id="veiledning-om-okologisk-landbruk" data-type="regelverk" data-under="veiledning" data-tema="omlegging planter husdyr" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Regelverk og tilskudd › Veiledning om regelverket</p>
+          <h3 class="bib-tittel"><a href="https://www.mattilsynet.no/planter-og-dyrking/okologisk-landbruk/veileder-okologisk-landbruk" target="_blank" rel="noopener">Veiledning om økologisk landbruk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Mattilsynets praktiske gjennomgang av reglene for økologisk plante- og husdyrproduksjon og birøkt, med omlegging, karens, kontrollordning og lister over tillatte innsatsmidler.</p>
+          <p class="bib-meta">Mattilsynet · 2026 · mattilsynet.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button></div>
+        </li>
+        <li class="bib-post" id="okologisk-landbruk" data-type="regelverk" data-under="tilskudd" data-tema="omlegging okonomi" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Regelverk og tilskudd › Tilskudd til økologisk drift</p>
+          <h3 class="bib-tittel"><a href="https://www.landbruksdirektoratet.no/nb/jordbruk/miljo-og-klima/okologisk-landbruk" target="_blank" rel="noopener">Økologisk landbruk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Landbruksdirektoratets inngangsside til økologisk drift: krav ved omlegging, økologitilskuddene i produksjonstilskuddet, prosjektmidler og lenker til regelverk og årsrapporter.</p>
+          <p class="bib-meta">Landbruksdirektoratet · 2026 · landbruksdirektoratet.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="okologisk-tiltaksplan-2026" data-type="forvaltning" data-under="regionalt" data-tema="omlegging marked" data-aar="2026" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Rapporter fra forvaltningen › Statsforvalterne og fylkeskommunene</p>
+          <h3 class="bib-tittel"><a href="https://www.statsforvalteren.no/siteassets/fm-oslo-og-viken/landbruk-og-mat/jordbruk/dokumenter/okologisk-tiltaksplan-2026---endelig-versjon.pdf" target="_blank" rel="noopener">Økologisk tiltaksplan 2026<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Tiltaksplan for 2026 for flere lønnsomme økologiske gårder, mer direktesalg og økt etterspørsel fra offentlige virksomheter og handel i Østfold, Buskerud, Oslo og Akershus.</p>
+          <p class="bib-meta">Statsforvalteren i Østfold, Buskerud, Oslo og Akershus · 2026 · statsforvalteren.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="chasing-pigs-chasing-profits-de-territorializing-organic-and" data-type="forskning" data-under="artikler" data-tema="husdyr marked" data-aar="2025" data-spraak="en" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Vitenskapelige artikler</p>
+          <h3 class="bib-tittel"><a href="https://doi.org/10.1007/s10460-025-10741-0" target="_blank" rel="noopener">Chasing pigs, chasing profits: (De)territorializing organic and free-range pig farming in Norway<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Etnografisk studie av norske bønder med økologisk og frilandsgris: driftsformen er lovende, men møter utfordringer med dyrevelferd, jord som rotes opp og et sårbart marked.</p>
+          <p class="bib-meta">Ruud og Helliwell · Agriculture and Human Values · 2025 · På engelsk · doi.org</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="hvordan-fremmes-dyrevelferd-i-okologisk-landbruk" data-type="fagstoff" data-under="fagark" data-tema="husdyr" data-aar="2025" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Praktisk fagstoff › Fagark og veiledere om drift</p>
+          <h3 class="bib-tittel"><a href="https://orgprints.org/id/eprint/56103/1/faginfo%20husdyrvelferd%2013.08.25.pdf" target="_blank" rel="noopener">Hvordan fremmes dyrevelferd i økologisk landbruk?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Faktaark om hvordan økologiske regler og driftsvalg fremmer dyrevelferd hos storfe, sau, geit, gris og fjørfe, med råd om plass, beite og fôring.</p>
+          <p class="bib-meta">NORSØK · 2025 · orgprints.org</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button></div>
+        </li>
+        <li class="bib-post" id="innst-197-s-2024-2025-innstilling-fra-naeringskomiteen-om-pr" data-type="politikk" data-under="stortinget" data-tema="marked" data-aar="2025" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Stortingets behandling</p>
+          <h3 class="bib-tittel"><a href="https://stortinget.no/globalassets/pdf/innstillinger/stortinget/2024-2025/inns-202425-197s.pdf" target="_blank" rel="noopener">Innst. 197 S (2024–2025) Innstilling frå næringskomiteen om Prinsipper for tallgrunnlag m.m. i jordbrukspolitikken<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Næringskomiteens innstilling til Meld. St. 10 (2024–2025); behandlingen endte med at Stortinget ba regjeringen innføre målet om 10 prosent økologisk areal innen 2032.</p>
+          <p class="bib-meta">Stortinget · 2025 · stortinget.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="intensjonsavtale-for-a-fremme-okologisk-mat-og-jordbruk" data-type="politikk" data-under="strategier" data-tema="omlegging marked" data-aar="2025" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Strategier og handlingsplaner</p>
+          <h3 class="bib-tittel"><a href="https://www.regjeringen.no/no/dokumenter/intensjonsavtale-for-a-fremme-okologisk-mat-og-jordbruk/id3142619/" target="_blank" rel="noopener">Intensjonsavtale for å fremme økologisk mat og jordbruk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Avtale der aktører fra forvaltning, næringsliv, organisasjoner og forskning forplikter seg til å bidra til målet om 10 prosent økologisk jordbruksareal innen 2032.</p>
+          <p class="bib-meta">Landbruks- og matdepartementet · 2025 · regjeringen.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="meld-st-10-2024-2025-prinsipper-for-tallgrunnlag-m-m-i-jordb" data-type="politikk" data-under="meldinger" data-tema="marked" data-aar="2025" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Stortingsmeldinger og proposisjoner</p>
+          <h3 class="bib-tittel"><a href="https://www.regjeringen.no/contentassets/3c17273384cb490fbe2b7ab1c03535a1/no/pdfs/stm202420250010000dddpdfs.pdf" target="_blank" rel="noopener">Meld. St. 10 (2024–2025) Prinsipper for tallgrunnlag m.m. i jordbrukspolitikken<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Stortingsmeldingen som la fram det nye målet om 10 prosent økologisk jordbruksareal innen 2032, koblet til tiltak for økt etterspørsel etter økologisk mat.</p>
+          <p class="bib-meta">Landbruks- og matdepartementet · 2025 · regjeringen.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="nasjonal-strategi-for-okologisk-jordbruk-2025-2032" data-type="politikk" data-under="strategier" data-tema="omlegging marked" data-aar="2025" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Strategier og handlingsplaner</p>
+          <h3 class="bib-tittel"><a href="https://www.regjeringen.no/no/dokumenter/nasjonal-strategi-for-okologisk-jordbruk-2025-2032/id3097100/" target="_blank" rel="noopener">Nasjonal strategi for økologisk jordbruk 2025–2032<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Regjeringens strategi med ti tiltak for å øke omsetningen og produksjonen av økologisk mat, slik at 10 prosent av jordbruksarealet kan være økologisk innen 2032.</p>
+          <p class="bib-meta">Landbruks- og matdepartementet · 2025 · regjeringen.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="produksjon-av-okologiske-jordbruksvarer-rapport-for-2024" data-type="forvaltning" data-under="ldir" data-tema="marked" data-aar="2025" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Rapporter fra forvaltningen › Landbruksdirektoratet</p>
+          <h3 class="bib-tittel"><a href="https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer-2025" target="_blank" rel="noopener">Produksjon av økologiske jordbruksvarer – Rapport for 2024<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Statusrapport med tall for 2024 for økologisk produksjon av korn, melk, kjøtt, egg, frukt og grønt, og for salg i dagligvare og andre kanaler.</p>
+          <p class="bib-meta">Landbruksdirektoratet · 2025 · landbruksdirektoratet.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="status-for-okologisk-landbruk-i-innlandet-fylke" data-type="forvaltning" data-under="regionalt" data-tema="marked" data-aar="2025" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Rapporter fra forvaltningen › Statsforvalterne og fylkeskommunene</p>
+          <h3 class="bib-tittel"><a href="https://www.statsforvalteren.no/siteassets/sf-innlandet/07-landbruk-og-mat/jordbruk/okologisk-jordbruk/status-for-okologisk-landbruk-i-innlandet-fylke-per-14.02.2025.pdf" target="_blank" rel="noopener">Status for økologisk landbruk i Innlandet fylke<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Kartlegging av økologisk landbruk i Innlandet – produksjon, produsenter, verdikjeder, kompetanse og virkemidler – utarbeidet som første del av et forprosjekt.</p>
+          <p class="bib-meta">Statsforvalteren i Innlandet (med Økologisk Innlandet) · 2025 · statsforvalteren.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="trenger-mer-okologisk-melk-i-satsingsomrader" data-type="organisasjoner" data-under="naering" data-tema="husdyr marked okonomi" data-aar="2025" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Organisasjoner og næring › Næringen</p>
+          <h3 class="bib-tittel"><a href="https://medlem.tine.no/aktuelt-fra-tine/trenger-mer-okologisk-melk-i-satsingsomrader" target="_blank" rel="noopener">Trenger mer økologisk melk i satsingsområder<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Tine om økt behov for økologisk melk i enkelte regioner, høyere økotillegg fra 2025 og nye leveringskontrakter for produsenter som vil legge om.</p>
+          <p class="bib-meta">Tine · 2025 · medlem.tine.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="vi-trenger-et-jordbruksoppgjor-med-en-tydelig-okologisk-sats" data-type="organisasjoner" data-under="interesse" data-tema="marked okonomi" data-aar="2025" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Organisasjoner og næring › Interesseorganisasjoner</p>
+          <h3 class="bib-tittel"><a href="https://www.mynewsdesk.com/no/okologisknorge/pressreleases/vi-trenger-et-jordbruksoppgjoer-med-en-tydelig-oekologisk-satsing-3374827" target="_blank" rel="noopener">Vi trenger et jordbruksoppgjør med en tydelig økologisk satsing<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Økologisk Norges krav til jordbruksoppgjøret 2025, blant annet økte arealtilskudd, pristilskudd for økologisk frukt og grønt og mer forskningsmidler.</p>
+          <p class="bib-meta">Økologisk Norge · 2025 · mynewsdesk.com</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="20-ar-med-oko-har-ikke-angret-pa-omlegging" data-type="fagstoff" data-under="artikler" data-tema="omlegging husdyr" data-aar="2024" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Praktisk fagstoff › Artikler og reportasjer</p>
+          <h3 class="bib-tittel"><a href="https://www.nlr.no/nyhetsarkiv/default/2024/20-ar-med-oko-har-ikke-angret-pa-omlegging" target="_blank" rel="noopener">20 år med øko - har ikke angret på omlegging<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Reportasje fra en melkebonde ved Stavanger som la om til økologisk drift for over 20 år siden og deler erfaringer med beite og jordliv.</p>
+          <p class="bib-meta">Solberg · Norsk Landbruksrådgiving · 2024 · nlr.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button></div>
+        </li>
+        <li class="bib-post" id="avvikskatalog-handtering-av-avvik-hos-okologiske-virksomhete" data-type="regelverk" data-under="kontroll" data-tema="" data-aar="2024" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Regelverk og tilskudd › Godkjenning og kontroll</p>
+          <h3 class="bib-tittel"><a href="https://debio.no/content/uploads/2024/04/Avvikskatalogen.pdf" target="_blank" rel="noopener">Avvikskatalog – håndtering av avvik hos økologiske virksomheter<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Viser hvordan Debio vurderer mindre, alvorlige og kritiske avvik fra økologiregelverket, og hvilke reaksjoner – fra pålegg til tap av godkjenning – som kan følge.</p>
+          <p class="bib-meta">Debio · 2024 · debio.no</p>
+        </li>
+        <li class="bib-post" id="handlingsplan-for-okologisk-landbruk-i-vestfold-og-telemark" data-type="forvaltning" data-under="regionalt" data-tema="marked okonomi klima" data-aar="2024" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Rapporter fra forvaltningen › Statsforvalterne og fylkeskommunene</p>
+          <h3 class="bib-tittel"><a href="https://statsforvalteren.no/contentassets/72c5863ef78245d197f174c950fcefd8/handlingsplan-for-okologisk-landbruk.pdf" target="_blank" rel="noopener">Handlingsplan for økologisk landbruk i Vestfold og Telemark – Økt lønnsomhet gjennom markedsarbeid<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Regional handlingsplan med konkrete tiltak for bedre lønnsomhet i økologisk drift gjennom nye salgskanaler, merkevarebygging og offentlige innkjøp, pluss politiske anbefalinger.</p>
+          <p class="bib-meta">Statsforvalteren i Vestfold og Telemark · 2024 · statsforvalteren.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button><button type="button" class="bib-tag" data-tema="klima">Klima og miljø</button></div>
+        </li>
+        <li class="bib-post" id="horing-endringer-i-forskrift-om-proving-og-godkjenning-av-pl" data-type="politikk" data-under="horinger" data-tema="planter" data-aar="2024" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Høringer</p>
+          <h3 class="bib-tittel"><a href="https://mattilsynet.no/hoeringer?bId=3058" target="_blank" rel="noopener">Høring - Endringer i forskrift om prøving og godkjenning av plantesorter - økologiske plantesorter mv<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Mattilsynets høring, på vegne av Landbruks- og matdepartementet, om endringer i forskrift om prøving og godkjenning av plantesorter – blant annet nye regler for økologiske plantesorter.</p>
+          <p class="bib-meta">Mattilsynet · 2024 · mattilsynet.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button></div>
+        </li>
+        <li class="bib-post" id="norskprodusert-f-rprotein-i-okologisk-landbruk-hostraps-og-k" data-type="forskning" data-under="rapporter" data-tema="planter husdyr" data-aar="2024" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Forskningsrapporter</p>
+          <h3 class="bib-tittel"><a href="https://orgprints.org/id/eprint/55189/" target="_blank" rel="noopener">Norskprodusert fôrprotein i økologisk landbruk. Høstraps og kløvergras som proteinkilde til svin<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Økologisk høstraps mislyktes i feltforsøkene, men proteinkonsentrat fra kløvergras og rapskake kan løfte norskandelen i fôret til økologisk slaktegris betydelig.</p>
+          <p class="bib-meta">Adler m.fl. · NIBIO · 2024 · orgprints.org</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button></div>
+        </li>
+        <li class="bib-post" id="naeringsforsyning-i-okologisk-akerbruk" data-type="fagstoff" data-under="fagark" data-tema="jord planter" data-aar="2024" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Praktisk fagstoff › Fagark og veiledere om drift</p>
+          <h3 class="bib-tittel"><a href="https://www.nlr.no/kunnskap/fagartikler/okologisk/default/naeringsforsyning-i-okologisk-akerbruk" target="_blank" rel="noopener">Næringsforsyning i økologisk åkerbruk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Råd om hvordan økologiske åkerbrukere kan sikre nok nitrogen og andre næringsstoffer med kløvereng, belgvekster, husdyrgjødsel, fangvekster og godkjent gjødsel.</p>
+          <p class="bib-meta">Norsk Landbruksrådgiving · 2024 · nlr.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="jord">Jord og gjødsling</button><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button></div>
+        </li>
+        <li class="bib-post" id="varsler-endringer-for-okologisk-korn-og-kraftf-r" data-type="organisasjoner" data-under="naering" data-tema="planter marked okonomi" data-aar="2024" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Organisasjoner og næring › Næringen</p>
+          <h3 class="bib-tittel"><a href="https://fka.felleskjopet.no/alle-artikler/alle-artikler-planteproduksjon/artikler-korn/varsler-endringer-for-oekologisk-korn-og-kraftfor/" target="_blank" rel="noopener">Varsler endringer for økologisk korn og kraftfôr<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Felleskjøpet Agri om underskudd og høye kostnader i verdikjeden for økologisk korn og kraftfôr, og hvilke endringer selskapet varsler.</p>
+          <p class="bib-meta">Felleskjøpet Agri · 2024 · fka.felleskjopet.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="vil-jobbe-for-at-ti-prosent-av-produksjonen-blir-okologisk" data-type="organisasjoner" data-under="interesse" data-tema="marked klima" data-aar="2024" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Organisasjoner og næring › Interesseorganisasjoner</p>
+          <h3 class="bib-tittel"><a href="https://www.bondelaget.no/bondelaget-mener/mat-og-produksjon/okologisk-landbruk/vil-jobbe-for-at-10-prosent-av-produksjonen-blir-okologisk" target="_blank" rel="noopener">Vil jobbe for at ti prosent av produksjonen blir økologisk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Bondelagets styrevedtak om å jobbe for et tallfestet mål om ti prosent økologisk matproduksjon, og hvilke tiltak organisasjonen mener trengs.</p>
+          <p class="bib-meta">Norges Bondelag · 2024 · bondelaget.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="klima">Klima og miljø</button></div>
+        </li>
+        <li class="bib-post" id="okologiprogram-2019-2030" data-type="politikk" data-under="strategier" data-tema="omlegging marked okonomi" data-aar="2023" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Strategier og handlingsplaner</p>
+          <h3 class="bib-tittel"><a href="https://www.landbruksdirektoratet.no/nb/filarkiv/rapporter/%C3%98kologiprogram%202019-2030%20oppdatert%20per%201%20september%202023.pdf" target="_blank" rel="noopener">Økologiprogram 2019–2030<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Landbruksdirektoratets handlingsprogram for å følge opp økologistrategien, med oversikt over jordbruksavtalens virkemidler for kompetanse, rådgiving, produksjon og verdikjede.</p>
+          <p class="bib-meta">Landbruksdirektoratet · 2023 · landbruksdirektoratet.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="okt-norskandel-i-okologisk-f-r-utredning-av-hvordan-norsk-pr" data-type="forvaltning" data-under="ldir" data-tema="planter husdyr okonomi" data-aar="2023" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Rapporter fra forvaltningen › Landbruksdirektoratet</p>
+          <h3 class="bib-tittel"><a href="https://www.landbruksdirektoratet.no/nb/filarkiv/rapporter/%C3%98kt%20norskandel%20i%20%C3%B8kologisk%20f%C3%B4r%20Rapport%2013%202023.pdf" target="_blank" rel="noopener">Økt norskandel i økologisk fôr – Utredning av hvordan norsk produksjon av økologisk korn og kraftfôrråvare kan økes<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Utredning av flaskehalsene for norsk økologisk korn og proteinfôr – agronomi, lønnsomhet og mottakskapasitet – og mulige virkemidler for mer norskprodusert økologisk fôr.</p>
+          <p class="bib-meta">Landbruksdirektoratet · 2023 · landbruksdirektoratet.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="forskrift-om-okologisk-produksjon-og-merking-av-okologiske-l" data-type="regelverk" data-under="forskrift" data-tema="" data-aar="2022" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Regelverk og tilskudd › Økologiforskriften og EU-regelverket</p>
+          <h3 class="bib-tittel"><a href="https://www.regjeringen.no/no/dokumenter/forskrift-om-okologisk-produksjon-og-merking-av-okologiske-landbruksprodukter-akvakulturprodukter-naringsmidler-og-for-m.m.-okologiforskriften/id2921447/" target="_blank" rel="noopener">Forskrift om økologisk produksjon og merking av økologiske landbruksprodukter, akvakulturprodukter, næringsmidler og fôr m.m. (økologiforskriften)<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Den norske forskriften som gjennomfører EUs økologiregelverk i Norge – det juridiske grunnlaget for økologisk produksjon og merking.</p>
+          <p class="bib-meta">Landbruks- og matdepartementet og Nærings- og fiskeridepartementet · 2022 · regjeringen.no</p>
+        </li>
+        <li class="bib-post" id="kartlegging-av-muligheter-for-okologisk-landbruk-i-more-og-r" data-type="forskning" data-under="rapporter" data-tema="omlegging marked okonomi" data-aar="2022" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Forskningsrapporter</p>
+          <h3 class="bib-tittel"><a href="https://www.statsforvalteren.no/contentassets/0215c17786b54a6287ae20f4a8138e29/rapport-fra-ruralis---kartlegging-av-muligheter-for-okologisk-landbruk-i-mogr---januar-2022.pdf" target="_blank" rel="noopener">Kartlegging av muligheter for økologisk landbruk i Møre og Romsdal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Antall økobønder i Møre og Romsdal falt fra 2010 til 2020. Rapporten ser vekstpotensial i beitedyr, grønnsaker, frukt, bær og korn, og foreslår 21 tiltak.</p>
+          <p class="bib-meta">Ruud · Ruralis · 2022 · statsforvalteren.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="alternativ-gjodsel" data-type="fagstoff" data-under="artikler" data-tema="jord" data-aar="2021" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Praktisk fagstoff › Artikler og reportasjer</p>
+          <h3 class="bib-tittel"><a href="https://orgprints.org/id/eprint/40011/" target="_blank" rel="noopener">Alternativ gjødsel<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Magasinartikkel om forsøk med alternativer til konvensjonell husdyrgjødsel i økologisk dyrking, som kløvergras som grønngjødsel, biorest fra biogass og restprodukter fra matindustrien.</p>
+          <p class="bib-meta">Friis Pedersen og Løes · Økologisk Landbruk · 2021 · orgprints.org</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="jord">Jord og gjødsling</button></div>
+        </li>
+        <li class="bib-post" id="miljomessig-og-okonomisk-baerekraft-pa-garder-med-okologisk" data-type="forskning" data-under="rapporter" data-tema="husdyr okonomi klima" data-aar="2021" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Forskningsrapporter</p>
+          <h3 class="bib-tittel"><a href="https://orgprints.org/id/eprint/43770/" target="_blank" rel="noopener">Miljømessig og økonomisk bærekraft på gårder med økologisk eller konvensjonell melkeproduksjon - studie av 20 gårder i Møre og Romsdal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Sammenligning av 20 melkebruk: de økologiske hadde lavere næringsoverskudd, energibruk og klimagassutslipp per areal, og omtrent samme lønnsomhet per arbeidstime.</p>
+          <p class="bib-meta">Hansen m.fl. · NORSØK · 2021 · orgprints.org</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button><button type="button" class="bib-tag" data-tema="klima">Klima og miljø</button></div>
+        </li>
+        <li class="bib-post" id="yield-and-quality-of-vegetables-fertilized-with-materials-re" data-type="forskning" data-under="oppgaver" data-tema="jord planter" data-aar="2021" data-spraak="en" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Masteroppgaver og doktoravhandlinger</p>
+          <h3 class="bib-tittel"><a href="https://hdl.handle.net/11250/2976275" target="_blank" rel="noopener">Yield and quality of vegetables fertilized with materials recycled from organic resources<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Doktorgrad som testet gjødsel av biorest, rekeskall, sauemøkk og algemel til brokkoli, potet og salat. Flere av materialene kan supplere gjødslingen i økologisk grønnsaksdyrking.</p>
+          <p class="bib-meta">Øvsthus · NMBU · 2021 · På engelsk · hdl.handle.net</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="jord">Jord og gjødsling</button><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button></div>
+        </li>
+        <li class="bib-post" id="dyrt-med-okologisk-kraftf-r" data-type="fagstoff" data-under="artikler" data-tema="husdyr okonomi" data-aar="2020" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Praktisk fagstoff › Artikler og reportasjer</p>
+          <h3 class="bib-tittel"><a href="https://www.nlr.no/kunnskap/fagartikler/okologisk/sor/dyrt-med-okologisk-kraftfor" target="_blank" rel="noopener">Dyrt med økologisk kraftfôr<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Rådgiver forklarer hvorfor økologisk kraftfôr er dyrere på Sørlandet og i Rogaland, og hva prisforskjellen betyr for økologiske husdyrprodusenter.</p>
+          <p class="bib-meta">Slågedal · Norsk Landbruksrådgiving · 2020 · nlr.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="influence-of-mechanical-weeding-and-fertilisation-on-perenni" data-type="forskning" data-under="artikler" data-tema="plantevern planter" data-aar="2020" data-spraak="en" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Vitenskapelige artikler</p>
+          <h3 class="bib-tittel"><a href="https://hdl.handle.net/11250/2687715" target="_blank" rel="noopener">Influence of mechanical weeding and fertilisation on perennial weeds, fungal diseases, soil structure and crop yield in organic spring cereals<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Forsøk i økologisk vårkorn: radrensing pluss høstharving, eller harving vår og høst, ga best kontroll av rotugras og høyest avling, uten skade på jordstruktur eller mer soppsykdom.</p>
+          <p class="bib-meta">Brandsæter m.fl. · Acta Agriculturae Scandinavica, Section B – Soil &amp; Plant Science · 2020 · På engelsk · hdl.handle.net</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="plantevern">Plantevern og ugras</button><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button></div>
+        </li>
+        <li class="bib-post" id="okologisk-jordbruk-gar-tilbake" data-type="forvaltning" data-under="ssb" data-tema="" data-aar="2020" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Rapporter fra forvaltningen › SSB</p>
+          <h3 class="bib-tittel"><a href="https://www.ssb.no/jord-skog-jakt-og-fiskeri/artikler-og-publikasjoner/okologisk-jordbruk-gar-tilbake" target="_blank" rel="noopener">Økologisk jordbruk går tilbake<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">SSB-analyse av nedgangen i økologisk jordbruksareal og antall økologiske gårder fra toppen i 2011 og fram til 2019.</p>
+          <p class="bib-meta">Statistisk sentralbyrå (SSB) · 2020 · ssb.no</p>
+        </li>
+        <li class="bib-post" id="links-between-profitability-nitrogen-surplus-greenhouse-gas" data-type="forskning" data-under="artikler" data-tema="husdyr okonomi klima" data-aar="2019" data-spraak="en" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Vitenskapelige artikler</p>
+          <h3 class="bib-tittel"><a href="https://hdl.handle.net/11250/2594074" target="_blank" rel="noopener">Links between profitability, nitrogen surplus, greenhouse gas emissions, and energy intensity on organic and conventional dairy farms<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Sammenligning av 18 melkebruk på Vestlandet: de økologiske hadde lavere nitrogenoverskudd, klimagassutslipp og energibruk per produsert enhet, og like god lønnsomhet.</p>
+          <p class="bib-meta">Flaten m.fl. · Agroecology and Sustainable Food Systems · 2019 · På engelsk · hdl.handle.net</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button><button type="button" class="bib-tag" data-tema="klima">Klima og miljø</button></div>
+        </li>
+        <li class="bib-post" id="reviews-and-syntheses-review-of-causes-and-sources-of-n2o-em" data-type="forskning" data-under="artikler" data-tema="jord klima" data-aar="2019" data-spraak="en" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Vitenskapelige artikler</p>
+          <h3 class="bib-tittel"><a href="https://doi.org/10.5194/bg-16-2795-2019" target="_blank" rel="noopener">Reviews and syntheses: Review of causes and sources of N2O emissions and NO3 leaching from organic arable crop rotations<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Oversiktsartikkel om lystgass og nitratutvasking i økologisk åkerbruk: lystgassen kommer mest fra jordas organiske materiale, og fangvekster reduserer utvaskingen, men kan øke lystgassutslippet.</p>
+          <p class="bib-meta">Hansen m.fl. · Biogeosciences · 2019 · På engelsk · doi.org</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="jord">Jord og gjødsling</button><button type="button" class="bib-tag" data-tema="klima">Klima og miljø</button></div>
+        </li>
+        <li class="bib-post" id="nasjonal-strategi-for-okologisk-jordbruk" data-type="politikk" data-under="strategier" data-tema="omlegging marked okonomi" data-aar="2018" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Strategier og handlingsplaner</p>
+          <h3 class="bib-tittel"><a href="https://www.regjeringen.no/no/dokumenter/nasjonal-strategi-for-okologisk-jordbruk/id2607229/" target="_blank" rel="noopener">Nasjonal strategi for økologisk jordbruk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Regjeringens strategi for 2018–2030 som dreide økologipolitikken mot etterspørselsdrevet vekst, med vurderinger og tiltak for omlegging, rådgiving, marked og økonomi.</p>
+          <p class="bib-meta">Landbruks- og matdepartementet · 2018 · regjeringen.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="regulation-eu-2018-848-of-the-european-parliament-and-of-the" data-type="regelverk" data-under="forskrift" data-tema="omlegging planter husdyr" data-aar="2018" data-spraak="en" data-tilgang="gratis">
+          <p class="bib-type">Regelverk og tilskudd › Økologiforskriften og EU-regelverket</p>
+          <h3 class="bib-tittel"><a href="https://eur-lex.europa.eu/eli/reg/2018/848/oj/eng" target="_blank" rel="noopener">Regulation (EU) 2018/848 of the European Parliament and of the Council of 30 May 2018 on organic production and labelling of organic products and repealing Council Regulation (EC) No 834/2007<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">EUs hovedforordning for økologisk produksjon og merking, som gjelder i Norge via EØS, med reglene for omlegging, planteproduksjon og husdyrhold.</p>
+          <p class="bib-meta">EU (EUR-Lex) · 2018 · På engelsk · eur-lex.europa.eu</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button><button type="button" class="bib-tag" data-tema="husdyr">Husdyr og dyrevelferd</button></div>
+        </li>
+        <li class="bib-post" id="cultivars-and-cultivation-systems-for-organic-strawberry-pro" data-type="forskning" data-under="artikler" data-tema="plantevern planter" data-aar="2017" data-spraak="en" data-tilgang="abonnement">
+          <p class="bib-type">Forskning › Vitenskapelige artikler</p>
+          <h3 class="bib-tittel"><a href="https://doi.org/10.1080/09064710.2017.1296490" target="_blank" rel="noopener">Cultivars and cultivation systems for organic strawberry production in Norway<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Fire sesonger med forsøk i økologisk jordbær i Sør-Norge: gråskimmel reduserte salgbar avling med opptil 20 prosent på friland, mens høye plasttunneler ga mulighet for store avlinger med god kvalitet.</p>
+          <p class="bib-meta">Nes m.fl. · Acta Agriculturae Scandinavica, Section B – Soil &amp; Plant Science · 2017 · På engelsk · <span class="bib-abo">Krever abonnement</span> · doi.org</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="plantevern">Plantevern og ugras</button><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button></div>
+        </li>
+        <li class="bib-post" id="flerarige-ugras-i-korn" data-type="fagstoff" data-under="fagark" data-tema="plantevern planter" data-aar="2017" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Praktisk fagstoff › Fagark og veiledere om drift</p>
+          <h3 class="bib-tittel"><a href="https://www.agropub.no/fagartikler/okologisk-kornproduksjon-flerarige-ugras" target="_blank" rel="noopener">Flerårige ugras i korn<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Forklarer hvordan kveke, åkertistel og åkerdylle kan bekjempes i økologisk korn med riktig tidspunkt for jordarbeiding, vekstskifte og grønngjødsling.</p>
+          <p class="bib-meta">NORSØK (Agropub) · 2017 · agropub.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="plantevern">Plantevern og ugras</button><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button></div>
+        </li>
+        <li class="bib-post" id="klovertretthet-hvordan-hindre-avlingstap" data-type="fagstoff" data-under="fagark" data-tema="plantevern planter" data-aar="2017" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Praktisk fagstoff › Fagark og veiledere om drift</p>
+          <h3 class="bib-tittel"><a href="https://orgprints.dk/id/eprint/31273/1/NORS%C3%98K%20Faginfo%20nr.%203%202017%20Kl%C3%B8vertretthet.pdf" target="_blank" rel="noopener">Kløvertretthet: Hvordan hindre avlingstap<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Faktaark om jordboende skadegjørere som svekker kløveren i enga, og hvordan vekstskifte, hygiene, sortsvalg og god agronomi kan hindre avlingstap.</p>
+          <p class="bib-meta">NORSØK · 2017 · orgprints.dk</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="plantevern">Plantevern og ugras</button><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button></div>
+        </li>
+        <li class="bib-post" id="omlegging-til-okologisk-drift" data-type="fagstoff" data-under="fagark" data-tema="omlegging" data-aar="2017" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Praktisk fagstoff › Fagark og veiledere om drift</p>
+          <h3 class="bib-tittel"><a href="https://www.agropub.no/fagartikler/omlegging-til-okologisk-drift" target="_blank" rel="noopener">Omlegging til økologisk drift<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Praktisk gjennomgang av hva bonden bør tenke på før og under omlegging, fra jordstruktur og avlingsnedgang til Debio-kontroll og rådgiving.</p>
+          <p class="bib-meta">NORSØK (Agropub) · 2017 · agropub.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button></div>
+        </li>
+        <li class="bib-post" id="starte-med-okologisk-gronnsak-og-potetproduksjon" data-type="fagstoff" data-under="fagark" data-tema="omlegging plantevern planter" data-aar="2017" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Praktisk fagstoff › Fagark og veiledere om drift</p>
+          <h3 class="bib-tittel"><a href="https://www.agropub.no/fagartikler/starte-med-okologfisk-gronnsak-og-potetproduksjon" target="_blank" rel="noopener">Starte med økologisk grønnsak- og potetproduksjon?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Startveiledning for nye økologiske grønnsak- og potetdyrkere om avsetning, vekstskifte, gjødsling, ugrasregulering, skadedyr, sykdommer og sertifisering.</p>
+          <p class="bib-meta">NORSØK (Agropub) · 2017 · agropub.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="plantevern">Plantevern og ugras</button><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button></div>
+        </li>
+        <li class="bib-post" id="alternative-food-networks-a-question-about-farmers-resilienc" data-type="forskning" data-under="oppgaver" data-tema="marked okonomi" data-aar="2016" data-spraak="en" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Masteroppgaver og doktoravhandlinger</p>
+          <h3 class="bib-tittel"><a href="https://hdl.handle.net/11250/2398747" target="_blank" rel="noopener">Alternative Food Networks; A question about farmers&#x27; resilience<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Masteroppgave basert på intervjuer med seks produsenter i alternative matnettverk som andelslandbruk, gårdsutsalg og bondens marked: nettverkene gir økobøndene inntekt, anerkjennelse og identitet.</p>
+          <p class="bib-meta">Berg · NMBU · 2016 · På engelsk · hdl.handle.net</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="innspill-til-ny-jordbruksmelding" data-type="organisasjoner" data-under="interesse" data-tema="marked klima" data-aar="2016" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Organisasjoner og næring › Interesseorganisasjoner</p>
+          <h3 class="bib-tittel"><a href="https://regjeringen.no/contentassets/69823d505c974c60bd63e4bcf1c601dc/oikos---okologisk-norge.pdf" target="_blank" rel="noopener">Innspill til ny jordbruksmelding<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Oikos’ innspill til regjeringens jordbruksmelding med argumenter for mer norsk økologisk produksjon, offentlige innkjøp, bedre rekruttering og satsing på forskning.</p>
+          <p class="bib-meta">Oikos – Økologisk Norge · 2016 · regjeringen.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="klima">Klima og miljø</button></div>
+        </li>
+        <li class="bib-post" id="innst-297-s-2015-2016-innstilling-fra-kontroll-og-konstitusj" data-type="politikk" data-under="stortinget" data-tema="omlegging marked okonomi" data-aar="2016" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Stortingets behandling</p>
+          <h3 class="bib-tittel"><a href="https://stortinget.no/no/Saker-og-publikasjoner/Publikasjoner/Innstillinger/Stortinget/2015-2016/inns-201516-297/?lvl=0" target="_blank" rel="noopener">Innst. 297 S (2015–2016) Innstilling fra kontroll- og konstitusjonskomiteen om Riksrevisjonens undersøking av arbeidet til styresmaktene for å nå måla om økologisk landbruk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Kontroll- og konstitusjonskomiteens innstilling om Riksrevisjonens økologiundersøkelse: gjengir funnene om for svake virkemidler, mens Ap, H, FrP og KrF pekte på lav etterspørsel som hovedårsak.</p>
+          <p class="bib-meta">Stortinget · 2016 · stortinget.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="innst-59-s-2016-2017-innstilling-fra-naeringskomiteen-om-rep" data-type="politikk" data-under="stortinget" data-tema="marked" data-aar="2016" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Stortingets behandling</p>
+          <h3 class="bib-tittel"><a href="https://www.stortinget.no/no/Saker-og-publikasjoner/Publikasjoner/Innstillinger/Stortinget/2016-2017/inns-201617-059s/?all=true" target="_blank" rel="noopener">Innst. 59 S (2016–2017) Innstilling fra næringskomiteen om representantforslag om tiltak for å innfri Stortingets mål om minst 15 pst. økologisk forbruk og jordbruksareal innen 2020<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Stortingets behandling av forslag om tiltak for å nå 15-prosentmålet – viser partienes syn på blant annet offentlige innkjøp, forskning og behovet for en ny strategi.</p>
+          <p class="bib-meta">Stortinget · 2016 · stortinget.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="meld-st-11-2016-2017-endring-og-utvikling-en-fremtidsrettet" data-type="politikk" data-under="meldinger" data-tema="marked" data-aar="2016" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Stortingsmeldinger og proposisjoner</p>
+          <h3 class="bib-tittel"><a href="https://www.regjeringen.no/no/dokumenter/meld.-st.-11-20162017/id2523121/" target="_blank" rel="noopener">Meld. St. 11 (2016–2017) Endring og utvikling – En fremtidsrettet jordbruksproduksjon<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Landbruksmeldingen med eget kapittel om økologisk produksjon og forbruk, der regjeringen slo fast at veksten skal være etterspørselsdrevet – bakgrunn for 2018-strategien.</p>
+          <p class="bib-meta">Landbruks- og matdepartementet · 2016 · regjeringen.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="tidenes-salgsvekst-pa-okologi" data-type="organisasjoner" data-under="naering" data-tema="marked" data-aar="2016" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Organisasjoner og næring › Næringen</p>
+          <h3 class="bib-tittel"><a href="https://kommunikasjon.ntb.no/pressemelding/12422428/tidenes-salgsvekst-pa-okologi?publisherId=89490" target="_blank" rel="noopener">Tidenes salgsvekst på økologi<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Pressemelding der Coop rapporterer rekordvekst i salget av økologisk mat i 2016 og beskriver sitt økologiske sortiment og Änglamark-satsing.</p>
+          <p class="bib-meta">Coop Norge · 2016 · kommunikasjon.ntb.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="undersoking-av-arbeidet-til-styresmaktene-for-a-na-mala-om-o" data-type="forvaltning" data-under="andre" data-tema="marked" data-aar="2016" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Rapporter fra forvaltningen › Andre etater</p>
+          <h3 class="bib-tittel"><a href="https://www.riksrevisjonen.no/rapporter-mappe/no-2015-2016/Arbeidet-til-styresmaktene-for-a-na-mala-om-okologisk-landbruk/" target="_blank" rel="noopener">Undersøking av arbeidet til styresmaktene for å nå måla om økologisk landbruk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Riksrevisjonens vurdering av om myndighetenes styring og virkemidler bidro til målet om 15 prosent økologisk innen 2020 – med tydelig kritikk.</p>
+          <p class="bib-meta">Riksrevisjonen · 2016 · riksrevisjonen.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="okonomien-i-okologisk-jordbruk" data-type="forskning" data-under="rapporter" data-tema="marked okonomi" data-aar="2016" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Forskningsrapporter</p>
+          <h3 class="bib-tittel"><a href="https://kudos.dfo.no/documents/48545/files/30972.pdf" target="_blank" rel="noopener">Økonomien i økologisk jordbruk<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Utredning for Landbruks- og matdepartementet om lønnsomheten i ulike økologiske produksjoner, og om hvordan etterspørsel, verdikjede og tilskudd påvirker økonomien.</p>
+          <p class="bib-meta">Knutsen m.fl. · NIBIO · 2016 · kudos.dfo.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button><button type="button" class="bib-tag" data-tema="okonomi">Økonomi og lønnsomhet</button></div>
+        </li>
+        <li class="bib-post" id="motivasjon-for-okologisk-kornproduksjon" data-type="forskning" data-under="rapporter" data-tema="omlegging planter" data-aar="2015" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Forskningsrapporter</p>
+          <h3 class="bib-tittel"><a href="https://hdl.handle.net/11250/2437103" target="_blank" rel="noopener">Motivasjon for økologisk kornproduksjon<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Intervjuer og spørreundersøkelse blant kornbønder: miljøhensyn motiverer omlegging, mens ugras, næringsforsyning og mangel på husdyrgjødsel holder mange igjen.</p>
+          <p class="bib-meta">Prestvik og Milford · NILF · 2015 · hdl.handle.net</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button><button type="button" class="bib-tag" data-tema="planter">Planteproduksjon</button></div>
+        </li>
+        <li class="bib-post" id="farmers-reasons-for-deregistering-from-organic-farming" data-type="forskning" data-under="artikler" data-tema="omlegging" data-aar="2012" data-spraak="en" data-tilgang="abonnement">
+          <p class="bib-type">Forskning › Vitenskapelige artikler</p>
+          <h3 class="bib-tittel"><a href="https://doi.org/10.1007/s13165-012-0030-y" target="_blank" rel="noopener">Farmers&#x27; reasons for deregistering from organic farming<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Casestudier av fire norske bønder som meldte seg ut av økologisk drift: strengere regler, svak inntekt og skuffelse var viktige grunner til å slutte.</p>
+          <p class="bib-meta">Koesling m.fl. · Organic Agriculture · 2012 · På engelsk · <span class="bib-abo">Krever abonnement</span> · doi.org</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="omlegging">Omlegging</button></div>
+        </li>
+        <li class="bib-post" id="meld-st-9-2011-2012-landbruks-og-matpolitikken-velkommen-til" data-type="politikk" data-under="meldinger" data-tema="marked" data-aar="2011" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Politikk og styring › Stortingsmeldinger og proposisjoner</p>
+          <h3 class="bib-tittel"><a href="https://www.stortinget.no/id/STM/9/20112012/000" target="_blank" rel="noopener">Meld. St. 9 (2011–2012) Landbruks- og matpolitikken – Velkommen til bords<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Landbruks- og matmeldingen fra 2011, som slo fast målet om 15 prosent økologisk produksjon og forbruk innen 2020 – nyttig for å forstå tidligere økologipolitikk.</p>
+          <p class="bib-meta">Landbruks- og matdepartementet · 2011 · stortinget.no</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+        <li class="bib-post" id="vet-du-hva-du-spiser-forbrukerundersokelse-om-holdninger-til" data-type="forskning" data-under="oppgaver" data-tema="marked" data-aar="2010" data-spraak="no" data-tilgang="gratis">
+          <p class="bib-type">Forskning › Masteroppgaver og doktoravhandlinger</p>
+          <h3 class="bib-tittel"><a href="https://hdl.handle.net/11250/187129" target="_blank" rel="noopener">Vet du hva du spiser? - Forbrukerundersøkelse om holdninger til og kunnskap om økologisk mat<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></h3>
+          <p class="bib-beskr">Nettundersøkelse blant 256 forbrukere: det er holdninger til dyrevelferd, helse og miljø, mer enn kunnskap, som forklarer hvem som kjøper økologisk og betaler mer.</p>
+          <p class="bib-meta">Kjær · UMB (nå NMBU) · 2010 · hdl.handle.net</p>
+          <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
+        </li>
+      </ol>
+      <p class="bib-tom" id="bib-tom" hidden>Ingen publikasjoner passer med disse valgene. <button type="button" class="bib-nullstill" data-nullstill>Nullstill alle valg</button></p>
+
+      <section class="oko-card oko-prose bib-om" id="om-biblioteket" aria-labelledby="om-biblioteket-tittel">
+        <h2 id="om-biblioteket-tittel">Om biblioteket</h2>
+        <p>Biblioteket samler lenker til norske publikasjoner om økologisk landbruk. Publikasjonene ligger hos utgiverne. Her finner du en kort beskrivelse og lenken dit.</p>
+        <p>Publikasjonene er sortert etter hva slags dokument de er, ikke etter hvem som har gitt dem ut. En forskningsrapport som et direktorat har bestilt, ligger derfor under Forskning. Hver publikasjon kan i tillegg ha ett eller flere temaer.</p>
+        <p>Biblioteket er under oppbygging og har foreløpig 60 publikasjoner. Utvalget og beskrivelsene er laget med hjelp av KI (Claude), og alle lenkene er kontrollert, sist 30. oktober 2026. Mye av den norske forskningen er også registrert i det internasjonale arkivet <a href="https://orgprints.org/" target="_blank" rel="noopener">Organic Eprints</a>.</p>
+        <h3 id="tips">Tips oss om en publikasjon</h3>
+        <p>Mangler det en publikasjon, eller virker ikke en lenke? Send lenken til <span class="oko-epost" data-a="diebratnorg" data-b="moc.liamg" data-emne="Tips til publikasjonsbiblioteket">e-postadressen vises når siden er lastet</span>.</p>
+        <p class="oko-muted">Hele listen kan lastes ned som <a href="publikasjoner.csv" download>regneark (CSV)</a>.</p>
+      </section>
+    </div>
+  </div>
+</div>
+<footer class="oko-bunn">
+<p class="oko-ansvarlig">Ansvarlig: Grønt arbeid Nordvik, org.nr. <a class="oko-lenke" href="https://virksomhet.brreg.no/nb/oppslag/enheter/936885403">936&nbsp;885&nbsp;403</a> · Kontakt: <span class="oko-epost" data-a="diebratnorg" data-b="moc.liamg">e-postadressen vises når siden er lastet</span></p>
+<p>Publikasjonene ligger hos utgiverne; biblioteket lenker bare til dem. Laget med Claude (Anthropic). Listen og koden: <a class="oko-lenke" href="https://github.com/grontarbeid/okologiskitall">github.com/grontarbeid/okologiskitall</a>.</p>
+<p>Besøk telles anonymt med <a class="oko-lenke" href="https://www.goatcounter.com/">GoatCounter</a>, uten informasjonskapsler.</p>
+</footer>
+</main>
+<script src="bibliotek.js"></script>
+<!-- Besøkstelling uten informasjonskapsler: https://okologiskitall.goatcounter.com
+     Sidevisningen telles automatisk; valg av type og tema, og åpnede publikasjoner, telles som hendelser «bib-…». -->
+<script data-goatcounter="https://okologiskitall.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

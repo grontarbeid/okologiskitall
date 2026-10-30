@@ -235,7 +235,9 @@ def temaer_html(poster):
 def nytt_html(poster, antall=5):
     if not poster:
         return ''
-    nyeste = sorted(poster, key=lambda p: (p['lagt_til'], p['aar'], sorteringsnokkel(p['tittel'])), reverse=True)[:antall]
+    # sist lagt inn først; blant dem som ble lagt inn samme dag, nyeste utgivelsesår først, så alfabetisk
+    nyeste = sorted(poster, key=lambda p: sorteringsnokkel(p['tittel']))
+    nyeste = sorted(nyeste, key=lambda p: (p['lagt_til'], p['aar']), reverse=True)[:antall]
     siste = max(p['lagt_til'] for p in poster)
     linjer = [
         '      <section class="bib-nytt" id="bib-nytt" aria-labelledby="bib-nytt-tittel">',

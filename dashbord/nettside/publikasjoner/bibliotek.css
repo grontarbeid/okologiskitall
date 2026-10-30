@@ -1,0 +1,189 @@
+/* Publikasjonsbiblioteket (okologiskitall.no/publikasjoner/) – stil i tillegg til tema.css og oko.css.
+   Alle regler er avgrenset til .bib. Farger og avstander kommer fra tema-variablene. */
+
+.bib-skjult {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.bib .oko-lede { max-width: 52rem; }
+
+/* ---------- søk ---------- */
+.bib-sok { position: relative; max-width: 46rem; margin: var(--cds-gap-lg) 0 var(--cds-gap-lg); }
+.bib-sok input {
+  width: 100%;
+  font: inherit;
+  font-size: 16px; /* 16 px hindrer at iPhone zoomer inn */
+  color: var(--color-fg);
+  background: var(--color-panel);
+  border: 1px solid var(--cds-border);
+  border-radius: 999px;
+  padding: 10px 16px 10px 42px;
+  appearance: none;
+}
+.bib-sok input::placeholder { color: var(--color-fg-muted); }
+.bib-sok input:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.bib-sok svg {
+  position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; color: var(--color-fg-muted); pointer-events: none;
+}
+
+/* ---------- to spalter: meny og liste ---------- */
+.bib-oppsett {
+  display: grid;
+  grid-template-columns: 16.5rem minmax(0, 1fr);
+  gap: var(--cds-gap-xl);
+  align-items: start;
+}
+
+/* ---------- menyen (type publikasjon) ---------- */
+.bib-meny { position: sticky; top: var(--cds-gap-md); max-height: calc(100vh - 2 * var(--cds-gap-md)); overflow: auto; }
+.bib-meny > summary { display: none; }
+.bib-meny-tittel { margin: 0 0 var(--cds-gap-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.bib-meny ul { list-style: none; margin: 0; padding: 0; }
+.bib-meny a {
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--cds-gap-sm);
+  color: var(--color-fg-muted);
+  text-decoration: none;
+  line-height: 1.3;
+  padding: 6px var(--cds-pad-sm);
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+.bib-meny .bib-hoved > a { color: var(--color-fg); }
+.bib-meny a:hover { color: var(--color-fg); background: var(--color-panel); }
+.bib-meny a[aria-current="true"] {
+  color: var(--color-fg);
+  background: var(--color-panel);
+  border-color: var(--color-border-line);
+  font-weight: var(--cds-font-weight-medium);
+}
+.bib-meny a:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 1px; }
+.bib-meny a.bib-null { opacity: 0.5; }
+.bib-meny .bib-under {
+  margin: 2px 0 8px var(--cds-pad-md);
+  padding-left: var(--cds-pad-sm);
+  border-left: 2px solid var(--oko-logo-farge, #217a3c);
+}
+.bib-meny .bib-under[hidden] { display: none; }
+.bib-meny .bib-under a { font-size: 14px; }
+.bib-antall { font-size: var(--cds-font-size-caption); font-weight: 400; color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.bib-meny-ekstra { margin-top: var(--cds-gap-md); padding-top: var(--cds-gap-sm); border-top: 1px solid var(--color-border-line); }
+.bib-meny-ekstra a { font-size: 14px; }
+
+/* ---------- filtre ---------- */
+.bib-filtre { display: grid; gap: var(--cds-gap-sm); margin-bottom: var(--cds-gap-md); }
+.bib-temaer { margin: 0; }
+.bib-temaer button { display: inline-flex; align-items: baseline; gap: 6px; }
+.bib-temaer button[aria-pressed="true"] .bib-antall { color: var(--color-fg); }
+.bib-temaer button:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.bib-valg {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--cds-gap-sm) var(--cds-gap-md);
+  font-size: var(--cds-font-size-caption);
+  color: var(--color-fg-muted);
+}
+.bib-valg label { display: inline-flex; align-items: center; gap: 6px; }
+.bib-valg select {
+  font: inherit; color: var(--color-fg);
+  background: var(--color-panel);
+  border: 1px solid var(--color-border-line);
+  border-radius: 8px;
+  padding: 4px 6px;
+}
+.bib-valg input[type="checkbox"] { width: 16px; height: 16px; margin: 0; accent-color: var(--oko-logo-farge, #217a3c); }
+.bib-valg select:focus-visible, .bib-valg input:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.bib-nullstill {
+  appearance: none; font: inherit; background: none; border: 0; padding: 0;
+  color: var(--color-fg); text-decoration: underline; text-underline-offset: 2px; cursor: pointer;
+}
+.bib-nullstill[hidden] { display: none; }
+
+/* ---------- nytt i biblioteket ---------- */
+.bib-nytt {
+  max-width: 50rem;
+  margin: 0 0 var(--cds-gap-lg);
+  padding: var(--cds-pad-md) var(--cds-pad-lg);
+  background: var(--color-panel);
+  border: 1px solid var(--color-border-line);
+  border-radius: var(--cds-radius);
+}
+.bib-nytt[hidden] { display: none; }
+.bib-nytt h2 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+.bib-nytt-note { margin: 2px 0 var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.bib-nytt ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.bib-nytt a { color: var(--color-fg); text-underline-offset: 2px; }
+.bib-nytt-meta { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+
+/* ---------- listen ---------- */
+.bib-status { margin: 0 0 var(--cds-gap-xs); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.bib-liste { list-style: none; margin: 0; padding: 0; max-width: 50rem; }
+.bib-post { padding: var(--cds-pad-md) 0 var(--cds-pad-lg); border-top: 1px solid var(--color-border-line); }
+.bib-post[hidden] { display: none; }
+.bib-post:target { background: var(--color-panel); box-shadow: -12px 0 0 var(--color-panel), 12px 0 0 var(--color-panel); }
+.bib-type { margin: 0 0 2px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.bib-tittel { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); line-height: 1.3; }
+.bib-tittel a { color: var(--color-fg); text-decoration: none; }
+.bib-tittel a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.bib-tittel a:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; border-radius: 2px; }
+.bib-tittel svg { width: 0.75em; height: 0.75em; margin-left: 0.3em; vertical-align: baseline; color: var(--color-fg-muted); }
+.bib-beskr { margin: 4px 0 6px; }
+.bib-meta { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); overflow-wrap: anywhere; }
+.bib-abo { color: var(--color-warn); font-weight: var(--cds-font-weight-medium); }
+.bib-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--cds-gap-sm); }
+.bib-tag {
+  appearance: none; font: inherit; font-size: 12px; line-height: 1.5;
+  color: var(--color-fg-muted); background: transparent;
+  border: 1px solid var(--color-border-line); border-radius: 999px;
+  padding: 0 9px; cursor: pointer;
+}
+.bib-tag:hover { color: var(--color-fg); border-color: var(--color-fg-muted); }
+.bib-tag:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.bib-tom { margin: var(--cds-gap-md) 0; color: var(--color-fg-muted); }
+.bib-tom[hidden] { display: none; }
+
+/* ---------- om biblioteket ---------- */
+.bib-om { max-width: 50rem; margin-top: var(--cds-gap-xl); }
+.bib-om h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.bib-om h3 { margin-top: var(--cds-gap-md); }
+.bib-om a { color: inherit; text-underline-offset: 2px; }
+
+/* ---------- smal skjerm: menyen blir en nedtrekksliste ---------- */
+@media (max-width: 899px) {
+  .bib-oppsett { grid-template-columns: minmax(0, 1fr); gap: var(--cds-gap-md); }
+  .bib-meny {
+    position: static; max-height: none; overflow: visible;
+    background: var(--color-panel);
+    border: 1px solid var(--color-border-line);
+    border-radius: var(--cds-radius);
+  }
+  .bib-meny > summary {
+    display: flex; justify-content: space-between; align-items: center; gap: var(--cds-gap-sm);
+    padding: 10px var(--cds-pad-md);
+    cursor: pointer; list-style: none;
+  }
+  .bib-meny > summary::-webkit-details-marker { display: none; }
+  .bib-meny > summary:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; border-radius: var(--cds-radius); }
+  .bib-meny > summary svg { width: 16px; height: 16px; flex: none; transition: transform 200ms; }
+  .bib-meny[open] > summary { border-bottom: 1px solid var(--color-border-line); }
+  .bib-meny[open] > summary svg { transform: rotate(180deg); }
+  .bib-meny-innhold { padding: var(--cds-pad-sm); }
+  .bib-meny-tittel { display: none; }
+  .bib-sok { margin: var(--cds-gap-md) 0; }
+  /* temaene på én linje som kan rulles sidelengs, helt ut til kanten av skjermen */
+  .bib-temaer {
+    flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain;
+    margin: 0 -16px; padding: 4px 16px 6px;
+    scrollbar-width: none;
+  }
+  .bib-temaer::-webkit-scrollbar { display: none; }
+  .bib-temaer button { flex: none; white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bib-meny > summary svg { transition: none; }
+}
+
+@media print {
+  .bib-sok, .bib-meny, .bib-filtre, .bib-nytt, .bib-tags { display: none; }
+  .bib-oppsett { display: block; }
+  .bib-post[hidden] { display: block; }
+}
