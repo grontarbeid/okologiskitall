@@ -63,7 +63,7 @@ KATEGORIER = [
     ]),
     ('fagstoff', 'Praktisk fagstoff', [
         ('fagark', 'Fagark og veiledere om drift'),
-        ('fagblader', 'Artikler i fagblader'),
+        ('artikler', 'Artikler og reportasjer'),
     ]),
     ('organisasjoner', 'Organisasjoner og næring', [
         ('interesse', 'Interesseorganisasjoner'),
