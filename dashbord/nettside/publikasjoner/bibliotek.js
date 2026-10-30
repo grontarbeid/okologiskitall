@@ -154,7 +154,7 @@
     if (flere) {
       var igjen = treff - grense;
       flere.hidden = igjen <= 0;
-      flere.textContent = 'Vis flere (' + Math.min(igjen, STEG) + ' av ' + igjen + ' som gjenstår)';
+      flere.textContent = igjen <= STEG ? 'Vis de siste ' + igjen : 'Vis ' + STEG + ' til (' + igjen + ' igjen)';
     }
     if (nytt) nytt.hidden = harValg();
     nullstillKnapper.forEach(function (b) { if (!tom.contains(b)) b.hidden = !harValg(); });
