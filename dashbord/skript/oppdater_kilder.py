@@ -9,7 +9,7 @@ SSBs API for Statistikkbanken, versjon 2 (PxWebApi v2, lansert høsten 2025). De
   SSB 12661  økologisk areal og gårder, hele landet og fylker   → data/ssb_12661_hele_landet.csv, data/ssb_12661_fylker.csv
   SSB 12662  økologisk areal etter bruk                          → data/ssb_12662_areal_etter_bruk.csv
   SSB 12663  økologiske husdyr                                   → data/ssb_12663_okologiske_husdyr.csv
-  SSB 04496  jordbruksareal i drift                              → data/ssb_04496_jordbruksareal.csv
+  SSB 04496  jordbruksareal i drift, hele landet og fylker       → data/ssb_04496_jordbruksareal.csv, data/ssb_04496_jordbruksareal_fylker.csv
   Eurostat org_cropar  økologisk areal i europeiske land         → data/eurostat_areal_land.csv
 Rådataene lagres i kilder/ssb/ og kilder/internasjonal/eurostat/.
 
@@ -166,13 +166,27 @@ def ssb_12663():
 
 
 def ssb_04496():
-    ids, kat, navn, V, ST = pakk_ut(ssb_tabell('04496', {'Region': ['0'], 'DyrkJordAreal': ['99']}))
+    """Jordbruksareal i drift for hele landet og per fylke (samme regionkoder som i tabell 12661).
+    Fylkestallene er nevneren for økologisk andel uten karens per fylke."""
+    ids, kat, navn, V, ST = pakk_ut(ssb_tabell('04496', {'DyrkJordAreal': ['99']}))
+
+    def nokkel(reg, y):
+        return tuple({'Region': reg, 'DyrkJordAreal': '99', 'ContentsCode': kat['ContentsCode'][0], 'Tid': y}[i] for i in ids)
+
     rader = []
     for y in kat['Tid']:
-        nokkel = tuple({'Region': '0', 'DyrkJordAreal': '99', 'ContentsCode': kat['ContentsCode'][0], 'Tid': y}[i] for i in ids)
-        v = V[nokkel]
-        rader.append([y, tall(v), ST.get(nokkel, '')])
+        v = V[nokkel('0', y)]
+        rader.append([y, tall(v), ST.get(nokkel('0', y), '')])
     skriv('ssb_04496_jordbruksareal.csv', ['aar', 'jordbruksareal_dekar', 'status'], rader)
+    rader = []
+    for reg in kat['Region']:
+        if reg == '0':
+            continue
+        rent = re.sub(r'\s*\((\d{4})?\s*-\s*(\d{4})\)', '', navn['Region'][reg])
+        for y in kat['Tid']:
+            v = V[nokkel(reg, y)]
+            rader.append([reg, rent, y, tall(v), ST.get(nokkel(reg, y), '') or ('..' if v is None else '')])
+    skriv('ssb_04496_jordbruksareal_fylker.csv', ['fylkesnr', 'fylke', 'aar', 'jordbruksareal_dekar', 'status'], rader)
 
 
 # ------------------------------------------------------------------ Eurostat org_cropar

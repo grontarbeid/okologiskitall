@@ -144,12 +144,14 @@ dash.calc('europa_plass', {
 
 dash.calc('fylker_endring', {
   title: 'Endring per fylke siste år',
-  description: 'Endring fra året før per fylke i økologisk andel (prosentpoeng), økologisk areal (dekar) og antall gårder.',
+  description: 'Endring fra året før per fylke i økologisk andel (prosentpoeng) og økologisk areal (dekar), med og uten karens, og i antall gårder.',
   inputs: ['ssb_fylker'],
   fn: (ssb_fylker) => {
     const aar = [...new Set(ssb_fylker.map((r) => Number(r.aar)))].sort((a, b) => a - b);
     const [f, s] = aar.slice(-2);
     const forrige = new Map(ssb_fylker.filter((r) => Number(r.aar) === f).map((r) => [r.fylkesnr, r]));
+    const tall = (v) => (v === '' || v === null || v === undefined ? null : Number(v));
+    const diff = (a, b) => (tall(a) === null || tall(b) === null ? null : tall(a) - tall(b));
     return ssb_fylker
       .filter((r) => Number(r.aar) === s && forrige.has(r.fylkesnr))
       .map((r) => {
@@ -159,9 +161,11 @@ dash.calc('fylker_endring', {
           fylke: r.fylke,
           aar: String(s),
           forrige_aar: String(f),
-          andel_endring_pp: Number(r.andel_okologisk_prosent) - Number(p.andel_okologisk_prosent),
-          areal_endring_dekar: Number(r.areal_i_alt_dekar) - Number(p.areal_i_alt_dekar),
-          gaarder_endring: Number(r.bedrifter) - Number(p.bedrifter),
+          andel_endring_pp: diff(r.andel_okologisk_prosent, p.andel_okologisk_prosent),
+          areal_endring_dekar: diff(r.areal_i_alt_dekar, p.areal_i_alt_dekar),
+          andel_godkjent_endring_pp: diff(r.andel_godkjent_prosent, p.andel_godkjent_prosent),
+          godkjent_endring_dekar: diff(r.godkjent_areal_dekar, p.godkjent_areal_dekar),
+          gaarder_endring: diff(r.bedrifter, p.bedrifter),
         };
       });
   },
@@ -869,20 +873,34 @@ const figur = (id, kilder, tegn) => {
 };
 const aarListe = (fra, til) => d3.range(fra, til + 1).map(String);
 
+// Fylker-fanen: hva fylkene vises etter (andel, areal eller gårder), og om areal under
+// omlegging (karens) er med. «Med karens» er SSBs egen andel; «uten karens» er godkjent
+// økologisk areal delt på jordbruksarealet i drift (tabell 04496), regnet ut i bygg_datasett.py.
 let fylkeMaal = 'andel';
+let fylkeKarens = 'med';
 const FYLKE_MAAL = {
   andel: {
-    felt: 'andel_okologisk_prosent', navn: 'Økologisk andel av jordbruksarealet', fmt: (v) => pst(v, 1),
-    endring: 'andel_endring_pp', endringFmt: medFortegn(fmt.d1), endringEnhet: 'prosentpoeng, regnet av SSBs avrundede andeler',
+    fmt: (v) => pst(v, 1), endringFmt: medFortegn(fmt.d1),
+    med: { felt: 'andel_okologisk_prosent', navn: 'Økologisk andel av jordbruksarealet (med karens)', endring: 'andel_endring_pp', endringEnhet: 'prosentpoeng, regnet av SSBs avrundede andeler' },
+    uten: { felt: 'andel_godkjent_prosent', navn: 'Økologisk andel av jordbruksarealet (uten karens)', endring: 'andel_godkjent_endring_pp', endringEnhet: 'prosentpoeng' },
   },
   areal: {
-    felt: 'areal_i_alt_dekar', navn: 'Økologisk areal (dekar, med karens)', fmt: dekar,
-    endring: 'areal_endring_dekar', endringFmt: medFortegn(fmt.int), endringEnhet: 'dekar',
+    fmt: dekar, endringFmt: medFortegn(fmt.int),
+    med: { felt: 'areal_i_alt_dekar', navn: 'Økologisk areal (dekar, med karens)', endring: 'areal_endring_dekar', endringEnhet: 'dekar' },
+    uten: { felt: 'godkjent_areal_dekar', navn: 'Godkjent økologisk areal (dekar, uten karens)', endring: 'godkjent_endring_dekar', endringEnhet: 'dekar' },
   },
   gaarder: {
     felt: 'bedrifter', navn: 'Gårder med økologisk drift', fmt: fmt.int,
     endring: 'gaarder_endring', endringFmt: medFortegn(fmt.int), endringEnhet: 'antall gårder',
   },
+};
+const fylkeValg = () => {
+  const m = FYLKE_MAAL[fylkeMaal];
+  return { ...m, ...(m[fylkeKarens] || {}) };
+};
+const KARENS_NOTE = {
+  med: 'Andel og areal er medregnet areal under omlegging (karens), slik SSB regner dem.',
+  uten: 'Andel og areal gjelder bare areal som er godkjent økologisk, uten areal under omlegging (karens).',
 };
 
 // ---- Oversikt
@@ -1165,8 +1183,23 @@ function fylkeData() {
   return { alle, aar, iAar: new Map(alle.filter((d) => Number(d.aar) === aar).map((d) => [d.fylkesnr, d])) };
 }
 
+// Ruten som vises når man peker på et fylke: begge andelene, arealet og gårdene.
+function fylkeTips(d, aar) {
+  const linje = (v, f, tekst) => (v == null || Number.isNaN(v) ? null : { verdi: f(v), tekst });
+  return {
+    tittel: `${d.fylke}, ${aar}`,
+    linjer: [
+      linje(N(d.andel_okologisk_prosent), (v) => pst(v, 1), 'av jordbruksarealet med karens'),
+      linje(N(d.andel_godkjent_prosent), (v) => pst(v, 1), 'uten karens'),
+      linje(N(d.areal_i_alt_dekar), dekar, 'økologisk'),
+      linje(N(d.karens_areal_dekar), dekar, 'herav under omlegging'),
+      linje(N(d.bedrifter), fmt.int, 'gårder'),
+    ].filter(Boolean),
+  };
+}
+
 figur('graf-kart', ['fylkeskart', 'ssb_fylker'], (el) => {
-  const m = FYLKE_MAAL[fylkeMaal];
+  const m = fylkeValg();
   const { aar, iAar } = fylkeData();
   const former = rader('fylkeskart').map((d) => ({ id: d.fylkesnr, navn: d.fylke, d: d.sti, w: Number(d.bredde), h: Number(d.hoyde) }));
   kart(el, {
@@ -1178,39 +1211,30 @@ figur('graf-kart', ['fylkeskart', 'ssb_fylker'], (el) => {
     maksHoyde: 470,
     tips: (id) => {
       const d = iAar.get(id);
-      if (!d) return null;
-      return {
-        tittel: `${d.fylke}, ${aar}`,
-        linjer: [
-          { verdi: pst(N(d.andel_okologisk_prosent), 1), tekst: 'av jordbruksarealet' },
-          { verdi: dekar(N(d.areal_i_alt_dekar)), tekst: 'økologisk' },
-          { verdi: fmt.int(N(d.bedrifter)), tekst: 'gårder' },
-        ],
-      };
+      return d ? fylkeTips(d, aar) : null;
     },
   });
 });
 
-figur('graf-fylker', ['ssb_fylker', 'ssb_areal'], (el) => {
-  const m = FYLKE_MAAL[fylkeMaal];
+figur('graf-fylker', ['ssb_fylker', 'ssb_areal', 'andel_beregnet'], (el) => {
+  const m = fylkeValg();
   const { alle, aar, iAar } = fylkeData();
+  // Landsgjennomsnittet: SSBs andel med karens, eller godkjent areal delt på jordbruksarealet uten karens.
   const land = rader('ssb_areal').find((d) => Number(d.aar) === aar);
+  const landBeregnet = rader('andel_beregnet').find((d) => Number(d.aar) === aar);
+  const landVerdi = fylkeMaal !== 'andel' ? null
+    : fylkeKarens === 'uten' ? N(landBeregnet?.andel_godkjent) : N(land?.andel_okologisk_prosent);
   const note = document.getElementById('fylker-note');
-  if (note) note.textContent = fylkeMaal === 'andel' ? 'Siste år. Den stiplede linjen er landsgjennomsnittet.' : 'Siste år.';
-  const r = [...iAar.values()].map((d) => ({ navn: d.fylke, verdi: N(d[m.felt]), d })).sort((a, b) => b.verdi - a.verdi);
+  if (note) note.textContent = landVerdi != null ? 'Siste år. Den stiplede linjen er landsgjennomsnittet.' : 'Siste år.';
+  const r = [...iAar.values()].map((d) => ({ navn: d.fylke, verdi: N(d[m.felt]), d }))
+    .filter((x) => x.verdi != null && !Number.isNaN(x.verdi))
+    .sort((a, b) => b.verdi - a.verdi);
   liggende(el, {
     rader: r,
     fmt: m.fmt,
     radHoyde: 26,
-    ref: fylkeMaal === 'andel' && land ? { verdi: N(land.andel_okologisk_prosent), tekst: `Hele landet ${pst(N(land.andel_okologisk_prosent), 1)}` } : null,
-    tips: (x) => ({
-      tittel: `${x.d.fylke}, ${aar}`,
-      linjer: [
-        { verdi: pst(N(x.d.andel_okologisk_prosent), 1), tekst: 'av jordbruksarealet' },
-        { verdi: dekar(N(x.d.areal_i_alt_dekar)), tekst: 'økologisk' },
-        { verdi: fmt.int(N(x.d.bedrifter)), tekst: 'gårder' },
-      ],
-    }),
+    ref: landVerdi != null ? { verdi: landVerdi, tekst: `Hele landet ${pst(landVerdi, 1)}` } : null,
+    tips: (x) => fylkeTips(x.d, aar),
   });
   tabell('tabell-fylker', {
     kilde: 'ssb_fylker',
@@ -1219,34 +1243,44 @@ figur('graf-fylker', ['ssb_fylker', 'ssb_areal'], (el) => {
       { felt: 'fylke', navn: 'Fylke', tekst: true },
       { felt: 'aar', navn: 'År' },
       { felt: 'bedrifter', navn: 'Gårder', fmt: fmt.int },
-      { felt: 'areal_i_alt_dekar', navn: 'Areal (dekar)', fmt: fmt.int },
+      { felt: 'areal_i_alt_dekar', navn: 'Økologisk areal (dekar)', fmt: fmt.int },
       { felt: 'karens_areal_dekar', navn: 'Herav karens', fmt: fmt.int },
-      { felt: 'andel_okologisk_prosent', navn: 'Andel (%)', fmt: fmt.d1 },
+      { felt: 'jordbruksareal_dekar', navn: 'Jordbruksareal (dekar)', fmt: fmt.int },
+      { felt: 'andel_okologisk_prosent', navn: 'Andel med karens (%)', fmt: fmt.d1 },
+      { felt: 'andel_godkjent_prosent', navn: 'Andel uten karens (%)', fmt: fmt.d1 },
     ],
     rader: [...alle].sort((a, b) => a.fylke.localeCompare(b.fylke, 'nb') || Number(b.aar) - Number(a.aar)),
   });
 });
 
 figur('graf-fylker-endring', ['fylker_endring'], (el) => {
-  const m = FYLKE_MAAL[fylkeMaal];
-  const r = rader('fylker_endring').map((d) => ({ navn: d.fylke, verdi: d[m.endring], d })).sort((a, b) => b.verdi - a.verdi);
+  const m = fylkeValg();
+  const r = rader('fylker_endring').map((d) => ({ navn: d.fylke, verdi: N(d[m.endring]), d }))
+    .filter((x) => x.verdi != null && !Number.isNaN(x.verdi))
+    .sort((a, b) => b.verdi - a.verdi);
   const maalTekst = document.getElementById('fylker-endring-maal');
   const enhetTekst = document.getElementById('fylker-endring-enhet');
   if (maalTekst) maalTekst.textContent = m.navn;
   if (enhetTekst) enhetTekst.textContent = m.endringEnhet;
+  const uten = fylkeKarens === 'uten';
+  const karensTekst = uten ? 'uten karens' : 'med karens';
   liggende(el, {
     rader: r.map((x) => ({ ...x, farge: x.verdi >= 0 ? farge(0) : farge(1) })),
     fmt: m.endringFmt,
     radHoyde: 26,
-    tips: (x) => ({
-      tittel: x.d.fylke,
-      linjer: [
-        { verdi: `${medFortegn(fmt.d1)(x.d.andel_endring_pp)} prosentpoeng`, tekst: 'andel' },
-        { verdi: `${medFortegn(fmt.int)(x.d.areal_endring_dekar)} dekar`, tekst: 'areal' },
-        { verdi: medFortegn(fmt.int)(x.d.gaarder_endring), tekst: 'gårder' },
-      ],
-      notat: `Fra ${x.d.forrige_aar} til ${x.d.aar}`,
-    }),
+    tips: (x) => {
+      const andel = N(x.d[uten ? 'andel_godkjent_endring_pp' : 'andel_endring_pp']);
+      const areal = N(x.d[uten ? 'godkjent_endring_dekar' : 'areal_endring_dekar']);
+      return {
+        tittel: x.d.fylke,
+        linjer: [
+          andel != null ? { verdi: `${medFortegn(fmt.d1)(andel)} prosentpoeng`, tekst: `andel ${karensTekst}` } : null,
+          areal != null ? { verdi: `${medFortegn(fmt.int)(areal)} dekar`, tekst: `areal ${karensTekst}` } : null,
+          { verdi: medFortegn(fmt.int)(x.d.gaarder_endring), tekst: 'gårder' },
+        ].filter(Boolean),
+        notat: `Fra ${x.d.forrige_aar} til ${x.d.aar}`,
+      };
+    },
   });
 });
 
@@ -1662,7 +1696,7 @@ const KILDER = {
     navn: 'Statistisk sentralbyrå (SSB)',
     tittel: 'Gardsbruk, jordbruksareal og husdyr – jordbruksareal i Statistikkbanken',
     lenke: 'https://www.ssb.no/statbank/list/stjord',
-    om: 'Tabell 04496: jordbruksareal i drift for hele landet. Brukes som nevner når økologisk andel regnes ut.',
+    om: 'Tabell 04496: jordbruksareal i drift for hele landet og fylkene. Brukes som nevner når økologisk andel regnes ut.',
   },
   ldir: {
     navn: 'Landbruksdirektoratet',
@@ -1868,10 +1902,30 @@ document.getElementById('logo')?.addEventListener('click', (ev) => {
   window.scrollTo({ top: 0, behavior: rolig ? 'auto' : 'smooth' });
 });
 
+// Valgene på Fylker-fanen: hva fylkene vises etter, og med eller uten karens.
+// Karensvalget gjelder ikke antall gårder, så det er grått når «Gårder» er valgt.
+function oppdaterKarensValg() {
+  for (const k of document.querySelectorAll('#karens-valg button')) {
+    k.setAttribute('aria-pressed', String(k.dataset.karens === fylkeKarens));
+    k.disabled = fylkeMaal === 'gaarder';
+  }
+  const note = document.getElementById('fylker-karens-note');
+  if (note) note.textContent = KARENS_NOTE[fylkeKarens];
+}
+
 for (const b of document.querySelectorAll('#fylke-valg button')) {
   b.addEventListener('click', () => {
     fylkeMaal = b.dataset.maal;
     for (const k of document.querySelectorAll('#fylke-valg button')) k.setAttribute('aria-pressed', String(k === b));
+    oppdaterKarensValg();
+    tegnSide('fylker');
+  });
+}
+
+for (const b of document.querySelectorAll('#karens-valg button')) {
+  b.addEventListener('click', () => {
+    fylkeKarens = b.dataset.karens;
+    oppdaterKarensValg();
     tegnSide('fylker');
   });
 }

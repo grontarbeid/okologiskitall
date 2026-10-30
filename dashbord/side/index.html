@@ -165,29 +165,35 @@
 
   <!-- ================================================================ FYLKER -->
   <section class="oko-page" id="fylker" role="tabpanel" aria-labelledby="fane-fylker" hidden>
-    <div class="oko-seg" role="group" aria-label="Vis fylkene etter" id="fylke-valg">
-      <button type="button" data-maal="andel" aria-pressed="true">Andel av jordbruksarealet</button>
-      <button type="button" data-maal="areal" aria-pressed="false">Økologisk areal</button>
-      <button type="button" data-maal="gaarder" aria-pressed="false">Gårder</button>
+    <div class="oko-valgrad">
+      <div class="oko-seg" role="group" aria-label="Vis fylkene etter" id="fylke-valg">
+        <button type="button" data-maal="andel" aria-pressed="true">Andel av jordbruksarealet</button>
+        <button type="button" data-maal="areal" aria-pressed="false">Økologisk areal</button>
+        <button type="button" data-maal="gaarder" aria-pressed="false">Gårder</button>
+      </div>
+      <div class="oko-seg" role="group" aria-label="Areal under omlegging (karens)" id="karens-valg">
+        <button type="button" data-karens="med" aria-pressed="true" title="Med areal under omlegging, slik SSB regner andelen">Med karens</button>
+        <button type="button" data-karens="uten" aria-pressed="false" title="Bare areal som er godkjent økologisk">Uten karens</button>
+      </div>
     </div>
     <div class="oko-grid">
       <article class="oko-card" id="kort-kart">
         <h3 class="oko-card-title" id="kart-tittel">Fylkene på kart</h3>
-        <p class="oko-card-note">Mørkere farge betyr høyere verdi. Oslo og Akershus er slått sammen, slik SSB publiserer dem.</p>
+        <p class="oko-card-note">Mørkere farge betyr høyere verdi. <span id="fylker-karens-note">Andel og areal er medregnet areal under omlegging (karens), slik SSB regner dem.</span> Oslo og Akershus er slått sammen fordi SSB publiserer dem samlet.</p>
         <div class="oko-chart dash-skeleton" id="graf-kart" data-source="fylkeskart ssb_fylker" style="min-height: 460px"></div>
-        <div class="oko-fot"><details class="oko-kildeliste" id="kilder-kart"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko kart"><p class="oko-beregning">Tabell 12661 per fylke, siste år. SSB publiserer Oslo og Akershus samlet, så de to fylkene er slått sammen på kartet.</p></div></details></div>
+        <div class="oko-fot"><details class="oko-kildeliste" id="kilder-kart"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko ssb_jord kart"><p class="oko-beregning">Tabell 12661 per fylke, siste år. Med karens er andelen SSBs egen. Uten karens er den regnet ut her: godkjent økologisk areal (12661) delt på jordbruksareal i drift (04496). SSB publiserer Oslo og Akershus samlet, så de to fylkene er slått sammen på kartet.</p></div></details></div>
       </article>
       <article class="oko-card" id="kort-fylker">
         <h3 class="oko-card-title" id="fylker-tittel">Fylkene rangert</h3>
         <p class="oko-card-note" id="fylker-note">Siste år. Den stiplede linjen er landsgjennomsnittet.</p>
-        <div class="oko-chart dash-skeleton" id="graf-fylker" data-source="ssb_fylker ssb_areal" style="min-height: 400px"></div>
-        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-fylker"></div></details><details class="oko-kildeliste" id="kilder-fylker"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko"><p class="oko-beregning">Tabell 12661 per fylke, siste år. Landsgjennomsnittet er SSBs andel for hele landet i samme tabell.</p></div></details></div>
+        <div class="oko-chart dash-skeleton" id="graf-fylker" data-source="ssb_fylker ssb_areal andel_beregnet" style="min-height: 400px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-fylker"></div></details><details class="oko-kildeliste" id="kilder-fylker"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko ssb_jord"><p class="oko-beregning">Tabell 12661 per fylke, siste år. Med karens er andelene og landsgjennomsnittet SSBs egne. Uten karens er de regnet ut her: godkjent økologisk areal delt på jordbruksareal i drift (04496), for fylkene og for hele landet. SSB regner andelen med jordbruksarealet slik det var da tallene ble publisert, så den kan avvike med 0,1 prosentpoeng fra en andel regnet med de endelige tallene.</p></div></details></div>
       </article>
       <article class="oko-card oko-wide" id="kort-fylker-endring">
         <h3 class="oko-card-title">Endring siste år per fylke</h3>
         <p class="oko-card-note" id="fylker-endring-note"><span id="fylker-endring-maal">Valgt mål</span>: endring fra <span data-source="fylker_endring" data-field="forrige_aar" data-row="0" data-fmt="text">—</span> til <span data-source="fylker_endring" data-field="aar" data-row="0" data-fmt="text">—</span>, i <span id="fylker-endring-enhet">valgt enhet</span>.</p>
         <div class="oko-chart dash-skeleton" id="graf-fylker-endring" data-source="fylker_endring" style="min-height: 400px"></div>
-        <div class="oko-fot"><details class="oko-kildeliste" id="kilder-fylker-endring"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko"><p class="oko-beregning">Regnet ut her: siste år minus året før i tabell 12661, per fylke. Endringen i andel er regnet av SSBs avrundede andeler (én desimal).</p></div></details></div>
+        <div class="oko-fot"><details class="oko-kildeliste" id="kilder-fylker-endring"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko ssb_jord"><p class="oko-beregning">Regnet ut her: siste år minus året før i tabell 12661, per fylke. Med karens er endringen i andel regnet av SSBs avrundede andeler (én desimal). Uten karens er den regnet av uavrundede andeler (godkjent økologisk areal delt på jordbruksareal i drift, tabell 04496).</p></div></details></div>
       </article>
     </div>
   </section>
@@ -342,7 +348,7 @@
       <article class="oko-card oko-prose" id="kort-begreper">
         <h3>Slik leser du tallene</h3>
         <ul>
-          <li><b>Økologisk areal</b> er godkjent økologisk areal pluss areal under omlegging (karens). Omleggingstiden er vanligvis to år, og tre år for flerårige vekster som frukt og bær.</li>
+          <li><b>Økologisk areal</b> er godkjent økologisk areal pluss areal under omlegging (karens). Omleggingstiden er vanligvis to år, og tre år for flerårige vekster som frukt og bær. SSB regner økologisk andel med karens. Under Fylker kan du velge å se tallene uten karens.</li>
           <li><b>Gårder</b> er SSBs jordbruksbedrifter med økologisk areal. Debio teller landbruksvirksomheter under kontroll, og får litt høyere tall.</li>
           <li><b>Andel solgt som økologisk</b> (anvendelsesgrad) er hvor mye av den økologiske produksjonen som faktisk selges med økologisk merke.</li>
           <li><b>Dagligvaretallene</b> bygger på tre ulike datagrunnlag over tid og er ikke direkte sammenlignbare på tvers av byttene. Andelen regnes nå bare av varegrupper der det finnes økologiske varer; regnet av all mat er den lavere.</li>

@@ -118,19 +118,46 @@ for r in fy:
         continue
     navn = r['fylke'].split(' - ')[0].strip()
     piv[(r['fylkesnr'], navn, r['aar'])][r['variabel']] = r['verdi']
+# Jordbruksareal i drift per fylke (tabell 04496, samme regionkoder) er nevneren for andelen uten karens.
+# SSBs egen andel (med karens) står i tabell 12661 og brukes som den er.
+JORD_FYLKER = 'ssb_04496_jordbruksareal_fylker.csv'
+jord_fy = {}
+if os.path.exists(os.path.join(DATA, JORD_FYLKER)):
+    jord_fy = {(r['fylkesnr'], r['aar']): tall(r['jordbruksareal_dekar']) for r in les(JORD_FYLKER)}
+else:
+    advarsler.append(f'ssb_fylker: fant ikke data/{JORD_FYLKER} – kjør oppdater_kilder.py')
 rader = []
 for (nr, navn, aar), v in sorted(piv.items(), key=lambda kv: (kv[0][2], kv[0][1])):
-    rader.append({'fylkesnr': nr, 'fylke': navn, 'aar': aar, **v})
+    jord_ = jord_fy.get((nr, aar))
+    godkjent, i_alt, ssb_andel = tall(v.get('godkjent_areal_dekar')), tall(v.get('areal_i_alt_dekar')), tall(v.get('andel_okologisk_prosent'))
+    rad = {'fylkesnr': nr, 'fylke': navn, 'aar': aar, **v}
+    if jord_:
+        rad['jordbruksareal_dekar'] = fmt(jord_)
+        if godkjent is not None:
+            rad['andel_godkjent_prosent'] = fmt(100 * godkjent / jord_)
+        # kontroll: SSBs andel stemmer med jordbruksarealet i 04496. SSB regner andelen med jordbruksarealet
+        # slik det var da tallene ble publisert (foreløpige tall), så 0,1 prosentpoeng avvik er vanlig.
+        if i_alt is not None and ssb_andel is not None and abs(round(100 * i_alt / jord_, 1) - ssb_andel) > 0.15:
+            advarsler.append(f'ssb_fylker {aar} {navn}: SSBs andel {ssb_andel} %, regnet med 04496 {100 * i_alt / jord_:.2f} %')
+    elif jord_fy:
+        advarsler.append(f'ssb_fylker {aar} {navn}: mangler jordbruksareal i {JORD_FYLKER}')
+    rader.append(rad)
 # kontroll: fylkene summerer til landstallet
 for aar in sorted({r['aar'] for r in rader}):
     s = sum(int(r['areal_i_alt_dekar']) for r in rader if r['aar'] == aar)
     land = next(int(r['areal_i_alt_dekar']) for r in hele if r['aar'] == aar)
     if abs(s - land) > 20:
         advarsler.append(f'ssb_fylker {aar}: fylkene summerer til {s}, hele landet {land}')
+    if jord_fy:
+        sj = sum(tall(r.get('jordbruksareal_dekar')) or 0 for r in rader if r['aar'] == aar)
+        lj = next((tall(r['jordbruksareal_dekar']) for r in jord if r['aar'] == aar), None)
+        if lj and abs(sj - lj) > 20:
+            advarsler.append(f'ssb_fylker {aar}: jordbruksarealet i fylkene summerer til {sj:.0f}, hele landet {lj:.0f}')
 skriv('ssb_fylker', rader,
-      ['fylkesnr', 'fylke', 'aar', 'bedrifter', 'areal_i_alt_dekar', 'godkjent_areal_dekar', 'karens_areal_dekar', 'andel_okologisk_prosent'],
+      ['fylkesnr', 'fylke', 'aar', 'bedrifter', 'areal_i_alt_dekar', 'godkjent_areal_dekar', 'karens_areal_dekar', 'andel_okologisk_prosent',
+       'jordbruksareal_dekar', 'andel_godkjent_prosent'],
       'Økologisk drift per fylke',
-      f'Dagens fylker (inndelingen fra {gjeldende_fra}): økologiske gårder, økologisk areal og økologisk andel av jordbruksarealet. Oslo og Akershus publiseres samlet. SSB tabell 12661.',
+      f'Dagens fylker (inndelingen fra {gjeldende_fra}): økologiske gårder, økologisk areal (godkjent og under omlegging/karens), jordbruksareal i drift og økologisk andel av jordbruksarealet – med karens (SSBs andel) og uten karens (godkjent økologisk areal delt på jordbruksarealet, regnet ut her). Oslo og Akershus publiseres samlet. SSB tabell 12661 og 04496.',
       SSB, SSB_URL, periode_av(r['aar'] for r in rader), plan=ARLIG_SSB)
 
 # ---------------------------------------------------------------- SSB areal etter bruk

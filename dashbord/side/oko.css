@@ -274,6 +274,10 @@
   padding: var(--cds-pad-xs) var(--cds-pad-md); cursor: pointer;
 }
 .oko-seg button[aria-pressed="true"] { color: var(--color-fg); border-color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); }
+.oko-seg button:disabled { opacity: 0.45; cursor: default; }
+/* to knapperader side om side (Fylker: mål, og med eller uten karens); på smal skjerm havner de under hverandre */
+.oko-valgrad { display: flex; flex-wrap: wrap; align-items: center; gap: var(--cds-gap-sm) var(--cds-gap-lg); margin-bottom: var(--cds-gap-md); }
+.oko-valgrad .oko-seg { margin-bottom: 0; }
 
 /* bunnlinje i kortene: «Vis tallene» og «Vis kildene» side om side; den som åpnes, tar hele bredden */
 .oko-fot {
@@ -329,6 +333,6 @@
   @keyframes oko-in { from { opacity: 0; } to { opacity: 1; } }
 }
 @media print {
-  .oko-tabs, .oko-tabell summary, .oko-seg { display: none; }
+  .oko-tabs, .oko-tabell summary, .oko-seg, .oko-valgrad { display: none; }
   .oko-page[hidden] { display: block; }
 }

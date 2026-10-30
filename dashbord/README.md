@@ -5,11 +5,10 @@ henter og bygger tallene, og en ferdig nettsideversjon. Dashbordet finnes i to u
 nøyaktig samme sidekode og de samme datasettene:
 
 - **Nettsiden okologiskitall.no** – publiseres fra GitHub-repoet
-  [grontarbeid/okologiskitall](https://github.com/grontarbeid/okologiskitall). Inntil domenet er
-  koblet til: https://grontarbeid.github.io/okologiskitall/
+  [grontarbeid/okologiskitall](https://github.com/grontarbeid/okologiskitall).
 - **Claude-dashbordet** – en privat utgave i Claude (lenken står i `claude-dashbord.json` i den lokale mappen).
 
-Dashbordet har ni faner: Oversikt, Areal og gårder, Produksjon, Fylker (med kart), Vare for vare,
+Dashbordet har ni faner: Oversikt, Areal og gårder, Produksjon, Fylker (med kart, med eller uten karens), Vare for vare,
 Marked, Europa, Mål og tilskudd, og Om tallene. Alle tall i teksten og alle figurer hentes fra
 datasettene – ingen tall er skrevet inn i sidekoden – så siden oppdaterer seg selv når datasettene byttes.
 Under hver figur ligger «Vis tallene» med en tabell og «Vis kildene» med lenke til kildens egen side.
@@ -39,7 +38,7 @@ Kampanjeadressen økologisk2032.no peker dit.
   kildefilene som ikke skal ligge i et offentlig repo: rapportene (PDF), Debios regneark, FiBL-uttrekkene
   og FiBL/IFOAM-årboken (`kilder/` og de store `data/fibl_*`-filene).
 
-Det offentlige repoet inneholder bare det som trengs for å bygge siden: `data/` med de elleve
+Det offentlige repoet inneholder bare det som trengs for å bygge siden: `data/` med de tolv
 kildefilene skriptene leser, og `dashbord/` uten `claude-dashbord.json` og `nettside-oppsett/`.
 
 ## Årlig oppdatering
@@ -111,7 +110,10 @@ feil og blandinger av rapportutgaver, som `skript/bygg_datasett.py` nå retter (
   Andelen for 2020 er 3,3 % av all innveid kumelk (rapporten for 2020, s. 18), ikke 3,5 % (bare Tine).
 - **Varegrupper:** Andeler og omsetning hentes bare fra siste rapport, så de står på samme grunnlag.
 - **Kornet:** Februaranslagene justeres ofte mye i neste rapport. Dashbordet viser anslagene slik de er trykt.
-- **Fylkesendringer i prosentpoeng** er regnet av SSBs avrundede andeler (én desimal).
+- **Fylkesendringer i prosentpoeng** med karens er regnet av SSBs avrundede andeler (én desimal).
+- **Andel uten karens per fylke** er regnet ut her: godkjent økologisk areal (12661) delt på jordbruksarealet
+  i drift (04496, endelige tall). SSBs andel med karens er regnet med jordbruksarealet slik det var da tallene
+  ble publisert, så den kan avvike med 0,1 prosentpoeng fra en andel regnet med de endelige tallene.
 
 ## Se nettsiden lokalt
 
