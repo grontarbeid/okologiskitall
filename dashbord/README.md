@@ -16,16 +16,21 @@ Under hver figur ligger «Vis tallene» med en tabell og «Vis kildene» med len
 Adressen `okologiskitall.no/2032` (mappen `nettside/2032/`) åpner fanen «Mål og tilskudd» direkte.
 Kampanjeadressen økologisk2032.no peker dit.
 
+Nettsiden har også et **publikasjonsbibliotek** på `okologiskitall.no/publikasjoner/` (mappen
+`nettside/publikasjoner/`), med lenker til norske publikasjoner om økologisk landbruk. Menyen øverst
+(«Statistikk | Publikasjoner») bytter mellom dashbordet og biblioteket. Se «Publikasjonsbiblioteket» under.
+
 ## Mappene
 
 | Mappe / fil | Innhold |
 |---|---|
-| `side/` | Sidekoden: `index.html` (innhold og tekst), `oko.css` (utseende), `oko.js` (beregninger og figurer). Samme filer brukes i Claude-dashbordet. |
-| `nettside/` | Ferdig nettside: sidekoden + `dash-adapter.js`, `tema.css`, d3 (med lisensen i `d3-LICENSE.txt`), `2032/` og `datasett/`. Lages av `skript/lag_nettside.py`. |
+| `side/` | Sidekoden: `index.html` (innhold og tekst), `oko.css` (utseende), `oko.js` (beregninger og figurer). Samme filer brukes i Claude-dashbordet. I tillegg malen `publikasjoner.html`, `bibliotek.css` og `bibliotek.js` for publikasjonsbiblioteket (bare på nettsiden). |
+| `nettside/` | Ferdig nettside: sidekoden + `dash-adapter.js`, `tema.css`, d3 (med lisensen i `d3-LICENSE.txt`), `2032/`, `publikasjoner/` og `datasett/`. Lages av `skript/lag_nettside.py`. |
 | `nettside/datasett/` | De 21 datasettene dashbordet viser (CSV + `fylkeskart.json`), og `datasett.json` med tittel, kilde og periode for hvert. |
 | `skript/oppdater_kilder.py` | Henter nye tall fra SSB (API-et PxWebApi v2) og Eurostat, og bygger datasett og nettside på nytt. |
 | `skript/bygg_datasett.py` | Lager datasettene i `nettside/datasett/` fra kildefilene i `../data/`. |
-| `skript/lag_nettside.py` | Pakker sidekoden inn i `nettside/index.html`. |
+| `skript/lag_nettside.py` | Pakker sidekoden inn i `nettside/index.html`, og kjører `lag_bibliotek.py`. |
+| `skript/lag_bibliotek.py` | Lager publikasjonsbiblioteket i `nettside/publikasjoner/` fra `../data/publikasjoner.csv`. |
 | `skript/lag_fylkeskart.sh` | Lager fylkeskartet på nytt (bare ved ny fylkesreform). |
 | `kart/` | Fylkesgrensene (2024) i UTM sone 33. Kartverket, CC BY 4.0. |
 | `nettside-oppsett/` | Kopi av arbeidsflyten som oppdaterer og publiserer nettsiden (bare i den lokale mappen; i repoet ligger den i `.github/workflows/oppdater.yml`). |
@@ -39,7 +44,8 @@ Kampanjeadressen økologisk2032.no peker dit.
   og FiBL/IFOAM-årboken (`kilder/` og de store `data/fibl_*`-filene).
 
 Det offentlige repoet inneholder bare det som trengs for å bygge siden: `data/` med de tolv
-kildefilene skriptene leser, og `dashbord/` uten `claude-dashbord.json` og `nettside-oppsett/`.
+kildefilene skriptene leser og listen over publikasjoner, og `dashbord/` uten `claude-dashbord.json` og
+`nettside-oppsett/`.
 
 ## Årlig oppdatering
 
@@ -68,6 +74,28 @@ Etter en oppdatering for hånd:
 
 Siste år, mål og nøkkeltall regnes ut på nytt automatisk. Målet (10 % av jordbruksarealet innen 2032,
 fra Nasjonal strategi for økologisk jordbruk 2025–2032) står som en konstant øverst i `side/oko.js`.
+
+## Publikasjonsbiblioteket
+
+Biblioteket på `okologiskitall.no/publikasjoner/` lenker til norske publikasjoner om økologisk landbruk.
+Publikasjonene ligger hos utgiverne. Biblioteket viser bare tittel, en kort beskrivelse med egne ord,
+utgiver, år og lenken til utgiverens egen side.
+
+- **Listen** står i `../data/publikasjoner.csv`, én rad per publikasjon. Kolonnene er forklart øverst i
+  `skript/lag_bibliotek.py`: tittel, beskrivelse, forfattere, utgiver, år, kategori, underkategori, tema,
+  språk, tilgang (gratis eller abonnement), lenke, datoen den ble lagt inn og datoen lenken sist ble kontrollert.
+- **Menyen** sorterer etter hva slags dokument det er, ikke etter hvem som har gitt det ut:
+  Politikk og styring, Regelverk og tilskudd, Rapporter fra forvaltningen, Forskning, Praktisk fagstoff,
+  og Organisasjoner og næring, hver med underkategorier. En forskningsrapport som et direktorat har bestilt,
+  er altså forskning. Kategoriene og de åtte temaene står i `KATEGORIER` og `TEMAER` i `skript/lag_bibliotek.py`.
+  Underkategorier uten publikasjoner vises ikke i menyen.
+- **Ny publikasjon:** be Claude om å legge den inn (Claude kontrollerer lenken og skriver beskrivelsen),
+  eller legg inn en rad selv. Bruk lenken til siden publikasjonen ligger på hos utgiveren heller enn en PDF,
+  og skriv beskrivelsen med egne ord. Kjør så `python3 dashbord/skript/lag_nettside.py` og legg endringene
+  inn i GitHub-repoet. Rader med feil hoppes over med en advarsel.
+- **De nyeste** (etter datoen i `lagt_til`) vises under «Nytt i biblioteket» øverst på siden.
+- Utvalg kan deles som lenke, for eksempel `okologiskitall.no/publikasjoner/?type=forskning&tema=husdyr`.
+- Siden teller valg av type og tema, og åpnede publikasjoner, som hendelser `bib-…` i GoatCounter.
 
 ## Den automatiske oppdateringen på GitHub
 

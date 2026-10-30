@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publikasjoner om økologisk landbruk – Økologisk landbruk i Norge</title>
+<meta name="description" content="Lenker til norske publikasjoner om økologisk landbruk: politikk og styring, regelverk og tilskudd, rapporter fra forvaltningen, forskning, praktisk fagstoff og organisasjoner. Søk og filtrer etter tema.">
+<link rel="canonical" href="https://okologiskitall.no/publikasjoner/">
+<link rel="icon" href="../logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../tema.css">
+<link rel="stylesheet" href="../oko.css">
+<link rel="stylesheet" href="bibliotek.css">
+</head>
+<body>
+<!-- Denne siden lages av dashbord/skript/lag_bibliotek.py fra malen dashbord/side/publikasjoner.html
+     og publikasjonslisten data/publikasjoner.csv. Endre malen eller listen, ikke denne filen. -->
+<main id="dash-root" class="oko-nettside">
+<div class="oko bib" id="bibliotek">
+  <header class="oko-head">
+    <div class="oko-topp">
+      <div class="oko-merkerad">
+        <nav class="oko-hovedmeny" aria-label="Nettstedet">
+          <a href="../">Statistikk</a>
+          <a href="./" aria-current="page">Publikasjoner</a>
+        </nav>
+        <a class="oko-logo" href="../" aria-label="Økologisk i tall – til statistikken">
+          {{LOGO}}
+        </a>
+      </div>
+      <h1 class="oko-title">Publikasjoner om økologisk landbruk</h1>
+    </div>
+    <p class="oko-lede">Lenker til norske publikasjoner om økologisk landbruk, fra strategier og regelverk til forskning og praktiske råd. Velg type i menyen, eller søk og filtrer etter tema.</p>
+    <p class="oko-ai">Laget med KI (Claude). Hver lenke er kontrollert, og beskrivelsene er skrevet for denne siden – se <a class="oko-lenke" href="#om-biblioteket">Om biblioteket</a>.</p>
+  </header>
+
+  <form class="bib-sok" role="search">
+    <label class="bib-skjult" for="bib-sok">Søk i biblioteket</label>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="bib-sok" name="q" placeholder="Søk i titler, beskrivelser og utgivere" autocomplete="off" enterkeyhint="search">
+  </form>
+
+  <div class="bib-oppsett">
+    <details class="bib-meny" id="bib-meny" open>
+      <summary><span>Type: <b id="bib-meny-valgt">Alle publikasjoner</b></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <nav class="bib-meny-innhold" aria-label="Type publikasjon">
+        <p class="bib-meny-tittel">Type publikasjon</p>
+{{MENY}}
+        <ul class="bib-meny-ekstra">
+          <li><a href="#om-biblioteket"><span class="bib-navn">Om biblioteket</span></a></li>
+          <li><a href="#tips"><span class="bib-navn">Tips oss om en publikasjon</span></a></li>
+        </ul>
+      </nav>
+    </details>
+
+    <div class="bib-innhold">
+      <div class="bib-filtre" id="bib-filtre">
+        <div class="oko-seg bib-temaer" id="bib-temaer" role="group" aria-label="Tema">
+{{TEMAER}}
+        </div>
+        <div class="bib-valg">
+          <label>År
+            <select id="bib-aar">
+              <option value="">Alle år</option>
+              <option value="2020">2020 og nyere</option>
+              <option value="2015">2015 og nyere</option>
+              <option value="2010">2010 og nyere</option>
+              <option value="eldre">Eldre enn 2010</option>
+            </select>
+          </label>
+          <label>Språk
+            <select id="bib-spraak">
+              <option value="">Alle språk</option>
+              <option value="no">Norsk</option>
+              <option value="en">Engelsk</option>
+            </select>
+          </label>
+          <label><input type="checkbox" id="bib-gratis"> Bare gratis å lese</label>
+          <label>Sorter
+            <select id="bib-sort">
+              <option value="nyest">Nyeste først</option>
+              <option value="eldst">Eldste først</option>
+              <option value="tittel">Tittel A–Å</option>
+            </select>
+          </label>
+          <button type="button" class="bib-nullstill" data-nullstill hidden>Nullstill alle valg</button>
+        </div>
+      </div>
+
+{{NYTT}}
+
+      <h2 class="bib-skjult">Publikasjonene</h2>
+      <p class="bib-status" id="bib-status" aria-live="polite">Viser alle {{ANTALL}} publikasjonene</p>
+      <ol class="bib-liste" id="bib-liste">
+{{POSTER}}
+      </ol>
+      <p class="bib-tom" id="bib-tom" hidden>Ingen publikasjoner passer med disse valgene. <button type="button" class="bib-nullstill" data-nullstill>Nullstill alle valg</button></p>
+
+      <section class="oko-card oko-prose bib-om" id="om-biblioteket" aria-labelledby="om-biblioteket-tittel">
+        <h2 id="om-biblioteket-tittel">Om biblioteket</h2>
+        <p>Biblioteket samler lenker til norske publikasjoner om økologisk landbruk. Publikasjonene ligger hos utgiverne. Her finner du en kort beskrivelse og lenken dit.</p>
+        <p>Publikasjonene er sortert etter hva slags dokument de er, ikke etter hvem som har gitt dem ut. En forskningsrapport som et direktorat har bestilt, ligger derfor under Forskning. Hver publikasjon kan i tillegg ha ett eller flere temaer.</p>
+        <p>Biblioteket er under oppbygging og har foreløpig {{ANTALL}} publikasjoner. Utvalget og beskrivelsene er laget med hjelp av KI (Claude), og alle lenkene er kontrollert, sist {{KONTROLLERT}}. Mye av den norske forskningen er også registrert i det internasjonale arkivet <a href="https://orgprints.org/" target="_blank" rel="noopener">Organic Eprints</a>.</p>
+        <h3 id="tips">Tips oss om en publikasjon</h3>
+        <p>Mangler det en publikasjon, eller virker ikke en lenke? Send lenken til <span class="oko-epost" data-a="diebratnorg" data-b="moc.liamg" data-emne="Tips til publikasjonsbiblioteket">e-postadressen vises når siden er lastet</span>.</p>
+        <p class="oko-muted">Hele listen kan lastes ned som <a href="publikasjoner.csv" download>regneark (CSV)</a>.</p>
+      </section>
+    </div>
+  </div>
+</div>
+<footer class="oko-bunn">
+<p class="oko-ansvarlig">Ansvarlig: Grønt arbeid Nordvik, org.nr. <a class="oko-lenke" href="https://virksomhet.brreg.no/nb/oppslag/enheter/936885403">936&nbsp;885&nbsp;403</a> · Kontakt: <span class="oko-epost" data-a="diebratnorg" data-b="moc.liamg">e-postadressen vises når siden er lastet</span></p>
+<p>Publikasjonene ligger hos utgiverne; biblioteket lenker bare til dem. Laget med Claude (Anthropic). Listen og koden: <a class="oko-lenke" href="https://github.com/grontarbeid/okologiskitall">github.com/grontarbeid/okologiskitall</a>.</p>
+<p>Besøk telles anonymt med <a class="oko-lenke" href="https://www.goatcounter.com/">GoatCounter</a>, uten informasjonskapsler.</p>
+</footer>
+</main>
+<script src="bibliotek.js"></script>
+<!-- Besøkstelling uten informasjonskapsler: https://okologiskitall.goatcounter.com
+     Sidevisningen telles automatisk; valg av type og tema, og åpnede publikasjoner, telles som hendelser «bib-…». -->
+<script data-goatcounter="https://okologiskitall.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

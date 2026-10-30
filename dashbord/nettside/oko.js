@@ -1893,14 +1893,16 @@ faner.forEach((f, i) => {
   });
 });
 
-// Logoen øverst til venstre er også en knapp tilbake til Oversikt.
-document.getElementById('logo')?.addEventListener('click', (ev) => {
-  ev.preventDefault();
-  visSide('oversikt');
-  dash.setLink('oversikt');
-  const rolig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  window.scrollTo({ top: 0, behavior: rolig ? 'auto' : 'smooth' });
-});
+// Logoen og «Statistikk» i hovedmenyen øverst er også knapper tilbake til Oversikt.
+for (const id of ['logo', 'meny-statistikk']) {
+  document.getElementById(id)?.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    visSide('oversikt');
+    dash.setLink('oversikt');
+    const rolig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: rolig ? 'auto' : 'smooth' });
+  });
+}
 
 // Valgene på Fylker-fanen: hva fylkene vises etter, og med eller uten karens.
 // Karensvalget gjelder ikke antall gårder, så det er grått når «Gårder» er valgt.

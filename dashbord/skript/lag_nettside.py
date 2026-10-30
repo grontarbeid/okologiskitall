@@ -3,12 +3,13 @@
 Sidekoden ligger i dashbord/side/ (index.html, oko.css, oko.js) og er den samme som i
 Claude-dashbordet. Dette skriptet pakker innholdet inn i et helt HTML-dokument og kopierer
 filene til dashbord/nettside/, sammen med dash-adapter.js, tema.css, d3 og datasettene.
+Til slutt lager det publikasjonsbiblioteket i dashbord/nettside/publikasjoner/ (se lag_bibliotek.py).
 
 Kjør:  python3 dashbord/skript/lag_nettside.py
 Se resultatet lokalt:  cd dashbord/nettside && python3 -m http.server 8000   → http://localhost:8000
 (Siden må vises via en webserver – nettlesere slipper ikke til datafilene fra file://.)
 """
-import os, re, shutil
+import os, re, runpy, shutil
 
 HER = os.path.dirname(os.path.abspath(__file__))
 DASH = os.path.abspath(os.path.join(HER, '..'))
@@ -19,6 +20,8 @@ with open(os.path.join(SIDE, 'index.html'), encoding='utf-8') as f:
     innhold = f.read()
 innhold = re.sub(r'\s*<link rel="stylesheet" href="oko\.css">\s*', '\n', innhold)
 innhold = re.sub(r'\s*<script src="oko\.js"></script>\s*', '\n', innhold)
+# I Claude-dashbordet går «Publikasjoner» i menyen til nettsiden; på nettsiden er lenken relativ.
+innhold = innhold.replace('href="https://okologiskitall.no/publikasjoner/"', 'href="publikasjoner/"')
 
 DOKUMENT = """<!doctype html>
 <html lang="nb">
@@ -73,3 +76,6 @@ mangler = [n for n in ('dash-adapter.js', 'tema.css', 'd3.v7.9.0.min.js', os.pat
 print('Nettsiden er laget i', UT)
 if mangler:
     print('MANGLER:', ', '.join(mangler), '– kjør bygg_datasett.py først / legg d3 i mappen.')
+
+# Publikasjonsbiblioteket (okologiskitall.no/publikasjoner/) lages fra data/publikasjoner.csv.
+runpy.run_path(os.path.join(HER, 'lag_bibliotek.py'), run_name='__main__')

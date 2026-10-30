@@ -25,9 +25,36 @@
   margin: 0 0 var(--cds-gap-sm);
 }
 .oko-topp .oko-title { margin: 0; }
+
+/* hovedmenyen (Statistikk | Publikasjoner) står til venstre for logoen */
+.oko-merkerad { display: flex; align-items: center; gap: var(--cds-gap-lg); flex: none; }
+.oko-hovedmeny { display: flex; align-items: center; gap: var(--cds-gap-md); }
+.oko-hovedmeny a {
+  color: var(--color-fg-muted);
+  text-decoration: none;
+  font-size: var(--cds-font-size-body);
+  line-height: 1.3;
+  padding: 4px 0 3px;
+  border-bottom: 2px solid transparent;
+}
+.oko-hovedmeny a:hover { color: var(--color-fg); }
+.oko-hovedmeny a[aria-current="page"] {
+  color: var(--color-fg);
+  font-weight: var(--cds-font-weight-medium);
+  border-bottom-color: var(--oko-logo-farge, #217a3c);
+}
+.oko-hovedmeny a:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 3px; border-radius: 2px; }
 @media (max-width: 620px) {
   .oko-topp { flex-direction: column; align-items: stretch; gap: var(--cds-gap-sm); }
-  .oko-topp .oko-logo { align-self: flex-end; }
+  .oko-topp .oko-merkerad { justify-content: space-between; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); }
+}
+/* smal mobil: logoordene står over hverandre, så menyen og logoen får plass på én linje */
+@media (max-width: 440px) {
+  .oko-merkerad .oko-logo { gap: 8px; }
+  .oko-merkerad .oko-logo-merke { width: 36px; height: 36px; }
+  .oko-merkerad .oko-logo-ord { font-size: 16px; line-height: 1.05; }
+  .oko-merkerad .oko-logo-ord-1, .oko-merkerad .oko-logo-ord-2 { display: block; }
+  .oko-hovedmeny { gap: var(--cds-gap-sm); }
 }
 
 /* logo – også knapp tilbake til Oversikt */
@@ -333,6 +360,6 @@
   @keyframes oko-in { from { opacity: 0; } to { opacity: 1; } }
 }
 @media print {
-  .oko-tabs, .oko-tabell summary, .oko-seg, .oko-valgrad { display: none; }
+  .oko-tabs, .oko-tabell summary, .oko-seg, .oko-valgrad, .oko-hovedmeny { display: none; }
   .oko-page[hidden] { display: block; }
 }
