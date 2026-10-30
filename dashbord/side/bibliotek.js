@@ -1,7 +1,8 @@
 /* Publikasjonsbiblioteket på okologiskitall.no/publikasjoner/.
    Alle publikasjonene står i HTML-en (laget av dashbord/skript/lag_bibliotek.py). Dette skriptet
-   filtrerer listen etter type, tema, år, språk og tilgang, søker i teksten, sorterer og skriver valgene
-   inn i adressen, så et utvalg kan deles som lenke, for eksempel ?type=forskning&tema=husdyr. */
+   filtrerer listen etter type (fanene), underkategori, tema, år, språk og tilgang, søker i teksten,
+   sorterer og skriver valgene inn i adressen, så et utvalg kan deles som lenke,
+   for eksempel ?type=forskning&tema=husdyr. */
 (function () {
   'use strict';
 
@@ -13,8 +14,9 @@
 
   var liste = $('bib-liste');
   var poster = alle('.bib-post', liste);
-  var meny = $('bib-meny');
-  var menyLenker = alle('a[data-type]', meny);
+  var faner = alle('#bib-faner a[data-type]');
+  var underrader = alle('.bib-underrad');
+  var underLenker = alle('.bib-underrad a[data-type]');
   var temaKnapper = alle('#bib-temaer button[data-tema]');
   var sokefelt = $('bib-sok');
   var aarValg = $('bib-aar');
@@ -24,18 +26,16 @@
   var status = $('bib-status');
   var tom = $('bib-tom');
   var nytt = $('bib-nytt');
-  var valgtTekst = $('bib-meny-valgt');
   var nullstillKnapper = alle('[data-nullstill]');
+  var flere = $('bib-flere');
 
   var STANDARD = { type: '', under: '', tema: '', q: '', aar: '', spraak: '', gratis: false, sort: 'nyest' };
   var tilstand = Object.assign({}, STANDARD);
 
   // Lovlige verdier, slik at en gammel eller feilskrevet lenke ikke gir en tom side.
   var typer = {}, undertyper = {}, temaer = {};
-  menyLenker.forEach(function (a) {
-    if (a.dataset.under) undertyper[a.dataset.type + '/' + a.dataset.under] = true;
-    else typer[a.dataset.type] = true;
-  });
+  faner.forEach(function (a) { typer[a.dataset.type] = true; });
+  underLenker.forEach(function (a) { if (a.dataset.under) undertyper[a.dataset.type + '/' + a.dataset.under] = true; });
   temaKnapper.forEach(function (b) { temaer[b.dataset.tema] = true; });
 
   function norm(s) {
@@ -43,8 +43,10 @@
   }
 
   poster.forEach(function (p) {
-    p._sok = norm(p.querySelector('.bib-tittel').textContent + ' ' + p.querySelector('.bib-beskr').textContent + ' ' +
-                  p.querySelector('.bib-meta').textContent + ' ' + p.querySelector('.bib-type').textContent);
+    p._sok = norm(['.bib-tittel', '.bib-beskr', '.bib-meta', '.bib-type'].map(function (s) {
+      var el = p.querySelector(s);
+      return el ? el.textContent : '';
+    }).join(' '));
     p._tema = (p.dataset.tema || '').split(' ').filter(Boolean);
     p._aar = Number(p.dataset.aar);
     p._tittel = p.querySelector('.bib-tittel').textContent.trim();
@@ -79,18 +81,27 @@
     var rekke = standardRekkefolge.slice();
     if (tilstand.sort === 'eldst') rekke.sort(function (a, b) { return a._aar - b._aar || sammenlign(a._tittel, b._tittel); });
     else if (tilstand.sort === 'tittel') rekke.sort(function (a, b) { return sammenlign(a._tittel, b._tittel); });
+    // Flytt bare det som står feil, så fokus og rulleposisjon ikke forstyrres unødig.
     var forrige = null;
     rekke.forEach(function (p) {
-      if (forrige ? forrige.nextElementSibling !== p : liste.firstElementChild !== p) {
-        liste.insertBefore(p, forrige ? forrige.nextElementSibling : liste.firstElementChild);
-      }
+      var riktig = forrige ? forrige.nextElementSibling === p : liste.firstElementChild === p;
+      if (!riktig) liste.insertBefore(p, forrige ? forrige.nextElementSibling : liste.firstElementChild);
       forrige = p;
     });
   }
 
-  function oppdater() {
+  function settAntall(el, n) {
+    var a = el.querySelector('.bib-antall');
+    if (a) a.textContent = n;
+  }
+
+  // Lange lister vises litt etter litt: de første STEG treffene, og «Vis flere» for resten.
+  var STEG = 30;
+  var grense = STEG;
+
+  function oppdater(beholdGrense) {
+    if (!beholdGrense) grense = STEG;
     var antall = {};
-    var synlige = 0;
     poster.forEach(function (p) {
       var ok = passerFiltre(p, false);
       if (ok) {
@@ -99,25 +110,21 @@
         var k = p.dataset.type + '/' + p.dataset.under;
         antall[k] = (antall[k] || 0) + 1;
       }
-      var vis = ok && passerType(p);
-      p.hidden = !vis;
-      if (vis) synlige++;
+      p._treff = ok && passerType(p);
     });
 
-    menyLenker.forEach(function (a) {
-      var k = a.dataset.under ? a.dataset.type + '/' + a.dataset.under : a.dataset.type;
-      var n = antall[k] || 0;
-      a.querySelector('.bib-antall').textContent = n;
-      a.classList.toggle('bib-null', n === 0);
-      var aktiv = a.dataset.type === tilstand.type && (a.dataset.under || '') === tilstand.under;
-      if (aktiv) {
-        a.setAttribute('aria-current', 'true');
-        if (valgtTekst) valgtTekst.textContent = a.querySelector('.bib-navn').textContent;
-      } else {
-        a.removeAttribute('aria-current');
-      }
+    faner.forEach(function (a) {
+      if (a.dataset.type === tilstand.type) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
     });
-    alle('.bib-under', meny).forEach(function (ul) { ul.hidden = ul.dataset.type !== tilstand.type; });
+    underrader.forEach(function (rad) { rad.hidden = !tilstand.type || rad.dataset.type !== tilstand.type; });
+    underLenker.forEach(function (a) {
+      var n = a.dataset.under ? antall[a.dataset.type + '/' + a.dataset.under] || 0 : antall[a.dataset.type] || 0;
+      settAntall(a, n);
+      a.classList.toggle('bib-null', n === 0);
+      if (a.dataset.type === tilstand.type && a.dataset.under === tilstand.under) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
 
     var temaAntall = {};
     poster.forEach(function (p) {
@@ -127,22 +134,32 @@
     });
     temaKnapper.forEach(function (b) {
       var n = temaAntall[b.dataset.tema] || 0;
-      b.querySelector('.bib-antall').textContent = n;
+      settAntall(b, n);
       b.setAttribute('aria-pressed', String(b.dataset.tema === tilstand.tema));
       b.disabled = n === 0 && b.dataset.tema !== tilstand.tema;
     });
 
     sorter();
 
+    var treff = 0;
+    Array.prototype.forEach.call(liste.children, function (p) {
+      if (p._treff) treff++;
+      p.hidden = !p._treff || treff > grense;
+    });
     var totalt = poster.length;
-    status.textContent = synlige === totalt
-      ? 'Viser alle ' + totalt + ' publikasjonene'
-      : 'Viser ' + synlige + ' av ' + totalt + ' publikasjoner';
-    tom.hidden = synlige > 0;
+    status.textContent = harValg()
+      ? treff + ' av ' + totalt + ' publikasjoner'
+      : totalt + ' publikasjoner';
+    tom.hidden = treff > 0;
+    if (flere) {
+      var igjen = treff - grense;
+      flere.hidden = igjen <= 0;
+      flere.textContent = 'Vis flere (' + Math.min(igjen, STEG) + ' av ' + igjen + ' som gjenstår)';
+    }
     if (nytt) nytt.hidden = harValg();
     nullstillKnapper.forEach(function (b) { if (!tom.contains(b)) b.hidden = !harValg(); });
 
-    if (sokefelt.value !== tilstand.q) sokefelt.value = tilstand.q;
+    if (sokefelt.value.trim() !== tilstand.q) sokefelt.value = tilstand.q;
     aarValg.value = tilstand.aar;
     spraakValg.value = tilstand.spraak;
     gratisValg.checked = tilstand.gratis;
@@ -158,7 +175,7 @@
     tilstand.type = typer[t] ? t : '';
     tilstand.under = tilstand.type && undertyper[tilstand.type + '/' + u] ? u : '';
     var tema = p.get('tema') || '';
-    tilstand.tema = temaer[tema] && tema ? tema : '';
+    tilstand.tema = tema && temaer[tema] ? tema : '';
     tilstand.q = (p.get('q') || '').slice(0, 100);
     var aar = p.get('aar') || '';
     tilstand.aar = ['2020', '2015', '2010', 'eldre'].indexOf(aar) >= 0 ? aar : '';
@@ -190,34 +207,34 @@
     } catch (e) { /* telleren er ikke lastet */ }
   }
 
-  // ---------- smal skjerm: menyen er en nedtrekksliste ----------
-  var bred = window.matchMedia ? window.matchMedia('(min-width: 900px)') : { matches: true };
-  function tilpassMeny() { meny.open = bred.matches; }
-  tilpassMeny();
-  if (bred.addEventListener) bred.addEventListener('change', tilpassMeny);
-
+  function rolig() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+  // Har man rullet forbi starten av listen, rulles den fram igjen etter et nytt valg.
   function tilListen() {
-    if (bred.matches) return;
-    var rolig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    status.scrollIntoView({ block: 'start', behavior: rolig ? 'auto' : 'smooth' });
+    if (status.getBoundingClientRect().top < 0) status.scrollIntoView({ block: 'start', behavior: rolig() ? 'auto' : 'smooth' });
   }
 
   // ---------- hendelser ----------
-  menyLenker.forEach(function (a) {
+  function velgType(a) {
+    tilstand.type = a.dataset.type;
+    tilstand.under = a.dataset.under || '';
+    oppdater();
+    tilListen();
+    if (tilstand.type) tell('bib-type-' + tilstand.type + (tilstand.under ? '-' + tilstand.under : ''),
+                            'Bibliotek: ' + a.querySelector('.bib-navn').textContent);
+  }
+  faner.concat(underLenker).forEach(function (a) {
     a.addEventListener('click', function (ev) {
       ev.preventDefault();
-      tilstand.type = a.dataset.type;
-      tilstand.under = a.dataset.under || '';
-      oppdater();
-      if (!bred.matches) { meny.open = false; tilListen(); }
-      if (tilstand.type) tell('bib-type-' + tilstand.type + (tilstand.under ? '-' + tilstand.under : ''),
-                              'Bibliotek: ' + a.querySelector('.bib-navn').textContent);
+      velgType(a);
     });
   });
 
   function velgTema(tema) {
     tilstand.tema = tilstand.tema === tema ? '' : tema;
     oppdater();
+    tilListen();
     if (tilstand.tema) tell('bib-tema-' + tilstand.tema, 'Bibliotek, tema: ' + tilstand.tema);
   }
   temaKnapper.forEach(function (b) {
@@ -228,8 +245,6 @@
     if (tag) {
       tilstand.tema = '';
       velgTema(tag.dataset.tema);
-      var rolig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      $('bib-filtre').scrollIntoView({ block: 'start', behavior: rolig ? 'auto' : 'smooth' });
       return;
     }
     var lenke = ev.target.closest('.bib-tittel a');
@@ -249,7 +264,6 @@
     tilstand.q = sokefelt.value.trim().slice(0, 100);
     oppdater();
     sokefelt.blur();
-    tilListen();
   });
   aarValg.addEventListener('change', function () { tilstand.aar = aarValg.value; oppdater(); });
   spraakValg.addEventListener('change', function () { tilstand.spraak = spraakValg.value; oppdater(); });
@@ -257,15 +271,57 @@
   sortValg.addEventListener('change', function () { tilstand.sort = sortValg.value; oppdater(); });
   nullstillKnapper.forEach(function (b) {
     b.addEventListener('click', function () {
-      var sort = tilstand.sort;
-      tilstand = Object.assign({}, STANDARD, { sort: sort });
+      tilstand = Object.assign({}, STANDARD, { sort: tilstand.sort });
       sokefelt.value = '';
       oppdater();
     });
   });
 
+  if (flere) {
+    flere.addEventListener('click', function () {
+      // flytt fokus til første nye publikasjon, så tastaturbrukere fortsetter der listen ble utvidet
+      var forrige = grense;
+      grense += STEG;
+      oppdater(true);
+      var nye = Array.prototype.filter.call(liste.children, function (p) { return p._treff; });
+      var forste = nye[forrige] && nye[forrige].querySelector('.bib-tittel a');
+      if (forste) forste.focus({ preventScroll: true });
+    });
+  }
+
+  // En lenke til én publikasjon (#id, for eksempel fra «Nytt i biblioteket») viser den, også om den
+  // ligger langt ned i listen eller utenfor valgene som gjelder.
+  function visPost(id) {
+    var p = id && document.getElementById(id);
+    if (!p || !p.classList.contains('bib-post')) return false;
+    if (!p._treff) {
+      tilstand = Object.assign({}, STANDARD, { sort: tilstand.sort });
+      sokefelt.value = '';
+      oppdater();
+    }
+    var nr = Array.prototype.filter.call(liste.children, function (x) { return x._treff; }).indexOf(p);
+    if (nr >= grense) {
+      grense = Math.ceil((nr + 1) / STEG) * STEG;
+      oppdater(true);
+    }
+    return true;
+  }
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = decodeURIComponent(a.getAttribute('href').slice(1));
+    if (visPost(id)) {
+      ev.preventDefault();
+      location.hash = id;
+    }
+  });
+
   lesAdresse();
   oppdater();
+  if (location.hash) {
+    var id = decodeURIComponent(location.hash.slice(1));
+    if (visPost(id)) document.getElementById(id).scrollIntoView({ block: 'start' });
+  }
 })();
 
 /* Kontaktadressen settes sammen i nettleseren, så den ikke står i klartekst i HTML-koden

@@ -19,7 +19,7 @@ Kolonnene i data/publikasjoner.csv (UTF-8, komma eller semikolon mellom feltene)
   underkategori  se KATEGORIER under (for eksempel rapporter)
   tema           null til tre temakoder fra TEMAER under, skilt med semikolon (for eksempel husdyr;okonomi)
   spraak         no eller en
-  tilgang        gratis eller abonnement
+  tilgang        gratis, abonnement eller ukjent (ukjent vises uten merke og tas ikke med under «Bare gratis»)
   url            lenken til publikasjonen hos utgiveren (https://)
   lagt_til       datoen publikasjonen ble lagt inn (ÅÅÅÅ-MM-DD) – de nyeste vises under «Nytt i biblioteket»
   kontrollert    datoen lenken sist ble kontrollert (ÅÅÅÅ-MM-DD)
@@ -156,8 +156,8 @@ def les_liste(sti):
             if r['spraak'] not in ('no', 'en'):
                 feil.append(f'språk må være no eller en, ikke «{r["spraak"]}»')
             r['tilgang'] = r['tilgang'] or 'gratis'
-            if r['tilgang'] not in ('gratis', 'abonnement'):
-                feil.append(f'tilgang må være gratis eller abonnement, ikke «{r["tilgang"]}»')
+            if r['tilgang'] not in ('gratis', 'abonnement', 'ukjent'):
+                feil.append(f'tilgang må være gratis, abonnement eller ukjent, ikke «{r["tilgang"]}»')
             if not r['url'].startswith('https://'):
                 feil.append('lenken må begynne med https://')
             elif r['url'] in urler:
@@ -198,26 +198,37 @@ def post_html(p):
     )
 
 
-def meny_html(poster):
+def tell_typer(poster):
     antall = {}
     for p in poster:
         for k in ('', p['kategori'], p['kategori'] + '/' + p['underkategori']):
             antall[k] = antall.get(k, 0) + 1
-    linjer = ['        <ul>',
-              f'          <li class="bib-hoved"><a href="./" data-type="" aria-current="true"><span class="bib-navn">Alle publikasjoner</span> '
-              f'<span class="bib-antall">{antall.get("", 0)}</span></a></li>']
+    return antall
+
+
+def faner_html():
+    # Fanene ser ut som fanene på statistikksiden (oko-tab), men er lenker: de filtrerer listen.
+    linjer = ['    <a class="oko-tab" href="./" data-type="" aria-current="true"><span class="bib-navn">Alle publikasjoner</span></a>']
+    for k, navn, _ in KATEGORIER:
+        linjer.append(f'    <a class="oko-tab" href="?type={k}" data-type="{k}"><span class="bib-navn">{e(navn)}</span></a>')
+    return '\n'.join(linjer)
+
+
+def underrader_html(poster):
+    # Én rad med underkategorier per type; bare raden for valgt fane vises. Tomme underkategorier tas ikke med.
+    antall = tell_typer(poster)
+    linjer = []
     for k, navn, under in KATEGORIER:
-        linjer.append(f'          <li class="bib-hoved"><a href="?type={k}" data-type="{k}"><span class="bib-navn">{e(navn)}</span> '
-                      f'<span class="bib-antall">{antall.get(k, 0)}</span></a>')
         med = [(u, un) for u, un in under if antall.get(f'{k}/{u}')]
-        if med:
-            linjer.append(f'            <ul class="bib-under" data-type="{k}" hidden>')
-            for u, un in med:
-                linjer.append(f'              <li><a href="?type={k}&amp;under={u}" data-type="{k}" data-under="{u}"><span class="bib-navn">{e(un)}</span> '
-                              f'<span class="bib-antall">{antall[f"{k}/{u}"]}</span></a></li>')
-            linjer.append('            </ul>')
-        linjer.append('          </li>')
-    linjer.append('        </ul>')
+        if not med:
+            continue
+        linjer.append(f'  <nav class="bib-underrad" data-type="{k}" aria-label="Underkategorier i {e(navn)}" hidden>')
+        linjer.append(f'    <a href="?type={k}" data-type="{k}" data-under=""><span class="bib-navn">Alle</span> '
+                      f'<span class="bib-antall">{antall.get(k, 0)}</span></a>')
+        for u, un in med:
+            linjer.append(f'    <a href="?type={k}&amp;under={u}" data-type="{k}" data-under="{u}"><span class="bib-navn">{e(un)}</span> '
+                          f'<span class="bib-antall">{antall[f"{k}/{u}"]}</span></a>')
+        linjer.append('  </nav>')
     return '\n'.join(linjer)
 
 
@@ -226,9 +237,9 @@ def temaer_html(poster):
     for p in poster:
         for t in p['tema']:
             antall[t] = antall.get(t, 0) + 1
-    knapper = [f'          <button type="button" data-tema="" aria-pressed="true">Alle temaer <span class="bib-antall">{len(poster)}</span></button>']
+    knapper = [f'        <button type="button" data-tema="" aria-pressed="true"><span class="bib-navn">Alle temaer</span> <span class="bib-antall">{len(poster)}</span></button>']
     for t, navn in TEMAER:
-        knapper.append(f'          <button type="button" data-tema="{t}" aria-pressed="false">{e(navn)} <span class="bib-antall">{antall.get(t, 0)}</span></button>')
+        knapper.append(f'        <button type="button" data-tema="{t}" aria-pressed="false"><span class="bib-navn">{e(navn)}</span> <span class="bib-antall">{antall.get(t, 0)}</span></button>')
     return '\n'.join(knapper)
 
 
@@ -292,7 +303,8 @@ def main(argv=None):
     with open(os.path.join(SIDE, 'publikasjoner.html'), encoding='utf-8') as f:
         mal = f.read()
     side = (mal.replace('{{LOGO}}', logo_html())
-               .replace('{{MENY}}', meny_html(poster))
+               .replace('{{FANER}}', faner_html())
+               .replace('{{UNDERRADER}}', underrader_html(poster))
                .replace('{{TEMAER}}', temaer_html(poster))
                .replace('{{NYTT}}', nytt_html(poster))
                .replace('{{POSTER}}', '\n'.join(post_html(p) for p in poster))

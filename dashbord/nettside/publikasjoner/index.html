@@ -46,114 +46,103 @@
     <p class="oko-ai">Laget med KI (Claude). Hver lenke er kontrollert, og beskrivelsene er skrevet for denne siden – se <a class="oko-lenke" href="#om-biblioteket">Om biblioteket</a>.</p>
   </header>
 
-  <form class="bib-sok" role="search">
-    <label class="bib-skjult" for="bib-sok">Søk i biblioteket</label>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <input type="search" id="bib-sok" name="q" placeholder="Søk i titler, beskrivelser og utgivere" autocomplete="off" enterkeyhint="search">
-  </form>
+  <!-- Typene som faner, slik som fanene på statistikksiden; underkategoriene vises under valgt fane. -->
+  <nav class="oko-tabs bib-faner" id="bib-faner" aria-label="Type publikasjon">
+    <a class="oko-tab" href="./" data-type="" aria-current="true"><span class="bib-navn">Alle publikasjoner</span></a>
+    <a class="oko-tab" href="?type=politikk" data-type="politikk"><span class="bib-navn">Politikk og styring</span></a>
+    <a class="oko-tab" href="?type=regelverk" data-type="regelverk"><span class="bib-navn">Regelverk og tilskudd</span></a>
+    <a class="oko-tab" href="?type=forvaltning" data-type="forvaltning"><span class="bib-navn">Rapporter fra forvaltningen</span></a>
+    <a class="oko-tab" href="?type=forskning" data-type="forskning"><span class="bib-navn">Forskning</span></a>
+    <a class="oko-tab" href="?type=fagstoff" data-type="fagstoff"><span class="bib-navn">Praktisk fagstoff</span></a>
+    <a class="oko-tab" href="?type=organisasjoner" data-type="organisasjoner"><span class="bib-navn">Organisasjoner og næring</span></a>
+  </nav>
+  <nav class="bib-underrad" data-type="politikk" aria-label="Underkategorier i Politikk og styring" hidden>
+    <a href="?type=politikk" data-type="politikk" data-under=""><span class="bib-navn">Alle</span> <span class="bib-antall">13</span></a>
+    <a href="?type=politikk&amp;under=strategier" data-type="politikk" data-under="strategier"><span class="bib-navn">Strategier og handlingsplaner</span> <span class="bib-antall">4</span></a>
+    <a href="?type=politikk&amp;under=meldinger" data-type="politikk" data-under="meldinger"><span class="bib-navn">Stortingsmeldinger og proposisjoner</span> <span class="bib-antall">3</span></a>
+    <a href="?type=politikk&amp;under=jordbruksoppgjoret" data-type="politikk" data-under="jordbruksoppgjoret"><span class="bib-navn">Jordbruksoppgjøret</span> <span class="bib-antall">2</span></a>
+    <a href="?type=politikk&amp;under=stortinget" data-type="politikk" data-under="stortinget"><span class="bib-navn">Stortingets behandling</span> <span class="bib-antall">3</span></a>
+    <a href="?type=politikk&amp;under=horinger" data-type="politikk" data-under="horinger"><span class="bib-navn">Høringer</span> <span class="bib-antall">1</span></a>
+  </nav>
+  <nav class="bib-underrad" data-type="regelverk" aria-label="Underkategorier i Regelverk og tilskudd" hidden>
+    <a href="?type=regelverk" data-type="regelverk" data-under=""><span class="bib-navn">Alle</span> <span class="bib-antall">8</span></a>
+    <a href="?type=regelverk&amp;under=forskrift" data-type="regelverk" data-under="forskrift"><span class="bib-navn">Økologiforskriften og EU-regelverket</span> <span class="bib-antall">2</span></a>
+    <a href="?type=regelverk&amp;under=veiledning" data-type="regelverk" data-under="veiledning"><span class="bib-navn">Veiledning om regelverket</span> <span class="bib-antall">2</span></a>
+    <a href="?type=regelverk&amp;under=kontroll" data-type="regelverk" data-under="kontroll"><span class="bib-navn">Godkjenning og kontroll</span> <span class="bib-antall">2</span></a>
+    <a href="?type=regelverk&amp;under=tilskudd" data-type="regelverk" data-under="tilskudd"><span class="bib-navn">Tilskudd til økologisk drift</span> <span class="bib-antall">2</span></a>
+  </nav>
+  <nav class="bib-underrad" data-type="forvaltning" aria-label="Underkategorier i Rapporter fra forvaltningen" hidden>
+    <a href="?type=forvaltning" data-type="forvaltning" data-under=""><span class="bib-navn">Alle</span> <span class="bib-antall">10</span></a>
+    <a href="?type=forvaltning&amp;under=ldir" data-type="forvaltning" data-under="ldir"><span class="bib-navn">Landbruksdirektoratet</span> <span class="bib-antall">3</span></a>
+    <a href="?type=forvaltning&amp;under=mattilsynet" data-type="forvaltning" data-under="mattilsynet"><span class="bib-navn">Mattilsynet</span> <span class="bib-antall">1</span></a>
+    <a href="?type=forvaltning&amp;under=ssb" data-type="forvaltning" data-under="ssb"><span class="bib-navn">SSB</span> <span class="bib-antall">2</span></a>
+    <a href="?type=forvaltning&amp;under=regionalt" data-type="forvaltning" data-under="regionalt"><span class="bib-navn">Statsforvalterne og fylkeskommunene</span> <span class="bib-antall">3</span></a>
+    <a href="?type=forvaltning&amp;under=andre" data-type="forvaltning" data-under="andre"><span class="bib-navn">Andre etater</span> <span class="bib-antall">1</span></a>
+  </nav>
+  <nav class="bib-underrad" data-type="forskning" aria-label="Underkategorier i Forskning" hidden>
+    <a href="?type=forskning" data-type="forskning" data-under=""><span class="bib-navn">Alle</span> <span class="bib-antall">14</span></a>
+    <a href="?type=forskning&amp;under=artikler" data-type="forskning" data-under="artikler"><span class="bib-navn">Vitenskapelige artikler</span> <span class="bib-antall">6</span></a>
+    <a href="?type=forskning&amp;under=rapporter" data-type="forskning" data-under="rapporter"><span class="bib-navn">Forskningsrapporter</span> <span class="bib-antall">5</span></a>
+    <a href="?type=forskning&amp;under=oppgaver" data-type="forskning" data-under="oppgaver"><span class="bib-navn">Masteroppgaver og doktoravhandlinger</span> <span class="bib-antall">3</span></a>
+  </nav>
+  <nav class="bib-underrad" data-type="fagstoff" aria-label="Underkategorier i Praktisk fagstoff" hidden>
+    <a href="?type=fagstoff" data-type="fagstoff" data-under=""><span class="bib-navn">Alle</span> <span class="bib-antall">9</span></a>
+    <a href="?type=fagstoff&amp;under=fagark" data-type="fagstoff" data-under="fagark"><span class="bib-navn">Fagark og veiledere om drift</span> <span class="bib-antall">6</span></a>
+    <a href="?type=fagstoff&amp;under=artikler" data-type="fagstoff" data-under="artikler"><span class="bib-navn">Artikler og reportasjer</span> <span class="bib-antall">3</span></a>
+  </nav>
+  <nav class="bib-underrad" data-type="organisasjoner" aria-label="Underkategorier i Organisasjoner og næring" hidden>
+    <a href="?type=organisasjoner" data-type="organisasjoner" data-under=""><span class="bib-navn">Alle</span> <span class="bib-antall">6</span></a>
+    <a href="?type=organisasjoner&amp;under=interesse" data-type="organisasjoner" data-under="interesse"><span class="bib-navn">Interesseorganisasjoner</span> <span class="bib-antall">3</span></a>
+    <a href="?type=organisasjoner&amp;under=naering" data-type="organisasjoner" data-under="naering"><span class="bib-navn">Næringen</span> <span class="bib-antall">3</span></a>
+  </nav>
 
   <div class="bib-oppsett">
-    <details class="bib-meny" id="bib-meny" open>
-      <summary><span>Type: <b id="bib-meny-valgt">Alle publikasjoner</b></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary>
-      <nav class="bib-meny-innhold" aria-label="Type publikasjon">
-        <p class="bib-meny-tittel">Type publikasjon</p>
-        <ul>
-          <li class="bib-hoved"><a href="./" data-type="" aria-current="true"><span class="bib-navn">Alle publikasjoner</span> <span class="bib-antall">60</span></a></li>
-          <li class="bib-hoved"><a href="?type=politikk" data-type="politikk"><span class="bib-navn">Politikk og styring</span> <span class="bib-antall">13</span></a>
-            <ul class="bib-under" data-type="politikk" hidden>
-              <li><a href="?type=politikk&amp;under=strategier" data-type="politikk" data-under="strategier"><span class="bib-navn">Strategier og handlingsplaner</span> <span class="bib-antall">4</span></a></li>
-              <li><a href="?type=politikk&amp;under=meldinger" data-type="politikk" data-under="meldinger"><span class="bib-navn">Stortingsmeldinger og proposisjoner</span> <span class="bib-antall">3</span></a></li>
-              <li><a href="?type=politikk&amp;under=jordbruksoppgjoret" data-type="politikk" data-under="jordbruksoppgjoret"><span class="bib-navn">Jordbruksoppgjøret</span> <span class="bib-antall">2</span></a></li>
-              <li><a href="?type=politikk&amp;under=stortinget" data-type="politikk" data-under="stortinget"><span class="bib-navn">Stortingets behandling</span> <span class="bib-antall">3</span></a></li>
-              <li><a href="?type=politikk&amp;under=horinger" data-type="politikk" data-under="horinger"><span class="bib-navn">Høringer</span> <span class="bib-antall">1</span></a></li>
-            </ul>
-          </li>
-          <li class="bib-hoved"><a href="?type=regelverk" data-type="regelverk"><span class="bib-navn">Regelverk og tilskudd</span> <span class="bib-antall">8</span></a>
-            <ul class="bib-under" data-type="regelverk" hidden>
-              <li><a href="?type=regelverk&amp;under=forskrift" data-type="regelverk" data-under="forskrift"><span class="bib-navn">Økologiforskriften og EU-regelverket</span> <span class="bib-antall">2</span></a></li>
-              <li><a href="?type=regelverk&amp;under=veiledning" data-type="regelverk" data-under="veiledning"><span class="bib-navn">Veiledning om regelverket</span> <span class="bib-antall">2</span></a></li>
-              <li><a href="?type=regelverk&amp;under=kontroll" data-type="regelverk" data-under="kontroll"><span class="bib-navn">Godkjenning og kontroll</span> <span class="bib-antall">2</span></a></li>
-              <li><a href="?type=regelverk&amp;under=tilskudd" data-type="regelverk" data-under="tilskudd"><span class="bib-navn">Tilskudd til økologisk drift</span> <span class="bib-antall">2</span></a></li>
-            </ul>
-          </li>
-          <li class="bib-hoved"><a href="?type=forvaltning" data-type="forvaltning"><span class="bib-navn">Rapporter fra forvaltningen</span> <span class="bib-antall">10</span></a>
-            <ul class="bib-under" data-type="forvaltning" hidden>
-              <li><a href="?type=forvaltning&amp;under=ldir" data-type="forvaltning" data-under="ldir"><span class="bib-navn">Landbruksdirektoratet</span> <span class="bib-antall">3</span></a></li>
-              <li><a href="?type=forvaltning&amp;under=mattilsynet" data-type="forvaltning" data-under="mattilsynet"><span class="bib-navn">Mattilsynet</span> <span class="bib-antall">1</span></a></li>
-              <li><a href="?type=forvaltning&amp;under=ssb" data-type="forvaltning" data-under="ssb"><span class="bib-navn">SSB</span> <span class="bib-antall">2</span></a></li>
-              <li><a href="?type=forvaltning&amp;under=regionalt" data-type="forvaltning" data-under="regionalt"><span class="bib-navn">Statsforvalterne og fylkeskommunene</span> <span class="bib-antall">3</span></a></li>
-              <li><a href="?type=forvaltning&amp;under=andre" data-type="forvaltning" data-under="andre"><span class="bib-navn">Andre etater</span> <span class="bib-antall">1</span></a></li>
-            </ul>
-          </li>
-          <li class="bib-hoved"><a href="?type=forskning" data-type="forskning"><span class="bib-navn">Forskning</span> <span class="bib-antall">14</span></a>
-            <ul class="bib-under" data-type="forskning" hidden>
-              <li><a href="?type=forskning&amp;under=artikler" data-type="forskning" data-under="artikler"><span class="bib-navn">Vitenskapelige artikler</span> <span class="bib-antall">6</span></a></li>
-              <li><a href="?type=forskning&amp;under=rapporter" data-type="forskning" data-under="rapporter"><span class="bib-navn">Forskningsrapporter</span> <span class="bib-antall">5</span></a></li>
-              <li><a href="?type=forskning&amp;under=oppgaver" data-type="forskning" data-under="oppgaver"><span class="bib-navn">Masteroppgaver og doktoravhandlinger</span> <span class="bib-antall">3</span></a></li>
-            </ul>
-          </li>
-          <li class="bib-hoved"><a href="?type=fagstoff" data-type="fagstoff"><span class="bib-navn">Praktisk fagstoff</span> <span class="bib-antall">9</span></a>
-            <ul class="bib-under" data-type="fagstoff" hidden>
-              <li><a href="?type=fagstoff&amp;under=fagark" data-type="fagstoff" data-under="fagark"><span class="bib-navn">Fagark og veiledere om drift</span> <span class="bib-antall">6</span></a></li>
-              <li><a href="?type=fagstoff&amp;under=artikler" data-type="fagstoff" data-under="artikler"><span class="bib-navn">Artikler og reportasjer</span> <span class="bib-antall">3</span></a></li>
-            </ul>
-          </li>
-          <li class="bib-hoved"><a href="?type=organisasjoner" data-type="organisasjoner"><span class="bib-navn">Organisasjoner og næring</span> <span class="bib-antall">6</span></a>
-            <ul class="bib-under" data-type="organisasjoner" hidden>
-              <li><a href="?type=organisasjoner&amp;under=interesse" data-type="organisasjoner" data-under="interesse"><span class="bib-navn">Interesseorganisasjoner</span> <span class="bib-antall">3</span></a></li>
-              <li><a href="?type=organisasjoner&amp;under=naering" data-type="organisasjoner" data-under="naering"><span class="bib-navn">Næringen</span> <span class="bib-antall">3</span></a></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="bib-meny-ekstra">
-          <li><a href="#om-biblioteket"><span class="bib-navn">Om biblioteket</span></a></li>
-          <li><a href="#tips"><span class="bib-navn">Tips oss om en publikasjon</span></a></li>
-        </ul>
-      </nav>
-    </details>
+    <form class="bib-sok" role="search">
+      <label class="bib-skjult" for="bib-sok">Søk i biblioteket</label>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="bib-sok" name="q" placeholder="Søk i titler, beskrivelser og utgivere" autocomplete="off" enterkeyhint="search">
+    </form>
+
+    <aside class="bib-side" id="bib-filtre" aria-label="Tema og avgrensning">
+      <h2 class="bib-side-tittel" id="bib-tema-tittel">Tema</h2>
+      <div class="bib-temaer" id="bib-temaer" role="group" aria-labelledby="bib-tema-tittel">
+        <button type="button" data-tema="" aria-pressed="true"><span class="bib-navn">Alle temaer</span> <span class="bib-antall">60</span></button>
+        <button type="button" data-tema="omlegging" aria-pressed="false"><span class="bib-navn">Omlegging</span> <span class="bib-antall">15</span></button>
+        <button type="button" data-tema="jord" aria-pressed="false"><span class="bib-navn">Jord og gjødsling</span> <span class="bib-antall">4</span></button>
+        <button type="button" data-tema="plantevern" aria-pressed="false"><span class="bib-navn">Plantevern og ugras</span> <span class="bib-antall">6</span></button>
+        <button type="button" data-tema="planter" aria-pressed="false"><span class="bib-navn">Planteproduksjon</span> <span class="bib-antall">14</span></button>
+        <button type="button" data-tema="husdyr" aria-pressed="false"><span class="bib-navn">Husdyr og dyrevelferd</span> <span class="bib-antall">11</span></button>
+        <button type="button" data-tema="marked" aria-pressed="false"><span class="bib-navn">Marked og forbruk</span> <span class="bib-antall">29</span></button>
+        <button type="button" data-tema="okonomi" aria-pressed="false"><span class="bib-navn">Økonomi og lønnsomhet</span> <span class="bib-antall">18</span></button>
+        <button type="button" data-tema="klima" aria-pressed="false"><span class="bib-navn">Klima og miljø</span> <span class="bib-antall">6</span></button>
+      </div>
+      <h2 class="bib-side-tittel bib-avgrens-tittel">Avgrens</h2>
+      <div class="bib-valg">
+        <label>År
+          <select id="bib-aar">
+            <option value="">Alle år</option>
+            <option value="2020">2020 og nyere</option>
+            <option value="2015">2015 og nyere</option>
+            <option value="2010">2010 og nyere</option>
+            <option value="eldre">Eldre enn 2010</option>
+          </select>
+        </label>
+        <label>Språk
+          <select id="bib-spraak">
+            <option value="">Alle språk</option>
+            <option value="no">Norsk</option>
+            <option value="en">Engelsk</option>
+          </select>
+        </label>
+        <label class="bib-avkryss"><input type="checkbox" id="bib-gratis"> Bare gratis å lese</label>
+      </div>
+      <ul class="bib-side-lenker">
+        <li><a href="#om-biblioteket">Om biblioteket</a></li>
+        <li><a href="#tips">Tips oss om en publikasjon</a></li>
+      </ul>
+    </aside>
 
     <div class="bib-innhold">
-      <div class="bib-filtre" id="bib-filtre">
-        <div class="oko-seg bib-temaer" id="bib-temaer" role="group" aria-label="Tema">
-          <button type="button" data-tema="" aria-pressed="true">Alle temaer <span class="bib-antall">60</span></button>
-          <button type="button" data-tema="omlegging" aria-pressed="false">Omlegging <span class="bib-antall">15</span></button>
-          <button type="button" data-tema="jord" aria-pressed="false">Jord og gjødsling <span class="bib-antall">4</span></button>
-          <button type="button" data-tema="plantevern" aria-pressed="false">Plantevern og ugras <span class="bib-antall">6</span></button>
-          <button type="button" data-tema="planter" aria-pressed="false">Planteproduksjon <span class="bib-antall">14</span></button>
-          <button type="button" data-tema="husdyr" aria-pressed="false">Husdyr og dyrevelferd <span class="bib-antall">11</span></button>
-          <button type="button" data-tema="marked" aria-pressed="false">Marked og forbruk <span class="bib-antall">29</span></button>
-          <button type="button" data-tema="okonomi" aria-pressed="false">Økonomi og lønnsomhet <span class="bib-antall">18</span></button>
-          <button type="button" data-tema="klima" aria-pressed="false">Klima og miljø <span class="bib-antall">6</span></button>
-        </div>
-        <div class="bib-valg">
-          <label>År
-            <select id="bib-aar">
-              <option value="">Alle år</option>
-              <option value="2020">2020 og nyere</option>
-              <option value="2015">2015 og nyere</option>
-              <option value="2010">2010 og nyere</option>
-              <option value="eldre">Eldre enn 2010</option>
-            </select>
-          </label>
-          <label>Språk
-            <select id="bib-spraak">
-              <option value="">Alle språk</option>
-              <option value="no">Norsk</option>
-              <option value="en">Engelsk</option>
-            </select>
-          </label>
-          <label><input type="checkbox" id="bib-gratis"> Bare gratis å lese</label>
-          <label>Sorter
-            <select id="bib-sort">
-              <option value="nyest">Nyeste først</option>
-              <option value="eldst">Eldste først</option>
-              <option value="tittel">Tittel A–Å</option>
-            </select>
-          </label>
-          <button type="button" class="bib-nullstill" data-nullstill hidden>Nullstill alle valg</button>
-        </div>
-      </div>
-
       <section class="bib-nytt" id="bib-nytt" aria-labelledby="bib-nytt-tittel">
         <h2 id="bib-nytt-tittel">Nytt i biblioteket</h2>
         <p class="bib-nytt-note">Sist lagt inn 30. oktober 2026.</p>
@@ -167,7 +156,17 @@
       </section>
 
       <h2 class="bib-skjult">Publikasjonene</h2>
-      <p class="bib-status" id="bib-status" aria-live="polite">Viser alle 60 publikasjonene</p>
+      <div class="bib-statusrad">
+        <p class="bib-status" id="bib-status" aria-live="polite">60 publikasjoner</p>
+        <button type="button" class="bib-nullstill" data-nullstill hidden>Nullstill alle valg</button>
+        <label class="bib-sorter">Sorter
+          <select id="bib-sort">
+            <option value="nyest">Nyeste først</option>
+            <option value="eldst">Eldste først</option>
+            <option value="tittel">Tittel A–Å</option>
+          </select>
+        </label>
+      </div>
       <ol class="bib-liste" id="bib-liste">
         <li class="bib-post" id="jordbruksavtale-2026-2027" data-type="politikk" data-under="jordbruksoppgjoret" data-tema="okonomi" data-aar="2026" data-spraak="no" data-tilgang="gratis">
           <p class="bib-type">Politikk og styring › Jordbruksoppgjøret</p>
@@ -585,13 +584,15 @@
           <div class="bib-tags" aria-label="Temaer"><button type="button" class="bib-tag" data-tema="marked">Marked og forbruk</button></div>
         </li>
       </ol>
+      <button type="button" class="bib-flere" id="bib-flere" hidden>Vis flere</button>
       <p class="bib-tom" id="bib-tom" hidden>Ingen publikasjoner passer med disse valgene. <button type="button" class="bib-nullstill" data-nullstill>Nullstill alle valg</button></p>
 
       <section class="oko-card oko-prose bib-om" id="om-biblioteket" aria-labelledby="om-biblioteket-tittel">
         <h2 id="om-biblioteket-tittel">Om biblioteket</h2>
         <p>Biblioteket samler lenker til norske publikasjoner om økologisk landbruk. Publikasjonene ligger hos utgiverne. Her finner du en kort beskrivelse og lenken dit.</p>
         <p>Publikasjonene er sortert etter hva slags dokument de er, ikke etter hvem som har gitt dem ut. En forskningsrapport som et direktorat har bestilt, ligger derfor under Forskning. Hver publikasjon kan i tillegg ha ett eller flere temaer.</p>
-        <p>Biblioteket er under oppbygging og har foreløpig 60 publikasjoner. Utvalget og beskrivelsene er laget med hjelp av KI (Claude), og alle lenkene er kontrollert, sist 30. oktober 2026. Mye av den norske forskningen er også registrert i det internasjonale arkivet <a href="https://orgprints.org/" target="_blank" rel="noopener">Organic Eprints</a>.</p>
+        <p>Biblioteket er under oppbygging og har foreløpig 60 publikasjoner. Utvalget og beskrivelsene er laget med hjelp av KI (Claude), og alle lenkene er kontrollert, sist 30. oktober 2026.</p>
+        <p>De fleste forskningsartiklene og avhandlingene er hentet fra <a href="https://orgprints.org/" target="_blank" rel="noopener">Organic Eprints</a>, det internasjonale arkivet der norske forskningsmiljøer registrerer forskning om økologisk landbruk. Beskrivelsene bygger på sammendragene. Lenken går til tidsskriftet når artikkelen er gratis å lese der, ellers til arkivet når det har en gratis kopi.</p>
         <h3 id="tips">Tips oss om en publikasjon</h3>
         <p>Mangler det en publikasjon, eller virker ikke en lenke? Send lenken til <span class="oko-epost" data-a="diebratnorg" data-b="moc.liamg" data-emne="Tips til publikasjonsbiblioteket">e-postadressen vises når siden er lastet</span>.</p>
         <p class="oko-muted">Hele listen kan lastes ned som <a href="publikasjoner.csv" download>regneark (CSV)</a>.</p>
