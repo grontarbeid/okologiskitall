@@ -59,6 +59,7 @@ KATEGORIER = [
     ('forskning', 'Forskning', [
         ('artikler', 'Vitenskapelige artikler'),
         ('rapporter', 'Forskningsrapporter'),
+        ('konferanse', 'Konferansebidrag'),
         ('oppgaver', 'Masteroppgaver og doktoravhandlinger'),
     ]),
     ('fagstoff', 'Praktisk fagstoff', [
