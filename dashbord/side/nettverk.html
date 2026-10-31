@@ -146,7 +146,8 @@
   <section class="oko-page" id="side-om" role="tabpanel" hidden>
     <div class="nett-om">
       <h3>Hva nettverket viser</h3>
-      <p>Hver sirkel er en publikasjon i biblioteket. To publikasjoner er koblet når den ene <b>siterer</b> den andre, når de bygger på <b>de samme kildene</b> (minst to felles referanser, også internasjonal litteratur), eller når de har <b>forfattere felles</b>. Store sirkler er sitert mange ganger av andre publikasjoner i biblioteket.</p>
+      <p>Hver sirkel er en publikasjon i biblioteket. To publikasjoner er koblet når den ene <b>siterer</b> den andre, når de bygger på <b>de samme kildene</b>, eller når de har <b>forfattere felles</b>. Store sirkler er sitert mange ganger av andre publikasjoner i biblioteket.</p>
+      <p>«Felles kilder» betyr at referanselistene til to publikasjoner har minst to verk felles. Jo flere kilder de deler, jo sterkere er koblingen. Metoden heter bibliografisk kobling (<a class="oko-lenke" href="https://en.wikipedia.org/wiki/Bibliographic_coupling" target="_blank" rel="noopener">bibliographic coupling</a>) og ble beskrevet av <a class="oko-lenke" href="https://doi.org/10.1002/asi.5090140103" target="_blank" rel="noopener">M. M. Kessler i 1963</a>. De felles kildene kan være publikasjoner i biblioteket, norsk forskning i Organic Eprints som ikke er med i biblioteket, eller annen litteratur, mest internasjonale tidsskriftartikler. I alt er {{KILDER_ULIKE}} ulike verk felles kilder, og {{KILDER_UTENFOR}} av dem ligger utenfor biblioteket.</p>
       <p>Gruppene er funnet automatisk med en vanlig metode for å finne tett sammenvevde deler av et nettverk (Louvain). Siteringer og felles kilder teller mest, felles forfattere minst. Grupper med færre enn tre publikasjoner er ikke vist som egne grupper. Navnene på gruppene er satt ut fra hva publikasjonene i dem handler om.</p>
       <h3>Hvor dataene kommer fra</h3>
       <ul>
@@ -160,6 +161,7 @@
       <ul>
         <li>Offentlige dokumenter og nettsider har sjelden referanselister. De vises derfor mest som noe som blir sitert.</li>
         <li>Siteringer med forkortede eller oversatte titler kan bli oversett, så nettverket viser heller for få enn for mange koblinger.</li>
+        <li>Felles kilder utenfor biblioteket blir bare kjent igjen når de har DOI eller ligger i Organic Eprints. Bøker, eldre rapporter og annet uten DOI blir derfor ikke telt som felles kilder.</li>
         <li>To forskere med samme etternavn og forbokstav kan bli slått sammen til én.</li>
         <li>Analysen gjelder bare publikasjonene i biblioteket, slik det var {{LAGET}}. Siteringer til og fra andre publikasjoner er ikke med, bortsett fra som felles kilder.</li>
       </ul>

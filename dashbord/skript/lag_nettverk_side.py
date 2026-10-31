@@ -80,6 +80,8 @@ def main(argv=None):
                .replace('{{ALDER}}', f"{n['hvem']['alder_median']:g}")
                .replace('{{UTEN}}', tall(n['uten']))
                .replace('{{FORSKERE_VIST}}', tall(k['forskere_vist']))
+               .replace('{{KILDER_ULIKE}}', tall(n['felles_kilder']['ulike']))
+               .replace('{{KILDER_UTENFOR}}', tall(n['felles_kilder']['utenfor']))
                .replace('{{DEKNING}}', tall(n['dekning']))
                .replace('{{ANTALL}}', tall(n['antall']))
                .replace('{{LAGET}}', dato_tekst(n['laget']))
