@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hvordan henger publikasjonene sammen? – Økologisk landbruk i Norge</title>
+<meta name="description" content="Nettverksanalyse av publikasjonene i biblioteket på okologiskitall.no: hvem som siterer hvem, felles kilder, forskere som skriver sammen og forskningsmiljøene bak.">
+<link rel="canonical" href="https://okologiskitall.no/publikasjoner/nettverk/">
+<link rel="icon" href="../../logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../tema.css">
+<link rel="stylesheet" href="../../oko.css">
+<link rel="stylesheet" href="nettverk.css">
+</head>
+<body>
+<!-- Denne siden lages av dashbord/skript/lag_nettverk_side.py fra malen dashbord/side/nettverk.html
+     og analysen i data/publikasjonsnettverk.json. Endre malen eller dataene, ikke denne filen. -->
+<main id="dash-root" class="oko-nettside">
+<div class="oko nett" id="nettverk">
+  <header class="oko-head">
+    <div class="oko-topp">
+      <div class="oko-merkerad">
+        <nav class="oko-hovedmeny" aria-label="Nettstedet">
+          <a href="../../">Statistikk</a>
+          <a href="../" aria-current="page">Publikasjoner</a>
+        </nav>
+        <a class="oko-logo" href="../../" aria-label="Økologisk i tall – til statistikken">
+          {{LOGO}}
+        </a>
+      </div>
+      <h1 class="oko-title">Hvordan henger publikasjonene sammen?</h1>
+    </div>
+    <p class="oko-lede">En nettverksanalyse av de {{ANTALL}} publikasjonene i <a class="oko-lenke" href="../">publikasjonsbiblioteket</a>. Publikasjonene er koblet når de siterer hverandre, bygger på de samme kildene eller har forfattere felles. Se hvilke publikasjoner som er mest brukt, hvilke grupper som henger tett sammen, og hvem som skriver sammen.</p>
+    <p class="oko-ai">Laget med KI (Claude) ut fra referanselistene i publikasjonene, {{LAGET}} – se <a class="oko-lenke" href="#om" data-fane="om">Om analysen</a>.</p>
+  </header>
+  <div class="oko-kpis nett-kpis">{{KPIS}}</div>
+  <section class="oko-card nett-funn" aria-labelledby="funn-tittel">
+    <h2 class="oko-card-title" id="funn-tittel">Hovedfunn</h2>
+    <ul>{{FUNN}}</ul>
+  </section>
+  <section class="oko-card nett-hvem" aria-labelledby="hvem-tittel">
+    <h2 class="oko-card-title" id="hvem-tittel">Hvem siterer hvem?</h2>
+    <p class="oko-card-note">Antall siteringer innad i biblioteket fra hver type publikasjon (rader) til hver type (kolonner). Den siterte publikasjonen er i snitt (median) {{ALDER}} år eldre enn den som siterer den.</p>
+    <div class="nett-tabellramme nett-matrise-ramme">{{HVEM}}</div>
+  </section>
+
+  <div class="oko-tabs nett-faner" role="tablist" id="nett-faner" aria-label="Visninger">
+    <button type="button" role="tab" class="oko-tab" data-side="publikasjoner" aria-controls="side-publikasjoner">Publikasjoner</button>
+    <button type="button" role="tab" class="oko-tab" data-side="forskere" aria-controls="side-forskere">Forskere</button>
+    <button type="button" role="tab" class="oko-tab" data-side="miljoer" aria-controls="side-miljoer">Forskningsmiljøer</button>
+    <button type="button" role="tab" class="oko-tab" data-side="tabell" aria-controls="side-tabell">Tabell</button>
+    <button type="button" role="tab" class="oko-tab" data-side="om" aria-controls="side-om">Om analysen</button>
+  </div>
+
+  <section class="oko-page" id="side-publikasjoner" role="tabpanel" hidden>
+    <div class="nett-kontroller">
+      <fieldset><legend>Vis koblinger:</legend>
+        <label><input type="checkbox" data-kant="s" checked> Siteringer</label>
+        <label><input type="checkbox" data-kant="k" checked> Felles kilder</label>
+        <label><input type="checkbox" data-kant="f"> Felles forfattere</label>
+      </fieldset>
+      <div class="nett-sok"><input type="search" placeholder="Finn publikasjon eller forfatter" aria-label="Finn publikasjon eller forfatter" autocomplete="off"><ul class="nett-treff" hidden></ul></div>
+      <button type="button" class="nett-knapp nett-nullstill">Nullstill</button>
+    </div>
+    <ul class="nett-forklaring" aria-label="Forklaring">
+      <li><span class="nett-prikk" style="background:var(--oko-farge-1)"></span>Vitenskapelige artikler</li>
+      <li><span class="nett-prikk" style="background:var(--oko-farge-2)"></span>Rapporter, oppgaver og konferansebidrag</li>
+      <li><span class="nett-prikk" style="background:var(--oko-farge-3)"></span>Praktisk fagstoff</li>
+      <li><span class="nett-prikk" style="background:var(--cds-chart-reference)"></span>Offentlige dokumenter og organisasjoner</li>
+      <li><span class="nett-strek"></span>Siterer</li>
+      <li><span class="nett-strek stiplet"></span>Felles kilder</li>
+      <li><span class="nett-strek lys"></span>Felles forfattere</li>
+    </ul>
+    <div class="nett-oppsett">
+      <div>
+        <div class="nett-flate"><svg viewBox="0 0 1000 760" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Nettverk av publikasjonene i biblioteket"></svg>
+          <div class="nett-zoom"><button type="button" aria-label="Zoom inn">+</button><button type="button" aria-label="Zoom ut">−</button><button type="button" class="tekst" aria-label="Vis hele nettverket">Alt</button></div>
+          <div class="nett-tips" hidden></div></div>
+        <p class="nett-hint">Hold pekeren over en sirkel for å se hva den er, og klikk for å se koblingene. Dra for å flytte, og zoom med musehjulet eller knappene. {{UTEN}} publikasjoner uten koblinger er ikke med i figuren.</p>
+      </div>
+      <aside class="nett-panel" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section class="oko-page" id="side-forskere" role="tabpanel" hidden>
+    <div class="nett-kontroller">
+      <div class="nett-sok"><input type="search" placeholder="Finn forsker" aria-label="Finn forsker" autocomplete="off"><ul class="nett-treff" hidden></ul></div>
+      <button type="button" class="nett-knapp nett-nullstill">Nullstill</button>
+    </div>
+    <ul class="nett-forklaring" aria-label="Forklaring">
+      <li><span class="nett-prikk" style="background:var(--oko-farge-1)"></span>Forsker (større sirkel = flere publikasjoner)</li>
+      <li><span class="nett-strek"></span>Har skrevet sammen (tykkere strek = oftere)</li>
+    </ul>
+    <div class="nett-oppsett">
+      <div>
+        <div class="nett-flate"><svg viewBox="0 0 1000 760" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Nettverk av forskere som har skrevet sammen"></svg>
+          <div class="nett-zoom"><button type="button" aria-label="Zoom inn">+</button><button type="button" aria-label="Zoom ut">−</button><button type="button" class="tekst" aria-label="Vis hele nettverket">Alt</button></div>
+          <div class="nett-tips" hidden></div></div>
+        <p class="nett-hint">De {{FORSKERE_VIST}} forskerne som har minst to publikasjoner i biblioteket og har skrevet sammen med minst én av de andre. Klikk på en forsker for å se hvem hun eller han har skrevet sammen med, og publikasjonene.</p>
+      </div>
+      <aside class="nett-panel" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section class="oko-page" id="side-miljoer" role="tabpanel" hidden>
+    <div class="nett-kontroller">
+      <div class="nett-sok"><input type="search" placeholder="Finn forskningsmiljø" aria-label="Finn forskningsmiljø" autocomplete="off"><ul class="nett-treff" hidden></ul></div>
+      <button type="button" class="nett-knapp nett-nullstill">Nullstill</button>
+    </div>
+    <ul class="nett-forklaring" aria-label="Forklaring">
+      <li><span class="nett-prikk" style="background:var(--oko-farge-1)"></span>Norske miljøer</li>
+      <li><span class="nett-prikk" style="background:var(--oko-farge-2)"></span>Utenlandske miljøer (per land)</li>
+      <li><span class="nett-strek"></span>Felles publikasjoner (tykkere strek = flere)</li>
+    </ul>
+    <div class="nett-oppsett">
+      <div>
+        <div class="nett-flate"><svg viewBox="0 0 1000 760" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Nettverk av forskningsmiljøer som har publisert sammen"></svg>
+          <div class="nett-zoom"><button type="button" aria-label="Zoom inn">+</button><button type="button" aria-label="Zoom ut">−</button><button type="button" class="tekst" aria-label="Vis hele nettverket">Alt</button></div>
+          <div class="nett-tips" hidden></div></div>
+        <p class="nett-hint">Klikk på et miljø for å se hvem det har publisert sammen med.</p>
+      </div>
+      <aside class="nett-panel" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section class="oko-page" id="side-tabell" role="tabpanel" hidden>
+    <p class="oko-section-intro">Alle publikasjonene i biblioteket med tallene fra nettverket. Klikk på en kolonne for å sortere.</p>
+    <div class="nett-tabellfilter"><input type="search" placeholder="Filtrer på tittel, forfatter eller type" aria-label="Filtrer tabellen"><span class="nett-meta"></span></div>
+    <div class="nett-tabellramme">
+      <table class="nett-tabell">
+        <thead><tr>
+          <th data-n="t" aria-sort="none"><button type="button">Tittel</button></th>
+          <th data-n="type" aria-sort="none"><button type="button">Type</button></th>
+          <th data-n="aar" class="tall" aria-sort="none"><button type="button">År</button></th>
+          <th data-n="kl" aria-sort="none"><button type="button">Gruppe</button></th>
+          <th data-n="inn" class="tall" aria-sort="none"><button type="button">Sitert av</button></th>
+          <th data-n="ut" class="tall" aria-sort="none"><button type="button">Siterer</button></th>
+          <th data-n="nk" class="tall" aria-sort="none"><button type="button">Felles kilder</button></th>
+          <th data-n="nf" class="tall" aria-sort="none"><button type="button">Felles forfattere</button></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="nett-merknad">«Sitert av» og «Siterer» teller bare publikasjoner i biblioteket. «Felles kilder» er antall publikasjoner den deler minst to referanser med; «Felles forfattere» er antall publikasjoner den har minst én forfatter felles med.</p>
+  </section>
+
+  <section class="oko-page" id="side-om" role="tabpanel" hidden>
+    <div class="nett-om">
+      <h3>Hva nettverket viser</h3>
+      <p>Hver sirkel er en publikasjon i biblioteket. To publikasjoner er koblet når den ene <b>siterer</b> den andre, når de bygger på <b>de samme kildene</b> (minst to felles referanser, også internasjonal litteratur), eller når de har <b>forfattere felles</b>. Store sirkler er sitert mange ganger av andre publikasjoner i biblioteket.</p>
+      <p>Gruppene er funnet automatisk med en vanlig metode for å finne tett sammenvevde deler av et nettverk (Louvain). Siteringer og felles kilder teller mest, felles forfattere minst. Grupper med færre enn tre publikasjoner er ikke vist som egne grupper. Navnene på gruppene er satt ut fra hva publikasjonene i dem handler om.</p>
+      <h3>Hvor dataene kommer fra</h3>
+      <ul>
+        <li>Referanselister fra Crossref for publikasjoner med DOI.</li>
+        <li>Referanselister hentet ut av de åpne PDF-filene i Organic Eprints og hos utgiverne.</li>
+        <li>Referansefeltet i Organic Eprints, der det er fylt ut.</li>
+      </ul>
+      <p>Vi fant referanser for {{DEKNING}} av de {{ANTALL}} publikasjonene. Referansene er koblet til publikasjonene i biblioteket med DOI og med tittel (titler med minst 30 tegn). En sitering teller bare når den siterte publikasjonen ikke er mer enn ett år nyere enn den som siterer, så eldre utgaver av for eksempel økologiforskriften ikke blir regnet som siteringer av dagens utgave.</p>
+      <p>Forfattere er slått sammen på etternavn og første bokstav i fornavnet. Store internasjonale forfatterlag (mer enn tolv forfattere) gir ikke samarbeidslinjer i nettverket av forskere. Forskningsmiljøene er de som er registrert på publikasjonen i Organic Eprints, så publikasjoner som ikke ligger der, er ikke med i nettverket av miljøer. Bioforsk, Planteforsk og NILF er i dag en del av NIBIO, og Norges veterinærhøgskole er en del av NMBU, men de vises med navnet de hadde da publikasjonene kom ut.</p>
+      <h3>Hva du bør vite</h3>
+      <ul>
+        <li>Offentlige dokumenter og nettsider har sjelden referanselister. De vises derfor mest som noe som blir sitert.</li>
+        <li>Siteringer med forkortede eller oversatte titler kan bli oversett, så nettverket viser heller for få enn for mange koblinger.</li>
+        <li>To forskere med samme etternavn og forbokstav kan bli slått sammen til én.</li>
+        <li>Analysen gjelder bare publikasjonene i biblioteket, slik det var {{LAGET}}. Siteringer til og fra andre publikasjoner er ikke med, bortsett fra som felles kilder.</li>
+      </ul>
+      <p class="nett-merknad">Laget med KI (Claude) {{LAGET}} ut fra dataene over. Tallene er kontrollert mot de innsamlede referanselistene.</p>
+    </div>
+  </section>
+</div>
+<footer class="oko-bunn">
+<p class="oko-ansvarlig">Ansvarlig: Grønt arbeid Nordvik, org.nr. <a class="oko-lenke" href="https://virksomhet.brreg.no/nb/oppslag/enheter/936885403">936&nbsp;885&nbsp;403</a> · Kontakt: <span class="oko-epost" data-a="diebratnorg" data-b="moc.liamg">e-postadressen vises når siden er lastet</span></p>
+<p>Publikasjonene ligger hos utgiverne; nettverket bygger på referanselistene deres. Laget med Claude (Anthropic). Dataene og koden: <a class="oko-lenke" href="https://github.com/grontarbeid/okologiskitall">github.com/grontarbeid/okologiskitall</a>.</p>
+<p>Besøk telles anonymt med <a class="oko-lenke" href="https://www.goatcounter.com/">GoatCounter</a>, uten informasjonskapsler.</p>
+</footer>
+</main>
+<script id="nett-data" type="application/json">{{DATA}}</script>
+<script src="../../d3.v7.9.0.min.js"></script>
+<script src="nettverk.js"></script>
+<!-- Besøkstelling uten informasjonskapsler: https://okologiskitall.goatcounter.com
+     Sidevisningen telles automatisk; bytte av visning telles som hendelser «nett-fane-…». -->
+<script data-goatcounter="https://okologiskitall.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

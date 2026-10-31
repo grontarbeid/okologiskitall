@@ -79,3 +79,5 @@ if mangler:
 
 # Publikasjonsbiblioteket (okologiskitall.no/publikasjoner/) lages fra data/publikasjoner.csv.
 runpy.run_path(os.path.join(HER, 'lag_bibliotek.py'), run_name='__main__')
+# Nettverksanalysen av publikasjonene (okologiskitall.no/publikasjoner/nettverk/) lages fra data/publikasjonsnettverk.json.
+runpy.run_path(os.path.join(HER, 'lag_nettverk_side.py'), run_name='__main__')

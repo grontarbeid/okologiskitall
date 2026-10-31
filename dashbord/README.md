@@ -18,19 +18,22 @@ Kampanjeadressen økologisk2032.no peker dit.
 
 Nettsiden har også et **publikasjonsbibliotek** på `okologiskitall.no/publikasjoner/` (mappen
 `nettside/publikasjoner/`), med lenker til norske publikasjoner om økologisk landbruk. Menyen øverst
-(«Statistikk | Publikasjoner») bytter mellom dashbordet og biblioteket. Se «Publikasjonsbiblioteket» under.
+(«Statistikk | Publikasjoner») bytter mellom dashbordet og biblioteket. Under biblioteket ligger
+nettverksanalysen av publikasjonene, `okologiskitall.no/publikasjoner/nettverk/`. Se «Publikasjonsbiblioteket»
+og «Nettverksanalysen av publikasjonene» under.
 
 ## Mappene
 
 | Mappe / fil | Innhold |
 |---|---|
-| `side/` | Sidekoden: `index.html` (innhold og tekst), `oko.css` (utseende), `oko.js` (beregninger og figurer). Samme filer brukes i Claude-dashbordet. I tillegg malen `publikasjoner.html`, `bibliotek.css` og `bibliotek.js` for publikasjonsbiblioteket (bare på nettsiden). |
-| `nettside/` | Ferdig nettside: sidekoden + `dash-adapter.js`, `tema.css`, d3 (med lisensen i `d3-LICENSE.txt`), `2032/`, `publikasjoner/` og `datasett/`. Lages av `skript/lag_nettside.py`. |
+| `side/` | Sidekoden: `index.html` (innhold og tekst), `oko.css` (utseende), `oko.js` (beregninger og figurer). Samme filer brukes i Claude-dashbordet. I tillegg malen `publikasjoner.html`, `bibliotek.css` og `bibliotek.js` for publikasjonsbiblioteket, og malen `nettverk.html`, `nettverk.css` og `nettverk.js` for nettverksanalysen (bare på nettsiden). |
+| `nettside/` | Ferdig nettside: sidekoden + `dash-adapter.js`, `tema.css`, d3 (med lisensen i `d3-LICENSE.txt`), `2032/`, `publikasjoner/` (med `nettverk/`) og `datasett/`. Lages av `skript/lag_nettside.py`. |
 | `nettside/datasett/` | De 21 datasettene dashbordet viser (CSV + `fylkeskart.json`), og `datasett.json` med tittel, kilde og periode for hvert. |
 | `skript/oppdater_kilder.py` | Henter nye tall fra SSB (API-et PxWebApi v2) og Eurostat, og bygger datasett og nettside på nytt. |
 | `skript/bygg_datasett.py` | Lager datasettene i `nettside/datasett/` fra kildefilene i `../data/`. |
-| `skript/lag_nettside.py` | Pakker sidekoden inn i `nettside/index.html`, og kjører `lag_bibliotek.py`. |
+| `skript/lag_nettside.py` | Pakker sidekoden inn i `nettside/index.html`, og kjører `lag_bibliotek.py` og `lag_nettverk_side.py`. |
 | `skript/lag_bibliotek.py` | Lager publikasjonsbiblioteket i `nettside/publikasjoner/` fra `../data/publikasjoner.csv`. |
+| `skript/lag_nettverk_side.py` | Lager nettverkssiden i `nettside/publikasjoner/nettverk/` fra `../data/publikasjonsnettverk.json`. |
 | `skript/lag_fylkeskart.sh` | Lager fylkeskartet på nytt (bare ved ny fylkesreform). |
 | `kart/` | Fylkesgrensene (2024) i UTM sone 33. Kartverket, CC BY 4.0. |
 | `nettside-oppsett/` | Kopi av arbeidsflyten som oppdaterer og publiserer nettsiden (bare i den lokale mappen; i repoet ligger den i `.github/workflows/oppdater.yml`). |
@@ -44,7 +47,7 @@ Nettsiden har også et **publikasjonsbibliotek** på `okologiskitall.no/publikas
   og FiBL/IFOAM-årboken (`kilder/` og de store `data/fibl_*`-filene).
 
 Det offentlige repoet inneholder bare det som trengs for å bygge siden: `data/` med de tolv
-kildefilene skriptene leser og listen over publikasjoner, og `dashbord/` uten `claude-dashbord.json` og
+kildefilene skriptene leser, listen over publikasjoner og nettverksanalysen av dem, og `dashbord/` uten `claude-dashbord.json` og
 `nettside-oppsett/`.
 
 ## Årlig oppdatering
@@ -96,6 +99,24 @@ utgiver, år og lenken til utgiverens egen side.
 - **De nyeste** (etter datoen i `lagt_til`) vises under «Nytt i biblioteket» øverst på siden.
 - Utvalg kan deles som lenke, for eksempel `okologiskitall.no/publikasjoner/?type=forskning&tema=husdyr`.
 - Siden teller valg av type og tema, og åpnede publikasjoner, som hendelser `bib-…` i GoatCounter.
+
+## Nettverksanalysen av publikasjonene
+
+Siden `okologiskitall.no/publikasjoner/nettverk/` viser hvordan publikasjonene i biblioteket henger sammen:
+hvem som siterer hvem, hvilke publikasjoner som bygger på de samme kildene, hvem som skriver sammen, og
+forskningsmiljøene bak. Den har visningene Publikasjoner, Forskere, Forskningsmiljøer, Tabell og Om analysen,
+og hver visning kan lenkes til direkte, for eksempel `okologiskitall.no/publikasjoner/nettverk/#forskere`.
+
+- **Analysen er et øyeblikksbilde.** Claude laget den 31. oktober 2026 ut fra referanselistene i publikasjonene
+  (fra Crossref, de åpne PDF-filene og Organic Eprints). Resultatet står i `../data/publikasjonsnettverk.json`:
+  nøkkeltallene, hovedfunnene, tabellen «Hvem siterer hvem?» og dataene til figurene, med ferdig beregnet
+  plassering av alle sirklene. Metoden er forklart under «Om analysen» på siden.
+- **Siden lages av** `skript/lag_nettverk_side.py`, som fyller malen `side/nettverk.html` med innholdet i
+  JSON-filen. `lag_nettside.py` kjører den, så siden bygges på nytt sammen med resten av nettsiden.
+- **Nye publikasjoner i biblioteket kommer ikke med i nettverket av seg selv.** Når biblioteket har vokst, kan
+  du be Claude om å «lage nettverksanalysen av publikasjonsbiblioteket på nytt». Skriptene og mellomresultatene
+  fra analysen (blant annet alle referanselistene) ligger i den lokale mappen, i `kilder/nettverksanalyse/`.
+- Siden teller bytte av visning som hendelser `nett-fane-…` i GoatCounter.
 
 ## Den automatiske oppdateringen på GitHub
 

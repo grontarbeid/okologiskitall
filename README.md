@@ -7,7 +7,9 @@ interessert i økologisk landbruk, men mest for produsenter og fagpersoner.
 
 På **[okologiskitall.no/publikasjoner](https://okologiskitall.no/publikasjoner/)** ligger i tillegg et bibliotek
 med lenker til norske publikasjoner om økologisk landbruk, sortert etter type og tema. Listen står i
-`data/publikasjoner.csv`.
+`data/publikasjoner.csv`. På **[okologiskitall.no/publikasjoner/nettverk](https://okologiskitall.no/publikasjoner/nettverk/)**
+viser en nettverksanalyse hvordan publikasjonene henger sammen: hvem som siterer hvem, hvilke som bygger på
+de samme kildene, og hvem som skriver sammen. Analysen står i `data/publikasjonsnettverk.json`.
 
 Under hver figur kan du åpne «Vis tallene» og «Vis kildene». Kildene lenker til siden hos kilden der
 tallene ligger, så du kan sjekke dem selv. Tallene dashbordet bygger på, ligger i `data/`, og de ferdige
@@ -32,6 +34,7 @@ datasettene i `dashbord/nettside/datasett/`.
   siden hvis noe er endret (`.github/workflows/oppdater.yml`).
 - **Én gang i året** (mars) legges tallene fra Landbruksdirektoratets rapport, Debio og FiBL inn for hånd.
 - **Publikasjonsbiblioteket** oppdateres for hånd: nye publikasjoner legges inn i `data/publikasjoner.csv`.
+- **Nettverksanalysen** av publikasjonene er et øyeblikksbilde fra 31. oktober 2026 og lages på nytt ved behov.
 
 Mer om oppdateringen, mappene og kontrollen av tallene står i [`dashbord/README.md`](dashbord/README.md).
 
@@ -39,7 +42,7 @@ Mer om oppdateringen, mappene og kontrollen av tallene står i [`dashbord/README
 
 | Mappe | Innhold |
 |---|---|
-| `data/` | Kildetallene dashbordet bygges fra (CSV), og listen over publikasjonene i biblioteket (`publikasjoner.csv`) |
+| `data/` | Kildetallene dashbordet bygges fra (CSV), listen over publikasjonene i biblioteket (`publikasjoner.csv`) og nettverksanalysen av dem (`publikasjonsnettverk.json`) |
 | `dashbord/skript/` | Skriptene som henter tall og bygger datasettene og nettsiden (bare Python 3, ingen ekstra pakker) |
 | `dashbord/side/` | Sidekoden: HTML, CSS og JavaScript |
 | `dashbord/nettside/` | Den ferdige nettsiden som publiseres, med datasettene i `datasett/` |
