@@ -483,7 +483,7 @@ skriv('ldir_gront_andel', rader, ['aar', 'andel_prosent', 'merknad', 'kilde'],
       'Økologisk andel av omsetningen av norskprodusert frukt, grønnsaker og poteter i grossistleddet, slik rapporten for hvert år oppgir den. Landbruksdirektoratets årlige rapporter.',
       LDIR, LDIR_URL, periode_av(r['aar'] for r in rader), plan=ARLIG_LDIR)
 
-# per vare: tabellene og vedlegg 1 med omsetning (tonn) og økologisk andel
+# per vare: tabellene og vedleggene med omsetning (tonn) og økologisk andel
 kand = defaultdict(list)
 for r in ld:
     if r['indikator'] not in ('gront_andel', 'gront_omsetning') or not re.fullmatch(r'\d{4}', r['periode']):
@@ -523,7 +523,7 @@ for (vare, aar), rs in sorted(kand.items(), key=lambda kv: (kv[0][1], kv[0][0]))
                   'ikke_sammenlignbar': 'ja' if brudd else '', 'merknad': '; '.join(merk), 'kilde': henvis(*fra)})
 skriv('ldir_gront_varer', rader, ['aar', 'vare', 'gruppe', 'okologisk_tonn', 'totalt_tonn', 'andel_prosent', 'ikke_sammenlignbar', 'merknad', 'kilde'],
       'Frukt og grønt per vare',
-      'Norskprodusert frukt, grønnsaker og poteter per vare og år: økologisk omsetning og all omsetning fra grossist (tonn), og økologisk andel. Rapporten for 2023 har ikke tall per vare. Landbruksdirektoratets årlige rapporter (vedlegg 1 og tabellene per vare).',
+      'Norskprodusert frukt, grønnsaker og poteter per vare og år: økologisk omsetning og all omsetning fra grossist (tonn), og økologisk andel. Rapporten for 2023 har ikke tall per vare. Landbruksdirektoratets årlige rapporter (vedleggene og tabellene per vare).',
       LDIR, LDIR_URL, periode_av(r['aar'] for r in rader), plan=ARLIG_LDIR)
 
 # produsentpriser: pristabellene i rapportene for de to siste årene

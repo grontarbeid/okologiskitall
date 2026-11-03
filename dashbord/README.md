@@ -58,7 +58,7 @@ Tallene kommer én gang i året, de fleste i mars:
 |---|---|---|
 | Februar | FiBL/IFOAM (forbruk per innbygger) | For hånd: last ned nye tall fra statistics.fibl.org og be Claude oppdatere `data/fibl_*.csv`. Oppdater også hentedatoen i `KILDER.fibl` i `side/oko.js`. |
 | Mars | SSB (areal, gårder, fylker, bruk, husdyr) | Automatisk: GitHub henter hver mandag. Lokalt: `python3 dashbord/skript/oppdater_kilder.py` |
-| Mars | Landbruksdirektoratets rapport «Produksjon av økologiske jordbruksvarer» | For hånd: legg PDF-en i `kilder/landbruksdirektoratet/` og be Claude hente ut tallene etter samme mal som før og legge dem inn i `data/ldir_okologi_tidsserier.csv`. For frukt, grønt og poteter trengs andelen i teksten i kapittelet om poteter, grønnsaker og frukt, vedlegg 1 (omsetning i alt, økologisk omsetning og andel per vare) og pristabellene (økologisk, konvensjonell og differanse). |
+| Mars | Landbruksdirektoratets rapport «Produksjon av økologiske jordbruksvarer» | For hånd: legg PDF-en i `kilder/landbruksdirektoratet/` og be Claude hente ut tallene etter samme mal som før og legge dem inn i `data/ldir_okologi_tidsserier.csv`. For frukt, grønt og poteter trengs andelen i teksten i kapittelet om poteter, grønnsaker og frukt, vedlegget med omsetning i alt, økologisk omsetning og andel per vare (i rapporten for 2025 heter det bare «Vedlegg») og pristabellene (økologisk, konvensjonell og differanse). |
 | Mars | Debio (gårder inn og ut, vekster) | For hånd: last ned xlsx-filene fra debio.no/statistikk til `kilder/debio/` og be Claude gjøre dem om til `data/debio_*.csv`. |
 | Høst | SSB (endelig jordbruksareal) og Eurostat (Europa og Norden) | Automatisk: samme som over. |
 
