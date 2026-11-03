@@ -20,7 +20,7 @@ datasettene i `dashbord/nettside/datasett/`.
 | Kilde | Hva dashbordet bruker | Vilkår |
 |---|---|---|
 | [Statistisk sentralbyrå](https://www.ssb.no/statbank/list/stjord), tabell 12661, 12662, 12663 og 04496 | Økologisk areal, gårder og jordbruksareal (landet og fylker), areal etter vekst, husdyr | CC BY 4.0 |
-| [Landbruksdirektoratet](https://www.landbruksdirektoratet.no/nb/jordbruk/miljo-og-klima/okologisk-landbruk), årsrapportene om økologiske jordbruksvarer | Melk, kjøtt, egg, korn, salg, salgskanaler og tilskudd | NLOD |
+| [Landbruksdirektoratet](https://www.landbruksdirektoratet.no/nb/jordbruk/miljo-og-klima/okologisk-landbruk), årsrapportene om økologiske jordbruksvarer | Melk, kjøtt, egg, korn, frukt, grønnsaker og poteter, salg, salgskanaler og tilskudd | NLOD |
 | [Debio](https://debio.no/statistikk/), årlig statistikk | Gårder inn og ut av ordningen, vekster | Publisert åpent på debio.no |
 | [Eurostat](https://ec.europa.eu/eurostat/databrowser/view/org_cropar/default/table?lang=en), org_cropar og org_cropar_h2 | Økologisk andel i Europa og Norden | Fri gjenbruk med kildehenvisning |
 | [FiBL](https://statistics.fibl.org/europe/retail-sales-europe.html) | Forbruk av økologisk mat per innbygger i europeiske land (29 tall for 2024, hentet 24.–25.10.2026) | Enkelttall med kilde, lenke og hentedato. Større uttrekk krever skriftlig tillatelse fra FiBL og ligger derfor ikke her. |

@@ -432,6 +432,131 @@ skriv('ldir_tilskudd', rader, ['aar', 'direkte_tilskudd_mill_kr', 'arealtilskudd
       'Utbetalte direkte tilskudd til økologisk jordbruk (mill. kr, løpende priser). Til og med 2012 inkludert omleggingstilskudd; fra 2017 areal- og husdyrtilskudd utbetalt i året (gjelder søknadsåret før). Landbruksdirektoratets årlige rapporter.',
       LDIR, LDIR_URL, periode_av(r['aar'] for r in rader), plan=ARLIG_LDIR)
 
+# ---------------------------------------------------------------- frukt, grønnsaker og poteter
+# Kapittelet om poteter, grønnsaker og frukt i rapportene: norskprodusert vare omsatt fra grossist
+# (engrosnivå). Salg til industri, deler av serveringsmarkedet og alternative salgskanaler er ikke med,
+# og heller ikke økologisk vare som selges som konvensjonell.
+# Rapportene staver noen varer ulikt fra år til år; her får hver vare ett navn.
+GRONT_NAVN = {
+    'Isbergssalat': 'Isbergsalat', 'Ruccula': 'Ruccola', 'Urter': 'Urter (veksthus)', 'Urter, veksthus': 'Urter (veksthus)',
+    'Tomat, cherry': 'Cherrytomat', 'Tomat, andre': 'Andre tomater', 'Annen salat': 'Annen salat (veksthus)',
+    'Eple': 'Epler', 'Plomme': 'Plommer', 'Gul løk': 'Kepaløk', 'Rød løk': 'Rødløk',
+}
+GRONT_VEKSTHUS = {'Agurk', 'Tomat', 'Andre tomater', 'Cherrytomat', 'Urter (veksthus)', 'Annen salat (veksthus)'}
+# Tomatene er delt i tre typer fra 2019; før det står bare «Tomat», så de tidligere årene er holdt utenfor.
+GRONT_TOMATER = {'Tomat', 'Andre tomater', 'Cherrytomat'}
+# Samlerader og varer som bare står i enkelte rapporter, er ikke med i tabellen per vare.
+GRONT_IKKE_VARE = {'Totalt', 'Grønnsaker', 'Løkvekster', 'Rapidsalat', 'Veksthussalat', 'Tomater', 'Tomater (alle typer)',
+                   'Tomater, alle typer', 'Tomater, cherry 250 g', 'Epler (fruktlager)', 'Epler, omsatt som økologisk',
+                   'Plommer, omsatt som økologisk'}
+GRONT_TOTAL = {'Totalt', 'Totalomsetning', 'Totalt (konvensjonell + økologisk)'}
+# Rapporten for 2025 rettet en feil i omregningen av økologiske cherrytomater til tonn, også bakover i tid.
+# Tallene fra de tidligere rapportene kan derfor ikke sammenlignes med tallene fra og med 2025.
+GRONT_BRUDD = {'Cherrytomat': 2025}
+
+
+def gront_navn(kategori):
+    return GRONT_NAVN.get(kategori, kategori)
+
+
+def gront_gruppe(vare):
+    if vare == 'Potet':
+        return 'Poteter'
+    if vare in ('Epler', 'Plommer'):
+        return 'Frukt'
+    return 'Veksthusgrønnsaker' if vare in GRONT_VEKSTHUS else 'Frilandsgrønnsaker'
+
+
+# økologisk andel av all omsetning, slik rapporten for hvert år oppgir den i teksten
+GRONT_ANDEL_MERKNAD = {
+    '2018': 'Rapporten for 2021 oppgir 2,6 % for hvert av de tre årene før 2021',
+    '2019': 'Rapporten for 2021 oppgir 2,6 % for hvert av de tre årene før 2021',
+    '2020': 'Rapporten for 2021 oppgir 2,6 % for hvert av de tre årene før 2021',
+    '2021': 'Rapporten for 2022 skriver at andelen gikk ned 0,2 prosentpoeng til 2,2 % i 2022',
+    '2024': 'Rapporten for 2025 skriver at andelen gikk ned 0,1 prosentpoeng til 1,6 % i 2025',
+}
+ga = serie('gront_andel', enhet='prosent')
+rader = [{'aar': p, 'andel_prosent': r['verdi'], 'merknad': GRONT_ANDEL_MERKNAD.get(p, ''), 'kilde': henvis(r)}
+         for p, r in sorted(ga.items(), key=lambda kv: aarstall(kv[0])) if re.fullmatch(r'\d{4}', p)]
+skriv('ldir_gront_andel', rader, ['aar', 'andel_prosent', 'merknad', 'kilde'],
+      'Frukt og grønt: økologisk andel',
+      'Økologisk andel av omsetningen av norskprodusert frukt, grønnsaker og poteter i grossistleddet, slik rapporten for hvert år oppgir den. Landbruksdirektoratets årlige rapporter.',
+      LDIR, LDIR_URL, periode_av(r['aar'] for r in rader), plan=ARLIG_LDIR)
+
+# per vare: tabellene og vedlegg 1 med omsetning (tonn) og økologisk andel
+kand = defaultdict(list)
+for r in ld:
+    if r['indikator'] not in ('gront_andel', 'gront_omsetning') or not re.fullmatch(r'\d{4}', r['periode']):
+        continue
+    if r['kilde_tabell'].lower().startswith('tekst') or r['kategori'] in GRONT_IKKE_VARE:
+        continue
+    if r['gruppe'] in ('Basert på produsert mengde', 'Konvensjonell'):
+        continue
+    if r['indikator'] == 'gront_omsetning' and r['enhet'] != 'tonn':
+        continue
+    vare, aar = gront_navn(r['kategori']), int(r['periode'])
+    if aar < 2016 or (vare in GRONT_TOMATER and aar < 2019):
+        continue
+    kand[(vare, aar)].append(r)
+rader = []
+for (vare, aar), rs in sorted(kand.items(), key=lambda kv: (kv[0][1], kv[0][0])):
+    # Alle tallene for en vare og et år hentes fra samme rapport: den nyeste som har dem.
+    rapport = max(int(r['kilde_rapport']) for r in rs)
+    fra = [r for r in rs if int(r['kilde_rapport']) == rapport]
+    v = {}
+    for r in fra:
+        maal = 'andel_prosent' if r['indikator'] == 'gront_andel' else ('totalt_tonn' if r['gruppe'] in GRONT_TOTAL else 'okologisk_tonn')
+        if maal in v and tall(v[maal]) != tall(r['verdi']):
+            advarsler.append(f'ldir_gront_varer {vare} {aar}: to ulike tall for {maal} i rapporten for {rapport}')
+        v[maal] = r['verdi']
+    if 'okologisk_tonn' not in v and 'andel_prosent' not in v:
+        continue
+    merk = []
+    frukt = ' '.join(r['merknad'] for r in fra).lower()
+    if 'fruktlager' in frukt:
+        merk.append('Justert med tall fra Fruktlagerinspektøren' if 'justert' in frukt else 'Tall fra Fruktlagerinspektøren')
+    brudd = vare in GRONT_BRUDD and aar < GRONT_BRUDD[vare]
+    if brudd:
+        merk.append(f'Gammel omregning til tonn; kan ikke sammenlignes med tallene fra og med {GRONT_BRUDD[vare]}')
+    rader.append({'aar': str(aar), 'vare': vare, 'gruppe': gront_gruppe(vare), 'okologisk_tonn': v.get('okologisk_tonn'),
+                  'totalt_tonn': v.get('totalt_tonn'), 'andel_prosent': v.get('andel_prosent'),
+                  'ikke_sammenlignbar': 'ja' if brudd else '', 'merknad': '; '.join(merk), 'kilde': henvis(*fra)})
+skriv('ldir_gront_varer', rader, ['aar', 'vare', 'gruppe', 'okologisk_tonn', 'totalt_tonn', 'andel_prosent', 'ikke_sammenlignbar', 'merknad', 'kilde'],
+      'Frukt og grønt per vare',
+      'Norskprodusert frukt, grønnsaker og poteter per vare og år: økologisk omsetning og all omsetning fra grossist (tonn), og økologisk andel. Rapporten for 2023 har ikke tall per vare. Landbruksdirektoratets årlige rapporter (vedlegg 1 og tabellene per vare).',
+      LDIR, LDIR_URL, periode_av(r['aar'] for r in rader), plan=ARLIG_LDIR)
+
+# produsentpriser: pristabellene i rapportene for de to siste årene
+PRIS_ROLLE = {'Økologisk': 'okologisk_kr', 'Konvensjonell': 'konvensjonell_kr', 'Differanse': 'differanse_kr'}
+pr = [r for r in ld if r['indikator'] == 'gront_pris_produsent' and r['gruppe'] in PRIS_ROLLE
+      and r['kilde_tabell'].startswith('Tabell') and re.fullmatch(r'\d{4}', r['periode']) and r['periode'] == r['kilde_rapport']]
+siste_pris = max(int(r['periode']) for r in pr)
+piv, kildene = defaultdict(dict), defaultdict(list)
+for r in pr:
+    if int(r['periode']) < siste_pris - 1:
+        continue
+    k = (r['periode'], gront_navn(r['kategori']))
+    piv[k][PRIS_ROLLE[r['gruppe']]] = tall(r['verdi'])
+    if r['gruppe'] != 'Differanse' or 'enhet' not in piv[k]:
+        piv[k]['enhet'] = r['enhet'].rstrip('.')
+    kildene[k].append(r)
+rader = []
+for (aar, vare), v in sorted(piv.items()):
+    oko, konv, diff = v.get('okologisk_kr'), v.get('konvensjonell_kr'), v.get('differanse_kr')
+    if oko is None or not konv:
+        advarsler.append(f'ldir_gront_pris {vare} {aar}: mangler økologisk eller konvensjonell pris i pristabellen')
+        continue
+    # kontroll: differansen i tabellen stemmer med prisene (avrunding gir opptil ett øre)
+    if diff is not None and abs(oko - konv - diff) > 0.015:
+        advarsler.append(f'ldir_gront_pris {vare} {aar}: differansen {diff} stemmer ikke med prisene {oko} og {konv}')
+    rader.append({'aar': aar, 'vare': vare, 'enhet': v['enhet'], 'okologisk_kr': fmt(oko), 'konvensjonell_kr': fmt(konv),
+                  'differanse_kr': fmt(diff) if diff is not None else fmt(oko - konv, 2),
+                  'pristillegg_prosent': fmt(100 * (oko - konv) / konv, 1), 'kilde': henvis(*kildene[(aar, vare)])})
+skriv('ldir_gront_pris', rader, ['aar', 'vare', 'enhet', 'okologisk_kr', 'konvensjonell_kr', 'differanse_kr', 'pristillegg_prosent', 'kilde'],
+      'Frukt og grønt: produsentpris',
+      'Pris til produsent (grossistenes gjennomsnittlige oppgjørspris) for økologisk og konvensjonell vare de to siste årene, fra pristabellene i rapportene, og hvor mye høyere den økologiske prisen er i prosent (regnet ut her). Enheten varierer: kilo, stykk eller pakke. Landbruksdirektoratets årlige rapporter.',
+      LDIR, LDIR_URL, periode_av(r['aar'] for r in rader), plan=ARLIG_LDIR)
+
 # ---------------------------------------------------------------- Internasjonalt
 eu = les('eurostat_areal_land.csv')
 AGGR = {'EU', 'EU27_2020', 'EU28'}
@@ -529,7 +654,8 @@ print(f'  {"fylkeskart":20s} {len(kart):5d} rader  ({os.path.getsize(os.path.joi
 
 # ---------------------------------------------------------------- Kildeoversikt
 rekkefolge = ['ssb_areal', 'ssb_jordbruksareal', 'ssb_fylker', 'ssb_bruk', 'ssb_husdyr', 'debio_innut', 'debio_vekster',
-              'ldir_melk', 'ldir_anvendelse', 'ldir_egg', 'ldir_kjott', 'ldir_korn', 'ldir_dagligvare', 'ldir_varegrupper',
+              'ldir_melk', 'ldir_anvendelse', 'ldir_egg', 'ldir_kjott', 'ldir_korn',
+              'ldir_gront_andel', 'ldir_gront_varer', 'ldir_gront_pris', 'ldir_dagligvare', 'ldir_varegrupper',
               'ldir_kanaler', 'ldir_tilskudd', 'eurostat_europa', 'norden_andel', 'fibl_forbruk', 'fylkeskart']
 rader = [{'datasett': k, 'tittel': manifest[k]['tittel'], 'kilde': manifest[k]['kilde'], 'periode': manifest[k]['periode'],
           'oppdateres': manifest[k]['oppdateres'], 'lenke': manifest[k]['lenke']} for k in rekkefolge]

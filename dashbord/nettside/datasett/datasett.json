@@ -1,5 +1,5 @@
 {
- "bygget": "2026-10-30T06:54:34Z",
+ "bygget": "2026-11-03T10:30:40Z",
  "siste_aar_ssb": 2025,
  "datasett": {
   "ssb_areal": {
@@ -12,7 +12,7 @@
    "rader": 31,
    "fast": false,
    "oppdateres": "Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ssb_jordbruksareal": {
    "fil": "ssb_jordbruksareal.csv",
@@ -24,7 +24,7 @@
    "rader": 27,
    "fast": false,
    "oppdateres": "Årlig: SSB publiserer endelige tall for jordbruksarealet om høsten.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ssb_fylker": {
    "fil": "ssb_fylker.csv",
@@ -36,7 +36,7 @@
    "rader": 28,
    "fast": false,
    "oppdateres": "Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ssb_bruk": {
    "fil": "ssb_bruk.csv",
@@ -48,7 +48,7 @@
    "rader": 369,
    "fast": false,
    "oppdateres": "Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ssb_husdyr": {
    "fil": "ssb_husdyr.csv",
@@ -60,7 +60,7 @@
    "rader": 269,
    "fast": false,
    "oppdateres": "Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "debio_innut": {
    "fil": "debio_innut.csv",
@@ -72,7 +72,7 @@
    "rader": 23,
    "fast": false,
    "oppdateres": "Årlig: Debio legger ut ny statistikk i mars; filene gjøres om for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "debio_vekster": {
    "fil": "debio_vekster.csv",
@@ -84,7 +84,7 @@
    "rader": 28,
    "fast": false,
    "oppdateres": "Årlig: Debio legger ut ny statistikk i mars; filene gjøres om for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ldir_melk": {
    "fil": "ldir_melk.csv",
@@ -96,7 +96,7 @@
    "rader": 21,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ldir_anvendelse": {
    "fil": "ldir_anvendelse.csv",
@@ -108,7 +108,7 @@
    "rader": 57,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ldir_egg": {
    "fil": "ldir_egg.csv",
@@ -120,7 +120,7 @@
    "rader": 24,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ldir_kjott": {
    "fil": "ldir_kjott.csv",
@@ -132,7 +132,7 @@
    "rader": 68,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ldir_korn": {
    "fil": "ldir_korn.csv",
@@ -144,7 +144,7 @@
    "rader": 12,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ldir_dagligvare": {
    "fil": "ldir_dagligvare.csv",
@@ -156,7 +156,7 @@
    "rader": 14,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ldir_varegrupper": {
    "fil": "ldir_varegrupper.csv",
@@ -168,7 +168,7 @@
    "rader": 30,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ldir_kanaler": {
    "fil": "ldir_kanaler.csv",
@@ -180,7 +180,7 @@
    "rader": 72,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "ldir_tilskudd": {
    "fil": "ldir_tilskudd.csv",
@@ -192,7 +192,43 @@
    "rader": 17,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
+  },
+  "ldir_gront_andel": {
+   "fil": "ldir_gront_andel.csv",
+   "tittel": "Frukt og grønt: økologisk andel",
+   "beskrivelse": "Økologisk andel av omsetningen av norskprodusert frukt, grønnsaker og poteter i grossistleddet, slik rapporten for hvert år oppgir den. Landbruksdirektoratets årlige rapporter.",
+   "kilde": "Landbruksdirektoratet",
+   "lenke": "https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026",
+   "periode": "2018–2025",
+   "rader": 8,
+   "fast": false,
+   "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
+   "bygget": "2026-11-03T10:30:40Z"
+  },
+  "ldir_gront_varer": {
+   "fil": "ldir_gront_varer.csv",
+   "tittel": "Frukt og grønt per vare",
+   "beskrivelse": "Norskprodusert frukt, grønnsaker og poteter per vare og år: økologisk omsetning og all omsetning fra grossist (tonn), og økologisk andel. Rapporten for 2023 har ikke tall per vare. Landbruksdirektoratets årlige rapporter (vedlegg 1 og tabellene per vare).",
+   "kilde": "Landbruksdirektoratet",
+   "lenke": "https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026",
+   "periode": "2016–2025",
+   "rader": 210,
+   "fast": false,
+   "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
+   "bygget": "2026-11-03T10:30:40Z"
+  },
+  "ldir_gront_pris": {
+   "fil": "ldir_gront_pris.csv",
+   "tittel": "Frukt og grønt: produsentpris",
+   "beskrivelse": "Pris til produsent (grossistenes gjennomsnittlige oppgjørspris) for økologisk og konvensjonell vare de to siste årene, fra pristabellene i rapportene, og hvor mye høyere den økologiske prisen er i prosent (regnet ut her). Enheten varierer: kilo, stykk eller pakke. Landbruksdirektoratets årlige rapporter.",
+   "kilde": "Landbruksdirektoratet",
+   "lenke": "https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026",
+   "periode": "2024–2025",
+   "rader": 21,
+   "fast": false,
+   "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "eurostat_europa": {
    "fil": "eurostat_europa.csv",
@@ -204,7 +240,7 @@
    "rader": 32,
    "fast": false,
    "oppdateres": "Årlig: Eurostat publiserer nye tall med 1–2 års forsinkelse.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "norden_andel": {
    "fil": "norden_andel.csv",
@@ -216,7 +252,7 @@
    "rader": 98,
    "fast": false,
    "oppdateres": "Årlig: Eurostat publiserer nye tall med 1–2 års forsinkelse.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "fibl_forbruk": {
    "fil": "fibl_forbruk.csv",
@@ -228,7 +264,7 @@
    "rader": 29,
    "fast": false,
    "oppdateres": "Årlig: FiBL og IFOAM gir ut årboken «The World of Organic Agriculture» i februar.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "fylkeskart": {
    "fil": "fylkeskart.json",
@@ -240,7 +276,7 @@
    "rader": 14,
    "fast": true,
    "oppdateres": "Ved neste fylkesreform.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   },
   "kilder": {
    "fil": "kilder.csv",
@@ -249,10 +285,10 @@
    "kilde": "Dashbordet",
    "lenke": "",
    "periode": "",
-   "rader": 20,
+   "rader": 23,
    "fast": false,
    "oppdateres": "Lages på nytt hver gang datasettene bygges.",
-   "bygget": "2026-10-30T06:54:34Z"
+   "bygget": "2026-11-03T10:30:40Z"
   }
  }
 }

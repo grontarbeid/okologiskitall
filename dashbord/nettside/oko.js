@@ -106,9 +106,9 @@ dash.calc('snitt_per_gard', {
 
 dash.calc('andeler_siste', {
   title: 'Økologisk andel per område',
-  description: 'Siste år med tall for økologisk andel av jordbruksarealet, av melk, egg og slakt per dyreslag, og av omsetningen i dagligvarehandelen.',
-  inputs: ['andel_beregnet', 'ldir_melk', 'ldir_egg', 'ldir_kjott', 'ldir_dagligvare'],
-  fn: (andel_beregnet, ldir_melk, ldir_egg, ldir_kjott, ldir_dagligvare) => {
+  description: 'Siste år med tall for økologisk andel av jordbruksarealet, av melk, egg og slakt per dyreslag, av norskprodusert frukt, grønnsaker og poteter omsatt fra grossist, og av omsetningen i dagligvarehandelen.',
+  inputs: ['andel_beregnet', 'ldir_melk', 'ldir_egg', 'ldir_kjott', 'ldir_gront_andel', 'ldir_dagligvare'],
+  fn: (andel_beregnet, ldir_melk, ldir_egg, ldir_kjott, ldir_gront_andel, ldir_dagligvare) => {
     const siste = (rader, felt) => rader
       .filter((r) => r[felt] !== '' && r[felt] != null)
       .sort((x, y) => x.aar - y.aar)
@@ -126,6 +126,7 @@ dash.calc('andeler_siste', {
       rad('Storfekjøtt', dyr('Storfe'), 'andel_prosent'),
       rad('Kylling og kalkun', dyr('Fjørfe'), 'andel_prosent'),
       rad('Svinekjøtt', dyr('Svin'), 'andel_prosent'),
+      rad('Frukt, grønt og poteter', ldir_gront_andel, 'andel_prosent'),
       rad('Dagligvarehandelen', ldir_dagligvare, 'andel_prosent'),
     ].filter(Boolean);
   },
@@ -772,7 +773,8 @@ function smaa(el, o) {
         const q = pts.reduce((a, b) => (Math.abs(x(b.x) - px) < Math.abs(x(a.x) - px) ? b : a), pts[0]);
         regel.style('display', null).attr('x1', x(q.x)).attr('x2', x(q.x));
         prikk.style('display', null).attr('cx', x(q.x)).attr('cy', y(q.y));
-        tip.vis(ev, `${p.tittel}, ${q.x}`, [{ verdi: p.fmt(q.y) }]);
+        const ekstra = p.tips ? p.tips(q) : null;
+        tip.vis(ev, `${p.tittel}, ${q.x}`, [{ verdi: p.fmt(q.y) }].concat(ekstra?.linjer || []), ekstra?.notat);
       })
       .on('pointerleave', () => {
         regel.style('display', 'none');
@@ -1432,6 +1434,150 @@ figur('graf-korn', ['ldir_korn'], (el) => {
   });
 });
 
+// Frukt, grønnsaker og poteter: norskprodusert vare omsatt fra grossist (kapittelet om poteter,
+// grønnsaker og frukt i Landbruksdirektoratets rapporter).
+const pstAkseDes = (v) => tallFmt(Number.isInteger(v) ? 0 : 1)(v) + ' %';
+figur('graf-gront-andel', ['ldir_gront_andel'], (el) => {
+  const r = rader('ldir_gront_andel');
+  linjer(el, {
+    serier: [{ felt: 'andel', navn: 'Økologisk andel', farge: farge(0), punkter: r.map((d) => ({ x: Number(d.aar), y: N(d.andel_prosent) })) }],
+    akseFmt: pstAkseDes,
+    verdiFmt: (v) => pst(v, 1),
+    endeEtiketter: false,
+    merkSiste: ['andel'],
+    hoyde: 240,
+    tipsEkstra: (aar) => {
+      const d = r.find((q) => Number(q.aar) === aar);
+      return d?.merknad ? { notat: d.merknad } : null;
+    },
+  });
+  tabell('tabell-gront-andel', {
+    kilde: 'ldir_gront_andel',
+    nokkel: ['aar'],
+    kolonner: [
+      { felt: 'aar', navn: 'År' },
+      { felt: 'andel_prosent', navn: 'Økologisk andel (%)', fmt: fmt.d1 },
+      { felt: 'merknad', navn: 'Merknad', tekst: true },
+      { felt: 'kilde', navn: 'Kilde i rapporten', tekst: true },
+    ],
+    rader: [...r].reverse(),
+  });
+});
+
+figur('graf-gront-pris', ['ldir_gront_pris'], (el) => {
+  const alle = rader('ldir_gront_pris');
+  const aar = sisteAar(alle);
+  const forrige = new Map(alle.filter((d) => Number(d.aar) === aar - 1).map((d) => [d.vare, d]));
+  const r = alle.filter((d) => Number(d.aar) === aar)
+    .map((d) => ({ navn: d.vare, verdi: N(d.pristillegg_prosent), merke: forrige.has(d.vare) ? N(forrige.get(d.vare).pristillegg_prosent) : null, d }))
+    .sort((a, b) => b.verdi - a.verdi);
+  const kr = (v) => `${fmt.d2(v)} kr`;
+  liggende(el, {
+    rader: r,
+    fmt: (v) => pst(v, 0),
+    radHoyde: 26,
+    tips: (x) => ({
+      tittel: `${x.d.vare}, ${aar}`,
+      linjer: [
+        { verdi: kr(N(x.d.okologisk_kr)), tekst: 'økologisk' },
+        { verdi: kr(N(x.d.konvensjonell_kr)), tekst: 'konvensjonell' },
+        { verdi: pst(x.verdi, 0), tekst: 'høyere pris for økologisk' },
+      ].concat(x.merke != null ? [{ verdi: pst(x.merke, 0), tekst: `i ${aar - 1}` }] : []),
+      notat: `Pris til produsent, ${x.d.enhet}`,
+    }),
+  });
+  tabell('tabell-gront-pris', {
+    kilde: 'ldir_gront_pris',
+    nokkel: ['aar', 'vare'],
+    kolonner: [
+      { felt: 'vare', navn: 'Vare', tekst: true },
+      { felt: 'aar', navn: 'År' },
+      { felt: 'pristillegg_prosent', navn: 'Høyere for økologisk (%)', fmt: fmt.int },
+      { felt: 'okologisk_kr', navn: 'Økologisk (kr)', fmt: fmt.d2 },
+      { felt: 'konvensjonell_kr', navn: 'Konvensjonell (kr)', fmt: fmt.d2 },
+      { felt: 'enhet', navn: 'Enhet', tekst: true },
+      { felt: 'kilde', navn: 'Kilde i rapporten', tekst: true },
+    ],
+    rader: [...alle].sort((a, b) => Number(b.aar) - Number(a.aar) || N(b.pristillegg_prosent) - N(a.pristillegg_prosent)),
+  });
+});
+
+figur('graf-gront-varer', ['ldir_gront_varer'], (el) => {
+  const alle = rader('ldir_gront_varer');
+  const aar = sisteAar(alle.filter((d) => N(d.andel_prosent) != null));
+  const aarFor = d3.max(alle.filter((d) => Number(d.aar) < aar && N(d.andel_prosent) != null), (d) => Number(d.aar));
+  // Året før vises ikke når tallet er regnet om på en annen måte enn i siste år (se ikke_sammenlignbar).
+  const forrige = new Map(alle.filter((d) => Number(d.aar) === aarFor && d.ikke_sammenlignbar !== 'ja').map((d) => [d.vare, d]));
+  const r = alle.filter((d) => Number(d.aar) === aar && N(d.andel_prosent) != null)
+    .map((d) => ({ navn: d.vare, verdi: N(d.andel_prosent), merke: forrige.has(d.vare) ? N(forrige.get(d.vare).andel_prosent) : null, d }))
+    .sort((a, b) => b.verdi - a.verdi || a.navn.localeCompare(b.navn, 'nb'));
+  liggende(el, {
+    rader: r,
+    fmt: (v) => pst(v, 1),
+    radHoyde: 22,
+    tips: (x) => {
+      const o = N(x.d.okologisk_tonn);
+      const t = N(x.d.totalt_tonn);
+      const f = forrige.get(x.d.vare);
+      return {
+        tittel: `${x.d.vare}, ${aar}`,
+        linjer: [{ verdi: pst(x.verdi, 1), tekst: 'økologisk andel' }]
+          .concat(f ? [{ verdi: pst(N(f.andel_prosent), 1), tekst: `i ${aarFor}` }] : [])
+          .concat(o != null ? [{ verdi: tonn(o), tekst: t != null ? `økologisk av ${tonn(t)}` : 'økologisk' }] : []),
+        notat: [x.d.gruppe, x.d.merknad, alle.some((d) => d.vare === x.d.vare && Number(d.aar) === aarFor && d.ikke_sammenlignbar === 'ja') ? `Tallet for ${aarFor} er regnet om på en annen måte og vises ikke` : '']
+          .filter(Boolean).join('. '),
+      };
+    },
+  });
+  tabell('tabell-gront-varer', {
+    kilde: 'ldir_gront_varer',
+    nokkel: ['aar', 'vare'],
+    kolonner: [
+      { felt: 'vare', navn: 'Vare', tekst: true },
+      { felt: 'aar', navn: 'År' },
+      { felt: 'andel_prosent', navn: 'Andel (%)', fmt: fmt.d1 },
+      { felt: 'okologisk_tonn', navn: 'Økologisk (tonn)', fmt: fmt.int },
+      { felt: 'totalt_tonn', navn: 'I alt (tonn)', fmt: fmt.int },
+      { felt: 'gruppe', navn: 'Gruppe', tekst: true },
+      { felt: 'merknad', navn: 'Merknad', tekst: true },
+      { felt: 'kilde', navn: 'Kilde i rapporten', tekst: true },
+    ],
+    rader: alle.filter((d) => Number(d.aar) >= aarFor)
+      .sort((a, b) => Number(b.aar) - Number(a.aar) || N(b.andel_prosent) - N(a.andel_prosent) || a.vare.localeCompare(b.vare, 'nb')),
+  });
+});
+
+figur('graf-gront-utvikling', ['ldir_gront_varer'], (el) => {
+  const alle = rader('ldir_gront_varer').filter((d) => d.ikke_sammenlignbar !== 'ja' && N(d.okologisk_tonn) != null);
+  const aar = sisteAar(alle);
+  const varer = alle.filter((d) => Number(d.aar) === aar)
+    .sort((a, b) => N(b.okologisk_tonn) - N(a.okologisk_tonn)).slice(0, 8).map((d) => d.vare);
+  smaa(el, {
+    x0: d3.min(alle, (d) => Number(d.aar)),
+    x1: aar,
+    paneler: varer.map((v) => ({
+      tittel: v,
+      fmt: tonn,
+      punkter: alle.filter((d) => d.vare === v).sort((a, b) => a.aar - b.aar)
+        .map((d) => ({ x: Number(d.aar), y: N(d.okologisk_tonn), andel: N(d.andel_prosent) })),
+      tips: (q) => (q.andel != null ? { linjer: [{ verdi: pst(q.andel, 1), tekst: 'økologisk andel' }] } : null),
+    })),
+  });
+  tabell('tabell-gront-utvikling', {
+    kilde: 'ldir_gront_varer',
+    nokkel: ['aar', 'vare'],
+    kolonner: [
+      { felt: 'vare', navn: 'Vare', tekst: true },
+      { felt: 'aar', navn: 'År' },
+      { felt: 'okologisk_tonn', navn: 'Økologisk (tonn)', fmt: fmt.int },
+      { felt: 'andel_prosent', navn: 'Andel (%)', fmt: fmt.d1 },
+      { felt: 'kilde', navn: 'Kilde i rapporten', tekst: true },
+    ],
+    rader: alle.filter((d) => varer.includes(d.vare))
+      .sort((a, b) => varer.indexOf(a.vare) - varer.indexOf(b.vare) || Number(b.aar) - Number(a.aar)),
+  });
+});
+
 // ---- Marked
 const GRUNNLAG = ['Nielsen', 'Dagligvarekjedene', 'NielsenIQ'];
 const KANAL_KORT = { 'Bakerier inkl. kaféutsalg': 'Bakerier og kaféer', 'Storhusholdning (grossistledd)': 'Storhusholdning' };
@@ -1702,7 +1848,7 @@ const KILDER = {
     navn: 'Landbruksdirektoratet',
     tittel: 'Produksjon av økologiske jordbruksvarer – rapport for 2025',
     lenke: 'https://www.landbruksdirektoratet.no/nb/nyhetsrom/rapporter/produksjon-av-okologiske-jordbruksvarer%202026',
-    om: 'Den årlige rapporten (PDF) om økologisk melk, kjøtt, egg, korn, salg og tilskudd. Eldre tall er hentet fra rapportene for 2017–2024.',
+    om: 'Den årlige rapporten (PDF) om økologisk melk, kjøtt, egg, korn, frukt, grønnsaker og poteter, salg og tilskudd. Eldre tall er hentet fra rapportene for 2017–2024.',
     mer: [['Tidligere rapporter (2017–2024)', 'https://www.landbruksdirektoratet.no/nb/jordbruk/miljo-og-klima/okologisk-landbruk']],
   },
   slf2012: {

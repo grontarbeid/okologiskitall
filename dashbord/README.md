@@ -28,7 +28,7 @@ og «Nettverksanalysen av publikasjonene» under.
 |---|---|
 | `side/` | Sidekoden: `index.html` (innhold og tekst), `oko.css` (utseende), `oko.js` (beregninger og figurer). Samme filer brukes i Claude-dashbordet. I tillegg malen `publikasjoner.html`, `bibliotek.css` og `bibliotek.js` for publikasjonsbiblioteket, og malen `nettverk.html`, `nettverk.css` og `nettverk.js` for nettverksanalysen (bare på nettsiden). |
 | `nettside/` | Ferdig nettside: sidekoden + `dash-adapter.js`, `tema.css`, d3 (med lisensen i `d3-LICENSE.txt`), `2032/`, `publikasjoner/` (med `nettverk/`) og `datasett/`. Lages av `skript/lag_nettside.py`. |
-| `nettside/datasett/` | De 21 datasettene dashbordet viser (CSV + `fylkeskart.json`), og `datasett.json` med tittel, kilde og periode for hvert. |
+| `nettside/datasett/` | De 24 datasettene dashbordet viser (CSV + `fylkeskart.json`), og `datasett.json` med tittel, kilde og periode for hvert. |
 | `skript/oppdater_kilder.py` | Henter nye tall fra SSB (API-et PxWebApi v2) og Eurostat, og bygger datasett og nettside på nytt. |
 | `skript/bygg_datasett.py` | Lager datasettene i `nettside/datasett/` fra kildefilene i `../data/`. |
 | `skript/lag_nettside.py` | Pakker sidekoden inn i `nettside/index.html`, og kjører `lag_bibliotek.py` og `lag_nettverk_side.py`. |
@@ -58,7 +58,7 @@ Tallene kommer én gang i året, de fleste i mars:
 |---|---|---|
 | Februar | FiBL/IFOAM (forbruk per innbygger) | For hånd: last ned nye tall fra statistics.fibl.org og be Claude oppdatere `data/fibl_*.csv`. Oppdater også hentedatoen i `KILDER.fibl` i `side/oko.js`. |
 | Mars | SSB (areal, gårder, fylker, bruk, husdyr) | Automatisk: GitHub henter hver mandag. Lokalt: `python3 dashbord/skript/oppdater_kilder.py` |
-| Mars | Landbruksdirektoratets rapport «Produksjon av økologiske jordbruksvarer» | For hånd: legg PDF-en i `kilder/landbruksdirektoratet/` og be Claude hente ut tallene etter samme mal som før og legge dem inn i `data/ldir_okologi_tidsserier.csv`. |
+| Mars | Landbruksdirektoratets rapport «Produksjon av økologiske jordbruksvarer» | For hånd: legg PDF-en i `kilder/landbruksdirektoratet/` og be Claude hente ut tallene etter samme mal som før og legge dem inn i `data/ldir_okologi_tidsserier.csv`. For frukt, grønt og poteter trengs andelen i teksten i kapittelet om poteter, grønnsaker og frukt, vedlegg 1 (omsetning i alt, økologisk omsetning og andel per vare) og pristabellene (økologisk, konvensjonell og differanse). |
 | Mars | Debio (gårder inn og ut, vekster) | For hånd: last ned xlsx-filene fra debio.no/statistikk til `kilder/debio/` og be Claude gjøre dem om til `data/debio_*.csv`. |
 | Høst | SSB (endelig jordbruksareal) og Eurostat (Europa og Norden) | Automatisk: samme som over. |
 
@@ -163,6 +163,20 @@ feil og blandinger av rapportutgaver, som `skript/bygg_datasett.py` nå retter (
 - **Andel uten karens per fylke** er regnet ut her: godkjent økologisk areal (12661) delt på jordbruksarealet
   i drift (04496, endelige tall). SSBs andel med karens er regnet med jordbruksarealet slik det var da tallene
   ble publisert, så den kan avvike med 0,1 prosentpoeng fra en andel regnet med de endelige tallene.
+- **Frukt, grønt og poteter, andel:** Andelen vises slik rapporten for hvert år oppgir den. Neste års rapport
+  regner av og til fra et justert tall for året før: rapporten for 2024 oppgir 1,5 % for 2024, mens rapporten
+  for 2025 skriver at andelen gikk ned 0,1 prosentpoeng til 1,6 %. Det samme skjer mellom 2021 (2,5 %) og 2022.
+  Avvikene står som merknader på siden (`GRONT_ANDEL_MERKNAD` i `skript/bygg_datasett.py`).
+- **Cherrytomater:** Rapporten for 2025 rettet en feil i omregningen av økologiske cherrytomater til tonn, også
+  bakover i tid. Tallene fra de tidligere rapportene er merket som ikke sammenlignbare (`GRONT_BRUDD`), og
+  cherrytomatene i 2025 sammenlignes ikke med året før.
+- **Frukt og grønt per vare:** Alle tallene for en vare og et år hentes fra samme rapport, den nyeste som har dem.
+  Varenavn som staves ulikt i rapportene, er slått sammen (isbergssalat/isbergsalat, ruccula/ruccola, gul løk/kepaløk
+  og rød løk/rødløk). Tomatene er med fra 2019, da rapportene begynte å dele dem i tre typer.
+- **Frukt, grønt og poteter er kontrollert** mot rapportene for 2017–2025 (november 2026). Samtidig ble omsetningen
+  i alt per vare for 2024 (vedlegg 1) og seks økologiske priser fra pristabellene i rapporten for 2024 lagt inn
+  i `data/ldir_okologi_tidsserier.csv`.
+- **Sidetall:** Sidetallene i kildehenvisningene er sidene i PDF-filen. De trykte sidetallene er ofte noen sider lavere.
 
 ## Se nettsiden lokalt
 

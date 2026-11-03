@@ -103,8 +103,8 @@
       <article class="oko-card" id="kort-andeler">
         <h3 class="oko-card-title">Hvor stor del er økologisk?</h3>
         <p class="oko-card-note">Økologisk andel av areal, produksjon og salg – siste år med tall for hvert område.</p>
-        <div class="oko-chart dash-skeleton" id="graf-andeler" data-source="andeler_siste" style="min-height: 232px"></div>
-        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-andeler"></div></details><details class="oko-kildeliste" id="kilder-andeler"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko ssb_jord ldir"><p class="oko-beregning">Jordbruksareal: økologisk areal med karens (12661) delt på jordbruksareal i drift (04496). Melk, egg, kjøtt og dagligvare: andelene slik Landbruksdirektoratet oppgir dem i siste rapport. Side i rapporten står under «Vis tallene» på fanene Vare for vare og Marked.</p></div></details></div>
+        <div class="oko-chart dash-skeleton" id="graf-andeler" data-source="andeler_siste" style="min-height: 260px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-andeler"></div></details><details class="oko-kildeliste" id="kilder-andeler"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ssb_oko ssb_jord ldir"><p class="oko-beregning">Jordbruksareal: økologisk areal med karens (12661) delt på jordbruksareal i drift (04496). Melk, egg, kjøtt, frukt og grønt og dagligvare: andelene slik Landbruksdirektoratet oppgir dem i siste rapport. Frukt og grønt gjelder norskprodusert frukt, grønnsaker og poteter omsatt fra grossist. Side i rapporten står under «Vis tallene» på fanene Vare for vare og Marked.</p></div></details></div>
       </article>
       <article class="oko-card" id="kort-innut">
         <h3 class="oko-card-title">Inn og ut av økologisk drift</h3>
@@ -237,6 +237,30 @@
         <div class="oko-chart dash-skeleton" id="graf-korn" data-source="ldir_korn" style="min-height: 240px"></div>
         <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-korn"></div></details><details class="oko-kildeliste" id="kilder-korn"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir slf2012"><p class="oko-beregning">Levert økologisk korn per sesong, slik hver rapport anslo det. Rapport, tabell og side står under «Vis tallene».</p></div></details></div>
       </article>
+      <article class="oko-card" id="kort-gront-andel">
+        <h3 class="oko-card-title">Frukt, grønt og poteter: økologisk andel</h3>
+        <p class="oko-card-note">Prosent av omsetningen av norskprodusert frukt, grønnsaker og poteter fra grossist, slik Landbruksdirektoratet oppgir den for hvert år. Direktesalg og økologisk vare som selges som vanlig vare, er ikke med.</p>
+        <div class="oko-chart dash-skeleton" id="graf-gront-andel" data-source="ldir_gront_andel" style="min-height: 240px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-gront-andel"></div></details><details class="oko-kildeliste" id="kilder-gront-andel"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir"><p class="oko-beregning">Andelen økologisk av all omsetning av norskprodusert frukt, grønt og poteter i grossistleddet, slik rapporten for hvert år oppgir den i kapittelet om poteter, grønnsaker og frukt. Tallene for 2018–2020 er fra rapporten for 2021, som oppgir 2,6 % for hvert av de tre årene. Neste års rapport bruker noen ganger et justert tall for året før: rapporten for 2025 skriver at andelen gikk ned 0,1 prosentpoeng fra 2024, mens rapporten for 2024 oppga 1,5 %. Rapport og side for hvert tall står under «Vis tallene».</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-gront-pris">
+        <h3 class="oko-card-title">Hvor mye mer får produsenten for økologisk?</h3>
+        <p class="oko-card-note">Pris til produsent for økologisk vare, i prosent over prisen for konvensjonell vare, siste år. Streken viser året før.</p>
+        <div class="oko-chart dash-skeleton" id="graf-gront-pris" data-source="ldir_gront_pris" style="min-height: 270px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-gront-pris"></div></details><details class="oko-kildeliste" id="kilder-gront-pris"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir"><p class="oko-beregning">Pristabellene i kapittelet om poteter, grønnsaker og frukt i rapportene for de to siste årene: grossistenes gjennomsnittlige oppgjørspris til norske produsenter for økologisk og konvensjonell vare. Prosenten er regnet ut her: økologisk pris minus konvensjonell pris, delt på konvensjonell pris. Prisene gjelder ulike enheter (kilo, stykk eller pakke), se «Vis tallene». Urter mangler i figuren fordi rapporten for 2025 ikke har noen pristabell for urter; ifølge teksten var økologiske urter fortsatt billigere enn konvensjonelle.</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-gront-varer">
+        <h3 class="oko-card-title">Økologisk andel per vare</h3>
+        <p class="oko-card-note">Norskprodusert frukt, grønnsaker og poteter omsatt fra grossist, siste år. Prosent av all omsetning av varen. Streken viser året før.</p>
+        <div class="oko-chart dash-skeleton" id="graf-gront-varer" data-source="ldir_gront_varer" style="min-height: 560px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-gront-varer"></div></details><details class="oko-kildeliste" id="kilder-gront-varer"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir"><p class="oko-beregning">Vedlegg 1 i rapportene: all omsetning og økologisk omsetning (tonn) og økologisk andel per vare på engrosnivå. For epler og plommer er tallene for noen år fra Fruktlagerinspektøren (se merknaden under «Vis tallene»). Cherrytomatene sammenlignes ikke med året før, fordi rapporten for 2025 rettet en feil i omregningen til tonn, også for tidligere år. Rapport, tabell og side står under «Vis tallene».</p></div></details></div>
+      </article>
+      <article class="oko-card" id="kort-gront-utvikling">
+        <h3 class="oko-card-title">Økologisk omsetning av de største varene</h3>
+        <p class="oko-card-note">Tonn norskprodusert økologisk vare omsatt fra grossist per år. Rapporten for 2023 har ikke tall per vare, så 2023 mangler. Hver figur har sin egen skala.</p>
+        <div class="oko-chart dash-skeleton" id="graf-gront-utvikling" data-source="ldir_gront_varer" style="min-height: 480px"></div>
+        <div class="oko-fot"><details class="oko-tabell"><summary>Vis tallene</summary><div class="oko-tabell-boks" id="tabell-gront-utvikling"></div></details><details class="oko-kildeliste" id="kilder-gront-utvikling"><summary>Vis kildene</summary><div class="oko-kildeboks" data-kilder="ldir"><p class="oko-beregning">De åtte varene med mest økologisk omsetning siste år. Tonn per vare og år fra vedlegg 1 i rapportene, og fra tabellene over omsetning per vare i rapportene for 2017–2019. Når flere rapporter har tall for samme år, brukes den nyeste. Rapport, tabell og side står under «Vis tallene».</p></div></details></div>
+      </article>
     </div>
   </section>
 
@@ -358,6 +382,7 @@
           <li><b>Gårder</b> er SSBs jordbruksbedrifter med økologisk areal. Debio teller landbruksvirksomheter under kontroll, og får litt høyere tall.</li>
           <li><b>Andel solgt som økologisk</b> (anvendelsesgrad) er hvor mye av den økologiske produksjonen som faktisk selges med økologisk merke.</li>
           <li><b>Dagligvaretallene</b> bygger på tre ulike datagrunnlag over tid og er ikke direkte sammenlignbare på tvers av byttene. Andelen regnes nå bare av varegrupper der det finnes økologiske varer; regnet av all mat er den lavere.</li>
+          <li><b>Frukt, grønt og poteter</b> under Vare for vare gjelder norskprodusert vare omsatt fra grossist. Salg til industri, direktesalg og økologisk vare som selges som vanlig vare, er ikke med. Rapportene staver noen varer ulikt fra år til år; dashbordet bruker ett navn per vare.</li>
           <li><b>Europa</b> bruker Eurostats tall, som kan avvike litt fra SSBs fordi de beregnes på en annen måte.</li>
         </ul>
       </article>
@@ -368,6 +393,8 @@
           <li>Melketallene gjelder økologisk melk levert til Tine Råvare, som fra 2023 heter Norsk Melkeråvare. Q-meieriene tar bare imot vanlig melk og inngår bare i andelen av all melk.</li>
           <li>I Landbruksdirektoratets rapport for 2025 er Vinmonopolet-tallene en gjentakelse av fjorårets, forskjøvet ett år. Dashbordet bruker derfor tallene fra rapporten for 2024 og har ikke noe 2025-tall for Vinmonopolet.</li>
           <li>Noen tall er revidert mellom rapportene. Dashbordet bruker tabelltall og den nyeste rapporten som har tallet, og retter kjente feil (se README i mappen).</li>
+          <li>Rapporten for 2023 har ikke tall per vare for frukt, grønt og poteter, så 2023 mangler i figurene per vare.</li>
+          <li>Sidetallene under «Vis tallene» er sidene i PDF-filen. De trykte sidetallene i rapportene er ofte noen sider lavere.</li>
           <li>Fylkene vises med dagens inndeling. SSB publiserer Oslo og Akershus samlet.</li>
           <li>Kornet måles per sesong, og tallene er stort sett anslag fra februar.</li>
           <li>Kronebeløp er i løpende priser, ikke justert for prisstigning.</li>
