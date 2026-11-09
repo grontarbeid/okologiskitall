@@ -1,5 +1,5 @@
 {
- "bygget": "2026-11-03T11:01:11Z",
+ "bygget": "2026-11-09T13:57:22Z",
  "siste_aar_ssb": 2025,
  "datasett": {
   "ssb_areal": {
@@ -12,7 +12,7 @@
    "rader": 31,
    "fast": false,
    "oppdateres": "Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ssb_jordbruksareal": {
    "fil": "ssb_jordbruksareal.csv",
@@ -24,7 +24,7 @@
    "rader": 27,
    "fast": false,
    "oppdateres": "Årlig: SSB publiserer endelige tall for jordbruksarealet om høsten.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ssb_fylker": {
    "fil": "ssb_fylker.csv",
@@ -36,7 +36,7 @@
    "rader": 28,
    "fast": false,
    "oppdateres": "Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ssb_bruk": {
    "fil": "ssb_bruk.csv",
@@ -48,7 +48,7 @@
    "rader": 369,
    "fast": false,
    "oppdateres": "Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ssb_husdyr": {
    "fil": "ssb_husdyr.csv",
@@ -60,7 +60,7 @@
    "rader": 269,
    "fast": false,
    "oppdateres": "Årlig: SSB publiserer nye tall for økologisk jordbruk i mars.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "debio_innut": {
    "fil": "debio_innut.csv",
@@ -72,7 +72,7 @@
    "rader": 23,
    "fast": false,
    "oppdateres": "Årlig: Debio legger ut ny statistikk i mars; filene gjøres om for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "debio_vekster": {
    "fil": "debio_vekster.csv",
@@ -84,7 +84,7 @@
    "rader": 28,
    "fast": false,
    "oppdateres": "Årlig: Debio legger ut ny statistikk i mars; filene gjøres om for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_melk": {
    "fil": "ldir_melk.csv",
@@ -96,7 +96,7 @@
    "rader": 21,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_anvendelse": {
    "fil": "ldir_anvendelse.csv",
@@ -108,7 +108,7 @@
    "rader": 57,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_egg": {
    "fil": "ldir_egg.csv",
@@ -120,7 +120,7 @@
    "rader": 24,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_kjott": {
    "fil": "ldir_kjott.csv",
@@ -132,7 +132,7 @@
    "rader": 68,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_korn": {
    "fil": "ldir_korn.csv",
@@ -144,7 +144,7 @@
    "rader": 12,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_dagligvare": {
    "fil": "ldir_dagligvare.csv",
@@ -156,7 +156,7 @@
    "rader": 14,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_varegrupper": {
    "fil": "ldir_varegrupper.csv",
@@ -168,7 +168,7 @@
    "rader": 30,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_kanaler": {
    "fil": "ldir_kanaler.csv",
@@ -180,7 +180,7 @@
    "rader": 72,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_tilskudd": {
    "fil": "ldir_tilskudd.csv",
@@ -192,7 +192,7 @@
    "rader": 17,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_gront_andel": {
    "fil": "ldir_gront_andel.csv",
@@ -204,7 +204,7 @@
    "rader": 8,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_gront_varer": {
    "fil": "ldir_gront_varer.csv",
@@ -216,7 +216,7 @@
    "rader": 210,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "ldir_gront_pris": {
    "fil": "ldir_gront_pris.csv",
@@ -228,7 +228,7 @@
    "rader": 21,
    "fast": false,
    "oppdateres": "Årlig: Landbruksdirektoratets rapport kommer i mars; tallene legges inn for hånd.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "eurostat_europa": {
    "fil": "eurostat_europa.csv",
@@ -240,7 +240,7 @@
    "rader": 32,
    "fast": false,
    "oppdateres": "Årlig: Eurostat publiserer nye tall med 1–2 års forsinkelse.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "norden_andel": {
    "fil": "norden_andel.csv",
@@ -252,7 +252,7 @@
    "rader": 98,
    "fast": false,
    "oppdateres": "Årlig: Eurostat publiserer nye tall med 1–2 års forsinkelse.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "fibl_forbruk": {
    "fil": "fibl_forbruk.csv",
@@ -264,7 +264,7 @@
    "rader": 29,
    "fast": false,
    "oppdateres": "Årlig: FiBL og IFOAM gir ut årboken «The World of Organic Agriculture» i februar.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "fylkeskart": {
    "fil": "fylkeskart.json",
@@ -276,7 +276,7 @@
    "rader": 14,
    "fast": true,
    "oppdateres": "Ved neste fylkesreform.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   },
   "kilder": {
    "fil": "kilder.csv",
@@ -288,7 +288,7 @@
    "rader": 23,
    "fast": false,
    "oppdateres": "Lages på nytt hver gang datasettene bygges.",
-   "bygget": "2026-11-03T11:01:11Z"
+   "bygget": "2026-11-09T13:57:22Z"
   }
  }
 }
